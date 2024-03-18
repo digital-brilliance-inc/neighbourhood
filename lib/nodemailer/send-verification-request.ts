@@ -36,7 +36,10 @@ function toHtml({ url, host, email }: Record<'url' | 'host' | 'email', string>) 
         <mj-column>
           <mj-image width="80" src="http://localhost:3000/litn-logo.png"/>
           <mj-text align="center">
-            Hello World!
+            Milton.church
+          </mj-text>
+          <mj-text align="center">
+            Milton.church
           </mj-text>
           <mj-button href="${url}" target="_blank" border-radius="100px" background-color="#327ABD" color="#FFFFFF" padding="8px 24px">Sign in</a>
         </mj-column>

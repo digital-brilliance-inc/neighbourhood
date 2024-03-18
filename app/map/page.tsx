@@ -12,7 +12,7 @@ export default function Page() {
   // const session = await auth();
   const { data: session } = useSession();
   const [neighbourhoods, setNeighbourhoods] = useState([]);
-  const [selectedNeighbourhood, setSelectedNeighbourhood] = useState();
+  const [selectedNeighbourhood, setSelectedNeighbourhood] = useState<Neighbourhood>();
 
   useEffect(() => {
     fetch('/api/map/neighbourhoods').then(async (response) => {
