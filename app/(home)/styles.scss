@@ -1,0 +1,65 @@
+@import '@/app/globals.scss';
+
+main {
+  position: relative;
+  background-color: var(--color-light-gray);
+}
+
+.carousel-container {
+  height: 100vh;
+  border-radius: 0 0 10px 10px;
+  overflow: hidden;
+  position: relative;
+  margin-top: -75px;
+}
+
+.carousel-item {
+  height: 100vh;
+  border-radius: 0 0 25px 25px;
+  width: auto;
+}
+
+.progress-container {
+  padding: 32px;
+  display: flex;
+  gap: 48px;
+}
+
+.button-container {
+  padding: 32px 0;
+}
+
+.churches-container {
+  display: flex;
+  max-width: 1024px;
+  flex-wrap: wrap;
+  gap: 48px;
+  padding: 48px 0;
+  text-align: center;
+  color: $color-charcoal;
+
+  .church {
+    .church-image-container {
+      position: relative;
+      height: 250px;
+      width: 250px;
+      border-radius: 150px;
+      overflow: hidden;
+      border: 8px solid $color-blue;
+      margin-bottom: 24px;
+      box-shadow: 0 0 8px lighten($color-charcoal, 25);
+
+      .church-image {
+        width: auto;
+        height: auto;
+      }
+    }
+    .church-name {
+      font-weight: bold;
+      margin-bottom: 8px;
+      font-size: 20px;
+    }
+    .church-address {
+    }
+  }
+}

@@ -1,0 +1,61 @@
+$color-white: #ffffff;
+$color-charcoal: #37393b;
+$color-green: #00833e;
+$color-orange: #ff6c37;
+$color-yellow: #ffb900;
+$color-purple: #4b348d;
+$color-blue: #327abd;
+$color-pink: #e11f5c;
+$color-light-gray: #f5f7f8;
+
+// @media (prefers-color-scheme: dark) {
+//   :root {
+//     --foreground-rgb: 255, 255, 255;
+//     --background-start-rgb: 0, 0, 0;
+//     --background-end-rgb: 0, 0, 0;
+//   }
+// }
+
+html {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+body {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+h2 {
+  font-size: 48px;
+  font-weight: bold;
+}
+
+p {
+  line-height: 140%;
+  font-size: 16px;
+}
+
+.button {
+  border-radius: 100px;
+  padding: 12px 32px;
+  font-size: 16px;
+  border: 0;
+  background-color: $color-blue;
+  color: $color-white;
+  transition: background-color 0.3s ease;
+  &:hover {
+    background-color: darken($color-blue, 10%);
+  }
+
+  &.link {
+    background-color: transparent;
+    color: $color-blue;
+    &:hover {
+      background-color: darken($color-light-gray, 5%);
+    }
+  }
+}

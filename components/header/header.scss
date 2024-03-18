@@ -1,0 +1,87 @@
+@import '@/app/globals.scss';
+
+.header-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: white;
+  box-shadow: 4px 0px 10px $color-charcoal;
+  overflow: visible;
+  position: relative;
+  z-index: 100;
+  min-height: 75px;
+  position: sticky;
+  top: 0;
+  padding: 0 24px;
+  .logo-container {
+    flex-grow: 0;
+    flex-shrink: 0;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    .logo {
+      width: 30px;
+      height: auto;
+    }
+    .logo-text {
+      font-size: 24px;
+      font-weight: 600;
+      color: $color-charcoal;
+    }
+  }
+
+  .pages-container {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    .page {
+      padding: 20px 30px;
+      border-bottom: 2px solid transparent;
+      cursor: pointer;
+      color: $color-charcoal;
+      font-size: 20px;
+      position: relative;
+      transition: all 0.5s ease;
+
+      .underline {
+        margin-top: 8px;
+        height: 4px;
+        width: 24px;
+        position: absolute;
+        transition: all 0.5s ease;
+        transform: translateX(-10px);
+      }
+
+      &.current {
+        font-weight: bold;
+        color: $color-blue;
+        .underline {
+          background-color: $color-pink;
+          transform: translateX(0px);
+        }
+      }
+      &:hover:not(.current) {
+        color: $color-pink;
+        // .underline {
+        //   height: 3px;
+        //   background-color: $color-charcoal;
+        // }
+      }
+    }
+  }
+
+  .login-container {
+    flex-grow: 0;
+    flex-shrink: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+
+    img {
+      border-radius: 100px;
+      overflow: hidden;
+    }
+  }
+}

@@ -1,0 +1,20 @@
+@import '@/app/globals.scss';
+
+.title-container {
+  position: relative;
+  margin-bottom: 48px;
+}
+
+.title {
+  padding-bottom: 24px;
+  color: $color-charcoal;
+}
+
+.title-underline {
+  position: absolute;
+  left: 0;
+  width: 96px;
+  height: 6px;
+  background-color: $color-blue;
+  border-radius: 0 100px 100px 0;
+}

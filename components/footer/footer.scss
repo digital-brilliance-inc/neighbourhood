@@ -1,0 +1,82 @@
+@use 'sass:color';
+@import '@/app/variables.scss';
+
+.footer-container {
+  background-color: $color-charcoal;
+  box-shadow: 0px -2px 10px $color-charcoal;
+  overflow: visible;
+  z-index: 100;
+  position: relative;
+  padding: 24px 0;
+
+  .footer-row1-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 24px;
+    gap: 24px;
+  }
+
+  .footer-row2-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    overflow: visible;
+    position: relative;
+    z-index: 100;
+    padding: 0px 24px 24px;
+    gap: 12px;
+
+    hr {
+      border: none;
+      border-top: 1px solid black;
+      width: 100%;
+    }
+    .collaboration-text {
+      color: color.adjust($color-light-gray, $alpha: -0.4);
+      font-size: 14px;
+    }
+
+    .copyright-text {
+      color: $color-light-gray;
+      font-size: 14px;
+    }
+  }
+
+  .logo-container {
+    flex-grow: 0;
+    flex-shrink: 0;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    .logo {
+      width: 20px;
+      height: auto;
+    }
+    .logo-text {
+      font-size: 20px;
+      font-weight: 600;
+      color: $color-white;
+    }
+  }
+
+  .pages-container {
+    flex-grow: 1;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: row;
+    .page {
+      padding: 8px 30px;
+      cursor: pointer;
+      color: $color-white;
+      font-size: 16px;
+      position: relative;
+
+      &:hover {
+        color: $color-pink;
+      }
+    }
+  }
+}

@@ -1,0 +1,68 @@
+@import '@/app/globals.scss';
+
+@keyframes RingProgress {
+  0% {
+    stroke-dasharray: 0 100;
+  }
+}
+
+.ring-container {
+  max-width: 250px;
+  position: relative;
+}
+
+.activity-ring-svg {
+  height: 100%;
+  width: 100%;
+
+  .ring {
+    transform-origin: 50%;
+  }
+  .completed {
+    animation: RingProgress 1s ease-in-out forwards;
+    stroke-linecap: round;
+  }
+  circle {
+    fill: none;
+  }
+}
+
+.ring-label-container {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  margin: 0 20%;
+  text-align: center;
+
+  .ring-value {
+    font-size: 44px;
+    font-weight: bold;
+    margin-bottom: 8px;
+    letter-spacing: -2px;
+    color: $color-charcoal;
+  }
+  .ring-label {
+    font-size: 16 px;
+  }
+}
+
+.ring {
+  .background {
+    stroke: $color-light-gray;
+  }
+  .completed {
+    stroke: $color-pink;
+  }
+}
+
+.ring.blue {
+  .completed {
+    stroke: $color-blue;
+  }
+}
+
+.ring.orange {
+  .completed {
+    stroke: $color-orange;
+  }
+}

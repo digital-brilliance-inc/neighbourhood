@@ -1,0 +1,74 @@
+@import '@/app/globals.scss';
+
+.map-panel-button-container {
+  position: absolute;
+  top: 24px;
+  right: 0px;
+  width: 48px;
+  height: 48px;
+  transition: all 300ms ease-out;
+
+  &.open {
+    transform: translateX(64px);
+  }
+
+  .map-panel-button {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 16px;
+    background: $color-white;
+    border-radius: 25px 0 0 25px;
+    box-shadow: -4px 4px 8px rgba(0, 0, 0, 0.25);
+  }
+}
+
+.map-panel-container {
+  position: absolute;
+  top: 24px;
+  bottom: 24px;
+  right: -25vw;
+  width: 20vw;
+  transition: all 300ms ease-out;
+
+  &.open {
+    transform: translateX(-25vw);
+  }
+
+  .map-panel-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: $color-white;
+    box-shadow: -4px 4px 8px rgba(0, 0, 0, 0.25);
+    border-radius: 24px 0 0 24px;
+    padding: 24px;
+    padding-top: 64px;
+
+    .close {
+      position: absolute;
+      top: 21px;
+      right: 16px;
+      border-radius: 4px;
+      cursor: pointer;
+
+      &:hover {
+        background-color: lighten($color-charcoal, 65);
+      }
+    }
+
+    .title {
+      font-size: 18px;
+      font-weight: 600;
+      padding-bottom: 16px;
+    }
+    .body {
+      line-height: 140%;
+      margin-top: 16px;
+    }
+  }
+}
