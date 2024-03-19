@@ -11,8 +11,28 @@ import { ModalWrapper } from '@/components/modal-wrapper/modal-wrapper';
 import { ModalProvider } from './contexts/modal-context/modal-context';
 
 export const metadata: Metadata = {
-  title: 'Miltotn.church',
+  title: 'Milton.church',
   description: 'Uniting the Church of Milton for the flourishing of the city',
+  icons: [
+    {
+      rel: 'apple-touch-icon',
+      sizes: '180x180',
+      type: 'image/png',
+      url: '/apple-touch-icon.png',
+    },
+    {
+      rel: 'icon',
+      sizes: '32x32',
+      type: 'image/png',
+      url: '/favicon-32x32.png',
+    },
+    {
+      rel: 'icon',
+      sizes: '16x16',
+      type: 'image/png',
+      url: '/favicon-16x16.png',
+    },
+  ],
 };
 
 export default function RootLayout({

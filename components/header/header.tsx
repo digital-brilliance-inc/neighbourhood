@@ -14,11 +14,9 @@ export const Header = ({ user }: { user?: User }) => {
   const [isVisible, setVisible] = useModal();
   return (
     <div className="header-container">
-      <Link href="/">
-        <div className="logo-container">
-          <Image className="logo" src={Logo} width={40} alt="Logo" />
-          <div className="logo-text">Milton.church</div>
-        </div>
+      <Link className="logo-container" href="/">
+        <Image className="logo" src={Logo} width={40} alt="Logo" />
+        <div className="logo-text">Milton.church</div>
       </Link>
       <div className="pages-container">
         <Link className={clsx('page', { current: pathname === '/' })} href="/">

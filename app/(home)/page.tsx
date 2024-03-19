@@ -8,6 +8,7 @@ import { HomeTitle } from '@/components/home-title/home-title';
 import { Footer } from '@/components/footer/footer';
 import { auth } from '@/auth';
 import { Metric } from '@/components/metric/metric';
+import { AboutSection } from '@/components/about-section/about-section';
 
 export default async function Home() {
   const churches = [
@@ -33,9 +34,7 @@ export default async function Home() {
           <Image src="/milton-1.png" alt="Milton" fill={true} className="carousel-item" priority />
           <HomeTitle />
         </div>
-        <Section shaded={true}>
-          <SectionTitle>What is this about?</SectionTitle>
-        </Section>
+        <AboutSection />
         <Section>
           <SectionTitle>How are we doing?</SectionTitle>
           <SectionText>
@@ -55,7 +54,7 @@ export default async function Home() {
             unity the world would be introduced to his love. If you’d like your church to join us, let’s us know!
           </SectionText>
           <div className="button-container">
-            <button>Join us!</button>
+            <button className="button">Join us!</button>
           </div>
           <div className="churches-container">
             {churches.map((c, index) => (

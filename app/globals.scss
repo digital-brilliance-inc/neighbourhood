@@ -54,9 +54,19 @@ p {
   &.link {
     background-color: transparent;
     color: $color-blue;
+    cursor: pointer;
     &:hover {
       background-color: darken($color-light-gray, 5%);
     }
+  }
+}
+
+.link {
+  background-color: transparent;
+  color: $color-pink;
+  cursor: pointer;
+  &:hover {
+    text-decoration: underline;
   }
 }
 
@@ -106,4 +116,27 @@ form {
   color: $color-charcoal;
   line-height: 140%;
   text-align: center;
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  h2 {
+    font-size: 40px;
+  }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
 }

@@ -23,6 +23,7 @@ main {
   padding: 32px;
   display: flex;
   gap: 48px;
+  flex-wrap: wrap;
 }
 
 .button-container {
@@ -63,4 +64,31 @@ main {
     .church-address {
     }
   }
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  .progress-container {
+    justify-content: center;
+  }
+
+  .churches-container {
+    justify-content: center;
+  }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
 }

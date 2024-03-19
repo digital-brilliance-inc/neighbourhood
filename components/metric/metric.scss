@@ -1,11 +1,14 @@
 @import '@/app/globals.scss';
 
 .metric-container {
-  width: 250px;
-  max-width: 250px;
+  width: 240px;
+  max-width: 240px;
+  min-height: 240px;
   position: relative;
   background-color: $color-light-gray;
   border-radius: 250px;
+  border: 10px solid $color-white;
+  justify-content: center;
 }
 
 .metric-label-container {

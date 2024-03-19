@@ -34,18 +34,39 @@ export const HomeTitle = () => {
   }, []);
 
   return (
-    <div className="home-title-container">
-      <div className="line line1">
-        Uniting the <span className={clsx('highlight', { blue: highlightStates?.blue?.showing })}>Church</span>
+    <>
+      <div className="home-title-container">
+        <div className="line line1">
+          Uniting the <span className={clsx('highlight', { blue: highlightStates?.blue?.showing })}>Church</span>
+        </div>
+        <div className="line line2">
+          to saturate every{' '}
+          <span className={clsx('highlight', { purple: highlightStates?.purple?.showing })}>
+            neighbourhood in Milton
+          </span>
+        </div>
+        <div className="line line3">
+          with the <span className={clsx('highlight', { orange: highlightStates?.orange?.showing })}>practical</span>{' '}
+          love of <span className={clsx('highlight', { green: highlightStates?.green?.showing })}>Jesus.</span>
+        </div>
       </div>
-      <div className="line line2">
-        to saturate every{' '}
-        <span className={clsx('highlight', { purple: highlightStates?.purple?.showing })}>neighbourhood in Milton</span>
+      <div className="home-title-container mobile">
+        <div className="line">Uniting the</div>
+        <div className="line">
+          <span className={clsx('highlight', { blue: highlightStates?.blue?.showing })}>Church</span>
+        </div>
+        <div className="line">to saturate every</div>
+        <div className="line">
+          <span className={clsx('highlight', { purple: highlightStates?.purple?.showing })}>neighbourhood</span>
+        </div>
+        <div className="line">with the</div>
+        <div className="line">
+          <span className={clsx('highlight', { orange: highlightStates?.orange?.showing })}>practical love</span>
+        </div>
+        <div className="line">
+          <span className={clsx('highlight', { green: highlightStates?.green?.showing })}>of Jesus.</span>
+        </div>
       </div>
-      <div className="line line3">
-        with the <span className={clsx('highlight', { orange: highlightStates?.orange?.showing })}>practical</span> love
-        of <span className={clsx('highlight', { green: highlightStates?.green?.showing })}>Jesus.</span>
-      </div>
-    </div>
+    </>
   );
 };
