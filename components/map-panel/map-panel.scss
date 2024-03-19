@@ -29,12 +29,12 @@
   position: absolute;
   top: 24px;
   bottom: 24px;
-  right: -25vw;
-  width: 20vw;
+  right: min(-450px, -25vw);
+  width: clamp(300px, 20vw, 400px);
   transition: all 300ms ease-out;
 
   &.open {
-    transform: translateX(-25vw);
+    transform: translateX(min(-450px, -25vw));
   }
 
   .map-panel-background {
@@ -48,6 +48,9 @@
     border-radius: 24px 0 0 24px;
     padding: 24px;
     padding-top: 64px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 
     .close {
       position: absolute;
@@ -71,4 +74,8 @@
       margin-top: 16px;
     }
   }
+}
+
+.submit-button {
+  align-self: center;
 }

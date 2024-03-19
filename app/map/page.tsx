@@ -34,7 +34,11 @@ export default function Page() {
 
   return (
     <div className="map-page-container">
-      <Map neighbourhoods={neighbourhoods} selectNeighbourhood={selectNeighbourhood}></Map>
+      <Map
+        neighbourhoods={neighbourhoods}
+        selectedNeighbourhood={selectedNeighbourhood}
+        selectNeighbourhood={selectNeighbourhood}
+      ></Map>
       <MapPanel user={session?.user} selectedNeighbourhood={selectedNeighbourhood}></MapPanel>
     </div>
   );

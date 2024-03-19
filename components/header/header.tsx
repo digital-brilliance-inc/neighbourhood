@@ -6,9 +6,12 @@ import clsx from 'clsx';
 import Logo from '@/public/logo.svg';
 import Image from 'next/image';
 import { User } from 'next-auth';
+import { useContext } from 'react';
+import { useModal } from '@/app/contexts/modal-context/modal-context';
 
 export const Header = ({ user }: { user?: User }) => {
   const pathname = usePathname();
+  const [isVisible, setVisible] = useModal();
   return (
     <div className="header-container">
       <Link href="/">
@@ -41,6 +44,7 @@ export const Header = ({ user }: { user?: User }) => {
       )}
       {!user && (
         <div className="login-container">
+          <div onClick={() => setVisible(<div>HelloWorld</div>)}>Open modal</div>
           <Link href="/api/auth/signin" className="button">
             Sign in
           </Link>

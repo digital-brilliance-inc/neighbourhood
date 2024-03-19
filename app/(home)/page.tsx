@@ -7,15 +7,20 @@ import { ActivityRing } from '@/components/activity-ring/activity-ring';
 import { HomeTitle } from '@/components/home-title/home-title';
 import { Footer } from '@/components/footer/footer';
 import { auth } from '@/auth';
+import { Metric } from '@/components/metric/metric';
 
 export default async function Home() {
   const churches = [
-    { name: 'Knox Presbyterian', address: '170 Main St. E.', imageSrc: '/milton-1.png' },
-    { name: 'Grace Anglican', address: '317 Main St. E.', imageSrc: '/milton-1.png' },
-    { name: 'Grace Anglican', address: '317 Main St. E.', imageSrc: '/milton-1.png' },
-    { name: 'Grace Anglican', address: '317 Main St. E.', imageSrc: '/milton-1.png' },
-    { name: 'Grace Anglican', address: '317 Main St. E.', imageSrc: '/milton-1.png' },
-    { name: 'Grace Anglican', address: '317 Main St. E.', imageSrc: '/milton-1.png' },
+    { name: 'Knox Presbyterian', address: '170 Main St. E.', imageSrc: '/church-knox-presbyterian.jpg' },
+    { name: 'Grace Anglican', address: '317 Main St. E.', imageSrc: '/church-grace-anglican.webp' },
+    { name: 'Southside @ Main', address: '317 Main St. E.', imageSrc: '/church-southside.jpg' },
+    { name: "St. Paul's United", address: '317 Main St. E.', imageSrc: '/church-st-pauls.jpg' },
+    { name: 'Red Hill', address: '317 Main St. E.', imageSrc: '/church-red-hill.jpg' },
+    {
+      name: 'Milton Bible Church',
+      address: '121 Chisholm Dr, Milton, ON L9T 4A6',
+      imageSrc: '/church-milton-bible.webp',
+    },
   ];
   // const session = await auth();
   // console.log('session = %o', session);
@@ -38,9 +43,9 @@ export default async function Home() {
             to be easy. As we unite together, we want to celebrate the small ways God is bringing us together.
           </SectionText>
           <div className="progress-container">
-            <ActivityRing value={50.2} color="pink" label="of neighbourhoods accounted for"></ActivityRing>
-            <ActivityRing value={30} color="orange" label="of neighbourhoods accounted for"></ActivityRing>
-            <ActivityRing value={80} color="blue" label="of neighbourhoods accounted for"></ActivityRing>
+            <ActivityRing value={2.3} color="orange" label="of neighbourhoods accounted for"></ActivityRing>
+            <Metric value={1} color="pink" label="neighbourhood advocates identified"></Metric>
+            <ActivityRing value={8} color="blue" label="of churches participating"></ActivityRing>
           </div>
         </Section>
         <Section shaded={true}>
@@ -55,8 +60,15 @@ export default async function Home() {
           <div className="churches-container">
             {churches.map((c, index) => (
               <div className="church" key={index}>
-                <div className="church-image-container">
-                  <Image className="church-image" src={c.imageSrc} alt={c.name} fill={true} sizes="100%"></Image>
+                <div
+                  className="church-image-container"
+                  style={{
+                    backgroundImage: `url(${c.imageSrc})`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center center',
+                  }}
+                >
+                  {/* <Image className="church-image" src={c.imageSrc} alt={c.name} fill={true} sizes="100%"></Image> */}
                 </div>
                 <div className="church-name">{c.name}</div>
                 <div className="church-address">{c.address}</div>

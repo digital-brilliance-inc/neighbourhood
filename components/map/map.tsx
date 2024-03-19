@@ -7,13 +7,16 @@ import { Neighbourhood } from '@/lib/model/neighbourhood';
 
 export const Map = ({
   neighbourhoods,
+  selectedNeighbourhood,
   selectNeighbourhood,
 }: {
   neighbourhoods: Array<Neighbourhood>;
+  selectedNeighbourhood?: Neighbourhood;
   selectNeighbourhood: (n?: Neighbourhood) => void;
 }) => {
   const mapRef = useRef<HTMLDivElement>(null);
   const [map, setMap] = useState<google.maps.Map>();
+  const [neighbourhoodPolygons, setNeighbourhoodPolygons] = useState<any>({});
 
   useEffect(() => {
     console.log('NEXT_PUBLIC_GOOGLE_MAPS_API_KEY: ' + process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY);
@@ -59,60 +62,60 @@ export const Map = ({
         selectNeighbourhood();
       });
 
-      let poly = new google.maps.Polyline({
-        strokeColor: '#000000',
-        strokeOpacity: 1.0,
-        strokeWeight: 3,
-      });
-      poly.setMap(map);
+      // let poly = new google.maps.Polyline({
+      //   strokeColor: '#000000',
+      //   strokeOpacity: 1.0,
+      //   strokeWeight: 3,
+      // });
+      // poly.setMap(map);
 
-      let polygon = new google.maps.Polygon({
-        strokeColor: '#000000',
-        strokeOpacity: 0,
-        strokeWeight: 0,
-      });
-      polygon.setMap(map);
+      // let polygon = new google.maps.Polygon({
+      //   strokeColor: '#000000',
+      //   strokeOpacity: 0,
+      //   strokeWeight: 0,
+      // });
+      // polygon.setMap(map);
 
-      function addLatLng(event: google.maps.MapMouseEvent) {
-        console.log('Adding lat lng: %o, %o', event.latLng?.lat(), event.latLng?.lng());
-        const path = poly.getPath();
-        const polygonPath = polygon.getPath();
+      // function addLatLng(event: google.maps.MapMouseEvent) {
+      //   console.log('Adding lat lng: %o, %o', event.latLng?.lat(), event.latLng?.lng());
+      //   const path = poly.getPath();
+      //   const polygonPath = polygon.getPath();
 
-        const vertex = new google.maps.Circle({
-          strokeColor: '#FF0000',
-          strokeOpacity: 0.8,
-          strokeWeight: 2,
-          fillColor: '#FF0000',
-          fillOpacity: 0.35,
-          map,
-          center: event.latLng,
-          radius: 50,
-        });
+      //   const vertex = new google.maps.Circle({
+      //     strokeColor: '#FF0000',
+      //     strokeOpacity: 0.8,
+      //     strokeWeight: 2,
+      //     fillColor: '#FF0000',
+      //     fillOpacity: 0.35,
+      //     map,
+      //     center: event.latLng,
+      //     radius: 50,
+      //   });
 
-        vertex.setMap(map);
+      //   vertex.setMap(map);
 
-        // Because path is an MVCArray, we can simply append a new coordinate
-        // and it will automatically appear.
-        path.push(event.latLng as google.maps.LatLng);
-        polygonPath.push(event.latLng as google.maps.LatLng);
+      //   // Because path is an MVCArray, we can simply append a new coordinate
+      //   // and it will automatically appear.
+      //   path.push(event.latLng as google.maps.LatLng);
+      //   polygonPath.push(event.latLng as google.maps.LatLng);
 
-        if (path.getLength() === 1) {
-          vertex.addListener('click', (event: google.maps.MapMouseEvent) => {
-            console.log('Closing path');
-            polygon.setOptions({
-              strokeColor: '#000000',
-              strokeOpacity: 1,
-              strokeWeight: 3,
-            });
-          });
-        }
-      }
+      //   if (path.getLength() === 1) {
+      //     vertex.addListener('click', (event: google.maps.MapMouseEvent) => {
+      //       console.log('Closing path');
+      //       polygon.setOptions({
+      //         strokeColor: '#000000',
+      //         strokeOpacity: 1,
+      //         strokeWeight: 3,
+      //       });
+      //     });
+      //   }
+      // }
       setMap(map);
 
-      map.addListener('click', addLatLng);
-      poly.addListener('click', (event: google.maps.MapMouseEvent) => {
-        console.log('poly clicked! %o', event);
-      });
+      // map.addListener('click', addLatLng);
+      // poly.addListener('click', (event: google.maps.MapMouseEvent) => {
+      //   console.log('poly clicked! %o', event);
+      // });
     };
     initMap();
   }, []);
@@ -138,14 +141,32 @@ export const Map = ({
           console.log('Neighbourhood hovered: %o, event = %o', n, event);
         });
         polygon.addListener('mouseout', (event: google.maps.MapMouseEvent) => {
-          polygon.set('strokeColor', '#327abd');
-          polygon.set('fillColor', '#327abd');
+          if (!polygon.get('isSelected')) {
+            polygon.set('strokeColor', '#327abd');
+            polygon.set('fillColor', '#327abd');
+          }
           console.log('Neighbourhood hovered out: %o, event = %o', n, event);
         });
         polygon.setMap(map);
+        setNeighbourhoodPolygons((current: any) => ({ ...current, [n.id]: polygon }));
       }
     }
   }, [neighbourhoods, map]);
+
+  useEffect(() => {
+    for (let key of Object.keys(neighbourhoodPolygons)) {
+      const p = neighbourhoodPolygons[key] as google.maps.Polygon;
+      p.set('strokeColor', '#327abd');
+      p.set('fillColor', '#327abd');
+      p.set('isSelected', false);
+
+      if (key === selectedNeighbourhood?.id) {
+        p.set('strokeColor', '#e11f5c');
+        p.set('fillColor', '#e11f5c');
+        p.set('isSelected', true);
+      }
+    }
+  }, [neighbourhoodPolygons, selectedNeighbourhood]);
 
   return <div className="map-container" ref={mapRef}></div>;
 };

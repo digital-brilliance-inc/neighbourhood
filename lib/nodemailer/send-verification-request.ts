@@ -29,19 +29,34 @@ export async function sendVerificationRequest({
 }
 
 function toHtml({ url, host, email }: Record<'url' | 'host' | 'email', string>) {
+  const escapedHost = `${host.replace(/\./g, '&#8203;.')}`;
   return mjml2html(`
   <mjml>
+    <mj-head>
+      <mj-attributes>
+        <mj-font name="Inter" href="https://fonts.googleapis.com/css?family=Inter"/>
+        <mj-all font-family="Inter" align="center" font-size="16px" line-height="140%"/>
+        <mj-class name="title" font-size="40px" font-weight="700"/>
+        <mj-class name="body" padding-top="24px" padding-bottom="24px"/>
+      </mj-attributes>
+    </mj-head>
     <mj-body>
       <mj-section>
-        <mj-column>
-          <mj-image width="80" src="http://localhost:3000/litn-logo.png"/>
-          <mj-text align="center">
+        <mj-column >
+          <mj-image width="80" src="${host}/litn-logo.png"/>
+          <mj-text mj-class="title">
             Milton.church
           </mj-text>
-          <mj-text align="center">
-            Milton.church
+          <mj-text mj-class="body">
+            <div style="font-weight: 600; margin-bottom: 8px">Click the button below to finish signing in.</div>
+            <div>If you did not request this email you can safely ignore it.</div>
           </mj-text>
-          <mj-button href="${url}" target="_blank" border-radius="100px" background-color="#327ABD" color="#FFFFFF" padding="8px 24px">Sign in</a>
+          <mj-button href="${url}" target="_blank" border-radius="100px" background-color="#327ABD" color="#FFFFFF" padding="8px 32px" font-size="18px">Sign in as ${email}</mj-button>
+          <mj-text mj-class="body" font-size="14px">
+            If the above button doesn't work, you can copy/paste this link into your browser:
+            <div style="font-family: monospace" font-size="12px">${url}</div>
+          </mj-text>
+          
         </mj-column>
       </mj-section>
     </mj-body>
