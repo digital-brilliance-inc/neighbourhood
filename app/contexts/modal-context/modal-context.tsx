@@ -12,9 +12,7 @@ export function ModalProvider({ children }: { children: React.ReactNode }) {
   return (
     <ModalContext.Provider value={[modalContent, setVisible]}>
       {children}
-      <ModalWrapper isVisible={!!modalContent}>
-        <div>Jello</div>
-      </ModalWrapper>
+      <ModalWrapper isVisible={!!modalContent}></ModalWrapper>
     </ModalContext.Provider>
   );
 }
