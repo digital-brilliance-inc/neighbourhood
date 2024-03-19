@@ -44,7 +44,6 @@ export const Header = ({ user }: { user?: User }) => {
       )}
       {!user && (
         <div className="login-container">
-          <div onClick={() => setVisible(<div>HelloWorld</div>)}>Open modal</div>
           <Link href="/api/auth/signin" className="button">
             Sign in
           </Link>
