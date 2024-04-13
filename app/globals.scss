@@ -8,13 +8,14 @@ $color-blue: #327abd;
 $color-pink: #e11f5c;
 $color-light-gray: #f5f7f8;
 
-// @media (prefers-color-scheme: dark) {
-//   :root {
-//     --foreground-rgb: 255, 255, 255;
-//     --background-start-rgb: 0, 0, 0;
-//     --background-end-rgb: 0, 0, 0;
-//   }
-// }
+$theme-colors: (
+  'primary': $color-blue,
+  'secondary': $color-charcoal,
+  'tertiary': $color-light-gray,
+  'danger': $color-pink,
+);
+
+@import '~bootstrap/scss/bootstrap';
 
 html {
   height: 100%;
@@ -34,22 +35,87 @@ h2 {
   font-weight: bold;
 }
 
+h3 {
+  font-size: 40px;
+  font-weight: bold;
+}
+
+h4 {
+  font-size: 28px;
+  font-weight: 350;
+  line-height: 140%;
+}
+
+h5 {
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 140%;
+}
+
 p {
   line-height: 140%;
   font-size: 16px;
 }
 
+a {
+  color: $color-charcoal;
+
+  transition: filter 0.5s ease;
+  &.blue {
+    color: $color-blue;
+  }
+  &.purple {
+    color: $color-purple;
+  }
+  &.pink {
+    color: $color-pink;
+  }
+  &:hover {
+    cursor: pointer;
+    filter: brightness(85%);
+  }
+}
+
+.bold {
+  font-weight: 700;
+}
+
+.text-white {
+  color: $color-blue;
+}
+.text-blue {
+  color: $color-blue;
+}
+.text-purple {
+  color: $color-purple;
+}
+.text-pink {
+  color: $color-pink;
+}
+.text-orange {
+  color: $color-orange;
+}
+
+button.btn,
 .button {
   border-radius: 100px;
   padding: 12px 32px;
   font-size: 16px;
   border: 0;
-  background-color: $color-blue;
-  color: $color-white;
   transition: background-color 0.3s ease;
-  &:hover {
-    background-color: darken($color-blue, 10%);
+
+  &.btn-sm {
+    padding: 8px 24px;
+    font-size: 16px;
   }
+  &.btn-lg {
+    padding: 12px 32px;
+    font-size: 20px;
+    font-weight: 700;
+  }
+  // &:hover {
+  //   background-color: darken($color-blue, 10%);
+  // }
 
   &.link {
     background-color: transparent;
@@ -99,23 +165,37 @@ form {
   }
 }
 
+.modal {
+  .modal-content {
+    border-radius: 24px;
+  }
+  h4.modal-title {
+    font-weight: 700;
+  }
+}
+
 .modal-contents {
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
 }
-.modal-title {
-  font-size: 32px;
-  font-weight: 700;
-  margin-bottom: 24px;
-}
 
-.modal-description {
-  margin-bottom: 32px;
-  color: $color-charcoal;
-  line-height: 140%;
-  text-align: center;
+.tag {
+  text-transform: uppercase;
+  font-size: 10px;
+  font-weight: 900;
+  color: $color-white;
+  padding: 0px 12px;
+  border-radius: 4px;
+  display: inline-block;
+
+  &.pink {
+    background-color: $color-pink;
+  }
+  &.purple {
+    background-color: $color-purple;
+  }
 }
 
 /* Extra small devices (phones, 600px and down) */

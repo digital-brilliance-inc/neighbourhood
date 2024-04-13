@@ -1,0 +1,50 @@
+@use 'sass:color';
+@import '@/app/globals.scss';
+
+.page-churches {
+  .loading-container {
+    display: inline-block;
+    text-align: center;
+    margin: 150px auto;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    .loading-label {
+      color: $color-charcoal;
+      margin-top: 8px;
+    }
+  }
+  .church-card-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+  .church-card {
+    text-align: center;
+    width: 300px;
+    cursor: pointer;
+    .church-image-container {
+      width: 100%;
+      height: 250px;
+      border-radius: 25px;
+      box-shadow: 0 4px 10px color.change($color-charcoal, $alpha: 0.2);
+      transition: box-shadow 0.5s ease;
+    }
+    .church-name {
+      font-weight: 700;
+      transition: color 0.5s ease;
+    }
+    .church-address {
+      font-size: 16px;
+    }
+
+    &:hover {
+      .church-image-container {
+        box-shadow: 0 4px 10px color.change($color-charcoal, $alpha: 0.7);
+      }
+      .church-name {
+        color: $color-blue;
+      }
+    }
+  }
+}

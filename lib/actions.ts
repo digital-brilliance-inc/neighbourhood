@@ -3,6 +3,7 @@
 import { signIn } from '@/auth';
 import { createTransport } from 'nodemailer';
 import { sendEmailMessage } from './nodemailer/send-message';
+import { sendAdvocateRequestEmail } from './nodemailer/send-advocate-request';
 
 export async function authenticate(_currentState: unknown, formData: FormData) {
   try {
@@ -34,9 +35,31 @@ export async function sendMessage(_currentState: unknown, formData: FormData) {
   }
 }
 
+export async function sendAdvocateRequest(_currentState: unknown, formData: FormData) {
+  try {
+    const userId = formData.get('userId')?.toString()!;
+    const userName = formData.get('userName')?.toString()!;
+    const userEmail = formData.get('userEmail')?.toString()!;
+    const church = formData.get('church')?.toString()!;
+    const neighbourhoodName = formData.get('neighbourhoodName')?.toString()!;
+
+    await sendAdvocateRequestEmail({
+      fromUserId: userId,
+      toEmail: 'curtis@digitalbrilliance.ca',
+      fromEmail: userEmail,
+      fromName: userName,
+      church,
+      neighbourhoodName,
+    });
+  } catch (error: any) {
+    console.log('sendAdvocateRequest(): error = %o', error);
+    throw error;
+  }
+}
+
 export async function subscribeToMailingListAction(_currentState: unknown, formData: FormData) {
   try {
-    const firstName = ''; //formData.get('firstName')?.toString()!;
+    const firstName = formData.get('firstName')?.toString()!;
     const lastName = formData.get('lastName')?.toString()!;
     const email = formData.get('email')?.toString()!;
     const church = formData.get('church')?.toString();

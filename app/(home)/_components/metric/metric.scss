@@ -1,0 +1,46 @@
+@import '@/app/globals.scss';
+
+.metric-container {
+  width: 240px;
+  max-width: 240px;
+  min-height: 240px;
+  position: relative;
+  background-color: $color-light-gray;
+  border-radius: 250px;
+  border: 10px solid $color-white;
+  justify-content: center;
+}
+
+.metric-label-container {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  margin: 0 20%;
+  text-align: center;
+
+  .metric-value {
+    font-size: 72px;
+    font-weight: bold;
+    margin-bottom: 8px;
+    letter-spacing: -2px;
+    color: $color-charcoal;
+    line-height: 100%;
+
+    &.pink {
+      color: $color-pink;
+    }
+    &.blue {
+      color: $color-blue;
+    }
+    &.orange {
+      color: $color-orange;
+    }
+    &.green {
+      color: $color-green;
+    }
+  }
+  .metric-label {
+    font-size: 16px;
+    line-height: 120%;
+  }
+}

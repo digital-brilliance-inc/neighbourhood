@@ -9,9 +9,12 @@ export const HomeTitle = () => {
   useEffect(() => {
     const initialStates = {
       blue: { wait: 1000, showing: false },
-      purple: { wait: 2000, showing: false },
-      orange: { wait: 2800, showing: false },
-      green: { wait: 3500, showing: false },
+      orange: { wait: 2000, showing: false },
+      green: { wait: 2800, showing: false },
+      // blue: { wait: 1000, showing: false },
+      // purple: { wait: 2000, showing: false },
+      // orange: { wait: 2800, showing: false },
+      // green: { wait: 3500, showing: false },
     };
     setHighlightStates(initialStates);
 
@@ -36,14 +39,12 @@ export const HomeTitle = () => {
   return (
     <>
       <div className="home-title-container">
-        <div className="line line1">
+        {/* <div className="line line1">
           Uniting the <span className={clsx('highlight', { blue: highlightStates?.blue?.showing })}>Church</span>
-        </div>
+        </div> */}
         <div className="line line2">
-          to saturate every{' '}
-          <span className={clsx('highlight', { purple: highlightStates?.purple?.showing })}>
-            neighbourhood in Milton
-          </span>
+          Let’s saturate every{' '}
+          <span className={clsx('highlight', { blue: highlightStates?.blue?.showing })}>neighbourhood in Milton</span>
         </div>
         <div className="line line3">
           with the <span className={clsx('highlight', { orange: highlightStates?.orange?.showing })}>practical</span>{' '}
@@ -51,13 +52,13 @@ export const HomeTitle = () => {
         </div>
       </div>
       <div className="home-title-container mobile">
-        <div className="line">Uniting the</div>
+        {/* <div className="line">Uniting the</div>
         <div className="line">
           <span className={clsx('highlight', { blue: highlightStates?.blue?.showing })}>Church</span>
-        </div>
-        <div className="line">to saturate every</div>
+        </div> */}
+        <div className="line">Let’s saturate every</div>
         <div className="line">
-          <span className={clsx('highlight', { purple: highlightStates?.purple?.showing })}>neighbourhood</span>
+          <span className={clsx('highlight', { blue: highlightStates?.blue?.showing })}>neighbourhood</span>
         </div>
         <div className="line">with the</div>
         <div className="line">

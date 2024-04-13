@@ -1,0 +1,31 @@
+@import '@/app/globals.scss';
+
+.map-panel-logged-out {
+  .step-container {
+    .step-number {
+      font-size: 32px;
+      font-weight: 700;
+      height: 50px;
+      width: 50px;
+      line-height: 50px;
+      color: $color-white;
+      border-radius: 100px;
+      text-align: center;
+      margin: auto;
+      margin-bottom: 16px;
+      margin-top: 32px;
+
+      &.purple {
+        background-color: $color-purple;
+      }
+      &.blue {
+        background-color: $color-blue;
+      }
+      &.pink {
+        background-color: $color-pink;
+      }
+    }
+    .step-contents {
+    }
+  }
+}

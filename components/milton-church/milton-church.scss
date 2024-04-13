@@ -1,0 +1,12 @@
+@import '@/app/variables.scss';
+
+.milton-church-label {
+  .milton {
+    color: $color-blue;
+    font-weight: 700;
+  }
+  .church {
+    color: $color-pink;
+    font-weight: 700;
+  }
+}

@@ -1,0 +1,16 @@
+@import '@/app/globals.scss';
+
+.map-panel-neighbourhood-selected {
+  .create-account-container {
+    padding: 16px 24px;
+    background-color: $color-light-gray;
+    border-radius: 10px;
+  }
+
+  .neighbourhood-picture-container {
+    border-radius: 10px;
+    background-position: center center;
+    background-size: cover;
+    aspect-ratio: 4/3;
+  }
+}

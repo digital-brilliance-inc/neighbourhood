@@ -1,0 +1,39 @@
+@use 'sass:color';
+@import '@/app/globals.scss';
+
+.faq-section {
+  .faq-title {
+    color: $color-blue;
+  }
+
+  .accordion-item {
+    border: 0;
+    margin: 8px 0;
+  }
+
+  .accordion-button {
+    background-color: $color-light-gray;
+    font-size: 18px;
+    font-weight: 500;
+    border-radius: 24px !important;
+    box-shadow: 0 2px 4px color.change($color-charcoal, $alpha: 0.2);
+    color: $color-pink;
+    &.collapsed {
+      box-shadow: none;
+      color: $color-charcoal;
+    }
+  }
+
+  .accordion-body {
+    padding-top: 0;
+    padding-bottom: 0;
+    font-size: 16px;
+  }
+
+  ul {
+    list-style-type: initial;
+  }
+  li {
+    margin: 16px 0;
+  }
+}

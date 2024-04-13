@@ -1,0 +1,32 @@
+@import '@/app/globals.scss';
+
+.map-panel-logged-in {
+  .step-container {
+    background-color: $color-light-gray;
+    border-radius: 10px;
+    padding: 0px 24px 16px 24px;
+    margin-bottom: 24px;
+    position: relative;
+
+    .step-number {
+      font-size: 32px;
+      font-weight: 700;
+      height: 50px;
+      width: 50px;
+      line-height: 50px;
+      color: $color-white;
+      border-radius: 100px;
+      text-align: center;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%) translateY(-50%);
+
+      &.orange {
+        background-color: $color-orange;
+      }
+    }
+    .step-contents {
+      padding-top: 32px;
+    }
+  }
+}

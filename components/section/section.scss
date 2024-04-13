@@ -3,9 +3,28 @@
 section {
   padding: 64px;
   border-radius: 0 0 24px 24px;
-  // border: 1px solid blue;
   z-index: 2;
   position: relative;
+
+  .section-inner-container {
+    gap: 32px;
+  }
+
+  .section-body {
+    font-size: 18px;
+    display: flex;
+    gap: 32px;
+    p {
+      margin-top: 24px;
+      margin-bottom: 24px;
+      font-size: inherit;
+    }
+    p,
+    h4,
+    h5 {
+      max-width: 768px;
+    }
+  }
 }
 
 .shaded {
@@ -42,4 +61,8 @@ section {
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {
+  .section-inner-container {
+    max-width: 1200px;
+    margin: auto;
+  }
 }

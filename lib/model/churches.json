@@ -1,0 +1,87 @@
+[
+  {
+    "name": "Knox Presbyterian",
+    "address": "170 Main St. E.",
+    "leaders": [
+      {
+        "name": "Stephen Rothery",
+        "title": "Lead Pastor"
+      }
+    ],
+    "primaryImageUrl": "/church-knox-presbyterian.jpg",
+    "additionalImageUrls": ["/church-knox-presbyterian.jpg"],
+    "lat": 43.5119535,
+    "lng": -79.8837936
+  },
+  {
+    "name": "Grace Anglican",
+    "address": "317 Main St. E.",
+    "leaders": [
+      {
+        "name": "Karine Snowdon",
+        "title": "Reverend"
+      }
+    ],
+    "primaryImageUrl": "/church-grace-anglican.webp",
+    "contactEmail": "Info@Gracechurchmilton.Com",
+    "lat": 43.5157449,
+    "lng": -79.8836966
+  },
+  {
+    "name": "Southside @ Main",
+    "address": "200 Main St. E.",
+    "leaders": [
+      {
+        "name": "Andrew Wood",
+        "title": "Lead Pastor"
+      }
+    ],
+    "primaryImageUrl": "/church-southside.jpg",
+    "additionalImageUrls": ["/church-southside.jpg"],
+    "lat": 43.5128537,
+    "lng": -79.8857596
+  },
+  {
+    "name": "St. Paul's United",
+    "address": "123 Main St. E.",
+    "leaders": [
+      {
+        "name": "Christina Crawford",
+        "title": "Reverend"
+      }
+    ],
+    "contactEmail": "stpaulsmiltonminister@gmail.com",
+    "primaryImageUrl": "/church-st-pauls.jpg",
+    "lat": 43.511191,
+    "lng": -79.8881079
+  },
+  {
+    "name": "Red Hill",
+    "address": "6150 Trafalgar Rd.",
+    "leaders": [
+      {
+        "name": "Jaco Maree",
+        "title": "Lead Pastor"
+      }
+    ],
+    "primaryImageUrl": "/church-red-hill.jpg",
+    "lat": 43.5389345,
+    "lng": -79.7892345
+  },
+  {
+    "name": "Milton Bible Church",
+    "address": "121 Chisholm Dr, Milton, ON L9T 4A6",
+    "leaders": [
+      {
+        "name": "Mark Strickland",
+        "title": "Lead Pastor"
+      }
+    ],
+    "contactEmail": "",
+    "contactUrl": "https://www.miltonbiblechurch.ca/contactus",
+    "primaryImageUrl": "/church-milton-bible.webp",
+    "additionalImageUrls": ["/church-milton-bible.webp"],
+    "lat": 43.524949,
+    "lng": -79.9872999
+  }
+]

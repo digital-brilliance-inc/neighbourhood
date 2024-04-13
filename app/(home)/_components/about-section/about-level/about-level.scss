@@ -1,0 +1,30 @@
+@import '@/app/variables.scss';
+
+.level-block {
+  text-align: center;
+  padding: 12px 24px;
+  border-radius: 10px;
+
+  &.purple {
+    background-color: $color-purple;
+  }
+  &.blue {
+    background-color: $color-blue;
+  }
+  &.pink {
+    background-color: $color-pink;
+  }
+
+  .level-label {
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 16px;
+    color: $color-white;
+  }
+  .level-num {
+    font-size: 40px;
+    font-weight: 800;
+    color: $color-white;
+    line-height: 100%;
+  }
+}

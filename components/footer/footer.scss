@@ -8,13 +8,39 @@
   z-index: 100;
   position: relative;
   padding: 24px 0;
+  display: flex;
+  align-items: center;
+
+  .logo-container {
+    flex-grow: 0;
+    flex-shrink: 0;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    margin-left: 24px;
+    .logo {
+      width: 100px;
+      height: auto;
+    }
+  }
+
+  .footer-inner-container {
+    flex-grow: 1;
+  }
 
   .footer-row1-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 0 24px;
+    padding: 0 24px 0;
     gap: 24px;
+  }
+
+  hr {
+    border: none;
+    border-top: 1px solid color.change($color-white, $alpha: 0.5);
+    // width: 100%;
+    margin: 4px 24px 12px;
   }
 
   .footer-row2-container {
@@ -28,11 +54,6 @@
     padding: 0px 24px 24px;
     gap: 12px;
 
-    hr {
-      border: none;
-      border-top: 1px solid black;
-      width: 100%;
-    }
     .collaboration-text {
       color: color.adjust($color-light-gray, $alpha: -0.4);
       font-size: 14px;
@@ -44,26 +65,15 @@
     }
   }
 
-  .logo-container {
-    flex-grow: 0;
-    flex-shrink: 0;
-    height: 60px;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    .logo {
-      width: 20px;
-      height: auto;
-    }
-    .logo-text {
-      font-size: 20px;
-      font-weight: 600;
-      color: $color-white;
-    }
+  .logo-text {
+    font-size: 20px;
+    font-weight: 600;
+    color: $color-white;
+    flex-grow: 1;
   }
 
   .pages-container {
-    flex-grow: 1;
+    flex-grow: 0;
     display: flex;
     justify-content: flex-start;
     flex-direction: row;
@@ -73,6 +83,7 @@
       color: $color-white;
       font-size: 16px;
       position: relative;
+      text-decoration: none;
 
       &:hover {
         color: $color-pink;
