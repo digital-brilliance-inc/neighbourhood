@@ -36,7 +36,7 @@ function toHtml({
   fromEmail,
   neighbourhoodName,
   church,
-}: Record<'fromUserId', 'fromName' | 'fromEmail' | 'neighbourhoodName', 'church', string>) {
+}: Record<'fromUserId' | 'fromName' | 'fromEmail' | 'neighbourhoodName' | 'church', string>) {
   return mjml2html(`
   <mjml>
     <mj-head>

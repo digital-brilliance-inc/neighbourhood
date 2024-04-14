@@ -20,7 +20,7 @@ export const HomeTitle = () => {
 
     const timeoutHandles: Array<NodeJS.Timeout> = [];
     for (let key of Object.keys(initialStates)) {
-      const wait = (initialStates[key as 'blue' | 'purple' | 'orange' | 'green'] as any).wait as number;
+      const wait = (initialStates[key as 'blue' | 'orange' | 'green'] as any).wait as number;
       timeoutHandles.push(
         setTimeout(() => {
           setHighlightStates((prevState: any) => {
