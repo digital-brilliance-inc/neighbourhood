@@ -95,8 +95,12 @@ a {
 .text-orange {
   color: $color-orange;
 }
+.text-green {
+  color: $color-green;
+}
 
 button.btn,
+a.btn,
 .button {
   border-radius: 100px;
   padding: 12px 32px;
@@ -172,6 +176,10 @@ form {
   h4.modal-title {
     font-weight: 700;
   }
+  .loading-container {
+    text-align: center;
+    margin: 48px 0;
+  }
 }
 
 .modal-contents {
@@ -203,10 +211,17 @@ form {
   h2 {
     font-size: 40px;
   }
+
+  .small-only {
+    display: initial;
+  }
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 600px) {
+  .small-only {
+    display: none;
+  }
 }
 
 /* Medium devices (landscape tablets, 768px and up) */

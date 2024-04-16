@@ -21,26 +21,32 @@ import { Spinner } from 'react-bootstrap';
 export const MapPanel = ({
   isLoading,
   user,
+  myNeighbourhood,
   selectedNeighbourhood,
   selectedChurch,
   createNeighbourhood,
+  setNeighbourhood,
 }: {
   isLoading: boolean;
   user?: User;
+  myNeighbourhood?: Neighbourhood;
   selectedNeighbourhood?: Neighbourhood;
   selectedChurch?: Church;
   createNeighbourhood: () => void;
+  setNeighbourhood: (neighbourhood: Neighbourhood) => void;
 }) => {
   const [isOpen, setIsOpen] = useState(true);
   const { data: sessionData } = useSession();
 
-  console.log('User = %o, sessionData = %o', user, sessionData);
+  // console.log('User = %o, sessionData = %o', user, sessionData);
+  console.log('myNeighbourhood = %o', myNeighbourhood);
 
   return (
     <>
       <div className={clsx('map-panel-button-container', { open: isOpen })}>
         <div className="map-panel-button" onClick={() => setIsOpen(true)}>
-          <Image src="/logo.svg" height="20" width="20" alt="Open map panel" />
+          <Image className="d-none d-md-block" src="/panel-side-icon.png" height="30" width="30" alt="Open map panel" />
+          <Image className="d-sm-none" src="/panel-bottom-icon.png" height="30" width="30" alt="Open map panel" />
         </div>
       </div>
       <div className={clsx('map-panel-container', { open: isOpen })}>
@@ -59,7 +65,12 @@ export const MapPanel = ({
             {!isLoading && selectedChurch && <MapPanelChurchSelected church={selectedChurch} user={user} />}
             {!isLoading && !user && !selectedNeighbourhood && !selectedChurch && <MapPanelLoggedOut />}
             {!isLoading && user && !selectedNeighbourhood && !selectedChurch && (
-              <MapPanelLoggedIn user={user} createNeighbourhood={createNeighbourhood} />
+              <MapPanelLoggedIn
+                user={user}
+                createNeighbourhood={createNeighbourhood}
+                neighbourhood={myNeighbourhood}
+                setNeighbourhood={setNeighbourhood}
+              />
             )}
           </div>
         </div>

@@ -14,11 +14,13 @@ export const MapPanelChurchSelected = ({ church, user }: { church: Church; user:
       <div className="tag purple mb-2">Selected Church</div>
       <h4 className="bold mb-4">{church.name}</h4>
       <p className="mb-4">{church.address}</p>
-      <p className="mb-4">
-        {church.leaders[0].name}
-        <br />
-        {church.leaders[0].title}
-      </p>
+      {church.leaders?.length > 0 && (
+        <p className="mb-4">
+          {church.leaders[0].name}
+          <br />
+          {church.leaders[0].title}
+        </p>
+      )}
       {church.shortDescription && <p className="church-description mb-4">{parse(church.shortDescription)}</p>}
       {!user && (
         <div className="create-account-container mb-4">

@@ -3,7 +3,7 @@
 import { Loader } from '@googlemaps/js-api-loader';
 import { useEffect, useRef, useState } from 'react';
 import './map.scss';
-import { Neighbourhood } from '@/lib/model/neighbourhood';
+import { LatLng, Neighbourhood, NeighbourhoodStatusEnum } from '@/lib/model/neighbourhood';
 import { Church } from '@/lib/model/church';
 
 export const Map = ({
@@ -15,7 +15,6 @@ export const Map = ({
   selectChurch,
   newNeighbourhood,
   setNewNeighbourhood,
-  onPositionChange,
 }: {
   neighbourhoods: Array<Neighbourhood>;
   selectedNeighbourhood?: Neighbourhood;
@@ -25,11 +24,11 @@ export const Map = ({
   selectChurch: (n?: Church) => void;
   newNeighbourhood?: Neighbourhood;
   setNewNeighbourhood: (n: Neighbourhood) => void;
-  onPositionChange: (mapCenter: any) => void;
 }) => {
   const mapRef = useRef<HTMLDivElement>(null);
   const [map, setMap] = useState<google.maps.Map>();
   const [neighbourhoodPolygons, setNeighbourhoodPolygons] = useState<any>({});
+  const [editablePolygon, setEditablePolygon] = useState<google.maps.Polygon>();
 
   useEffect(() => {
     const initMap = async () => {
@@ -69,15 +68,12 @@ export const Map = ({
       const map = new Map(mapRef.current as HTMLDivElement, mapOptions);
 
       map.addListener('click', (event: google.maps.MapMouseEvent) => {
-        console.log('Map clicked');
         selectNeighbourhood();
       });
-      map.addListener('center_changed', (event: any) => {
-        onPositionChange(map.getCenter()?.toJSON());
-        console.log('center_changed = %o', map.getCenter()?.toJSON());
-      });
-
-      onPositionChange(position);
+      // map.addListener('center_changed', (event: any) => {
+      //   onPositionChange(map.getCenter()?.toJSON());
+      // });
+      // onPositionChange(position);
 
       // let poly = new google.maps.Polyline({
       //   strokeColor: '#000000',
@@ -144,7 +140,11 @@ export const Map = ({
           position: { lat: c.lat, lng: c.lng },
           map,
           title: c.name,
-          icon: '/church-map-marker.png',
+          icon: {
+            url: '/church-map-marker.png',
+            scaledSize: new google.maps.Size(36, 36),
+            anchor: new google.maps.Point(18, 18),
+          },
         });
         marker.addListener('click', (event: google.maps.MapMouseEvent) => {
           selectChurch(c);
@@ -166,23 +166,42 @@ export const Map = ({
           paths: [n.coords],
         });
         polygon.addListener('click', (event: google.maps.MapMouseEvent) => {
-          console.log('Neighbourhood clicked: %o, event = %o', n, event);
           selectNeighbourhood(n);
         });
         polygon.addListener('mouseover', (event: google.maps.MapMouseEvent) => {
           polygon.set('strokeColor', '#e11f5c');
           polygon.set('fillColor', '#e11f5c');
-          console.log('Neighbourhood hovered: %o, event = %o', n, event);
+          map.getDiv().setAttribute('title', n.name);
         });
         polygon.addListener('mouseout', (event: google.maps.MapMouseEvent) => {
           if (!polygon.get('isSelected')) {
             polygon.set('strokeColor', '#327abd');
             polygon.set('fillColor', '#327abd');
+            map.getDiv().removeAttribute('title');
           }
-          console.log('Neighbourhood hovered out: %o, event = %o', n, event);
         });
         polygon.setMap(map);
         setNeighbourhoodPolygons((current: any) => ({ ...current, [n.id]: polygon }));
+
+        // Now add the marker
+        let bounds = new google.maps.LatLngBounds();
+        for (let c of n.coords) {
+          bounds.extend(c);
+        }
+        let marker = new google.maps.Marker({
+          position: bounds.getCenter(),
+          map,
+          title: n.name,
+          icon: {
+            url: '/advocate-map-marker.png',
+            scaledSize: new google.maps.Size(36, 36),
+            anchor: new google.maps.Point(18, 18),
+          },
+        });
+        marker.addListener('click', (event: google.maps.MapMouseEvent) => {
+          selectNeighbourhood(n);
+        });
+        marker.setMap(map);
       }
     }
   }, [neighbourhoods, map]);
@@ -203,19 +222,56 @@ export const Map = ({
   }, [neighbourhoodPolygons, selectedNeighbourhood]);
 
   useEffect(() => {
-    if (map && newNeighbourhood) {
-      let polygon = new google.maps.Polygon({
-        strokeColor: '#FF0000',
-        fillColor: '#FF0000',
-        strokeOpacity: 1,
-        strokeWeight: 2,
-        fillOpacity: 0.3,
-        paths: [newNeighbourhood.coords],
-        editable: true,
-        draggable: true,
-      });
-      polygon.setMap(map);
-      setNeighbourhoodPolygons((current: any) => ({ ...current, [newNeighbourhood.id]: polygon }));
+    if (map) {
+      if (
+        newNeighbourhood?.status === NeighbourhoodStatusEnum.NEW ||
+        newNeighbourhood?.status === NeighbourhoodStatusEnum.IN_REVIEW
+      ) {
+        editablePolygon?.setDraggable(false);
+        editablePolygon?.setEditable(false);
+        setEditablePolygon(editablePolygon);
+        return;
+      }
+
+      if (newNeighbourhood && newNeighbourhood?.coords?.length > 0) {
+        if (newNeighbourhood?.status === NeighbourhoodStatusEnum.EDITABLE) editablePolygon?.setDraggable(true);
+        editablePolygon?.setEditable(true);
+        setEditablePolygon(editablePolygon);
+        return;
+      } else if (newNeighbourhood?.coords?.length === 0) {
+        const mapCenter = map.getCenter() as google.maps.LatLng;
+        const coords = [
+          { lat: mapCenter.lat() + 0.0003, lng: mapCenter.lng() + 0.005 },
+          { lat: mapCenter.lat() + 0.0035, lng: mapCenter.lng() },
+          { lat: mapCenter.lat() - 0.0003, lng: mapCenter.lng() - 0.005 },
+          { lat: mapCenter.lat() - 0.003, lng: mapCenter.lng() },
+        ];
+
+        let polygon = new google.maps.Polygon({
+          strokeColor: '#FF0000',
+          fillColor: '#FF0000',
+          strokeOpacity: 1,
+          strokeWeight: 2,
+          fillOpacity: 0.3,
+          paths: coords,
+          editable: true,
+          draggable: true,
+        });
+
+        const updateCoords = () => {
+          const newCoords: Array<LatLng> = [];
+          polygon.getPath().forEach((p) => {
+            newCoords.push(p.toJSON());
+          });
+
+          setNewNeighbourhood({ ...newNeighbourhood, coords: newCoords });
+        };
+        polygon.addListener('dragend', updateCoords);
+        polygon.getPath().addListener('set_at', updateCoords);
+        polygon.setMap(map);
+        setEditablePolygon(polygon);
+        //setNeighbourhoodPolygons((current: any) => ({ ...current, [newNeighbourhood.id]: polygon }));
+      }
     }
   }, [newNeighbourhood, map]);
 

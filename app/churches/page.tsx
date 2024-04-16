@@ -17,25 +17,12 @@ export default function Page() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('/api/churches').then(async (response) => {
+    fetch('/api/churches?sponsor=true').then(async (response) => {
       const _churches = await response.json();
       setChurches(_churches);
       setLoading(false);
     });
   }, []);
-
-  // const churches = [
-  //   { name: 'Knox Presbyterian', address: '170 Main St. E.', imageSrc: '/church-knox-presbyterian.jpg' },
-  //   { name: 'Grace Anglican', address: '317 Main St. E.', imageSrc: '/church-grace-anglican.webp' },
-  //   { name: 'Southside @ Main', address: '317 Main St. E.', imageSrc: '/church-southside.jpg' },
-  //   { name: "St. Paul's United", address: '317 Main St. E.', imageSrc: '/church-st-pauls.jpg' },
-  //   { name: 'Red Hill', address: '317 Main St. E.', imageSrc: '/church-red-hill.jpg' },
-  //   {
-  //     name: 'Milton Bible Church',
-  //     address: '121 Chisholm Dr, Milton, ON L9T 4A6',
-  //     imageSrc: '/church-milton-bible.webp',
-  //   },
-  // ];
 
   const handleChurchSelected = (church: any) => {
     setSelectedChurch(church);
@@ -45,9 +32,13 @@ export default function Page() {
     <div className="page-churches">
       <Section title="The Church in Milton">
         <div>
-          <h4 className="mb-4">Welcome to the Church in Milton.</h4>
+          <h4 className="mb-4">Working together for the flourishing of our city</h4>
           <h5 className="mb-5">
-            We believe that “the Church in Milton” consists of everyone who is actively following Jesus.
+            The following churches are actively partnering together to achieve our goal: for every{' '}
+            <strong className="text-blue">neighbourhood in Milton</strong> to be actively loved and cared for by a{' '}
+            <strong className="text-purple">Neighbourhood Advocate</strong> within the next five years and for{' '}
+            <strong className="text-pink">100% of churches</strong> in the city to be actively engaged in this shared
+            mission.
           </h5>
           {loading && (
             <div className="loading-container">

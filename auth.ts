@@ -36,15 +36,21 @@ export const config = {
       return true;
     },
     jwt({ token, trigger, session, profile }) {
-      console.log('jwt(): token = %o, trigger = %o, session = %o, profile = %o', token, trigger, session, profile);
+      // console.log('jwt(): token = %o, trigger = %o, session = %o, profile = %o', token, trigger, session, profile);
       if (trigger === 'update') token.name = session.user.name;
       return token;
     },
   },
   secret: process.env.NEXT_AUTH_SECRET,
+  session: {
+    strategy: 'jwt',
+  },
+  // jwt: {
+  //   secret: process.env.NEXTAUTH_SECRET,
+  // },
   pages: {
     // signIn: '/auth2/signin',
-    signOut: '/auth2/signout',
+    // signOut: '/auth2/signout',
     //   error: '/auth2/error', // Error code passed in query string as ?error=
     //   verifyRequest: '/auth2/verify-request', // (used for check email message)
     newUser: '/auth2/new-user', // New users will be directed here on first sign in (leave the property out if not of interest)

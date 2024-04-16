@@ -1,17 +1,22 @@
+'use client';
+
 import Image from 'next/image';
 import './styles.scss';
 import { Section } from '@/components/section/section';
 import { SectionTitle } from '@/components/section-title/section-title';
 import { SectionText } from '@/components/section-text/section-text';
-import { HomeTitle } from '@/components/home-title/home-title';
 import { Footer } from '@/components/footer/footer';
 import { auth } from '@/auth';
 import { AboutSection } from './_components/about-section/about-section';
 import { Button } from 'react-bootstrap';
 import { ActivityRing } from './_components/activity-ring/activity-ring';
 import { Metric } from './_components/metric/metric';
+import { HomeSection } from './_components/home-section/home-section';
+import { useRef } from 'react';
+import { ChurchSection } from './_components/church-section/church-section';
 
-export default async function Home() {
+export default function Home() {
+  const aboutSectionRef = useRef<HTMLDivElement>(null);
   const churches = [
     { name: 'Knox Presbyterian', address: '170 Main St. E.', imageSrc: '/church-knox-presbyterian.jpg' },
     { name: 'Grace Anglican', address: '317 Main St. E.', imageSrc: '/church-grace-anglican.webp' },
@@ -24,20 +29,22 @@ export default async function Home() {
       imageSrc: '/church-milton-bible.webp',
     },
   ];
-  // const session = await auth();
-  // console.log('session = %o', session);
-  // return <p>Welcome {session?.user?.name}!</p>;
+
+  const navigateToNext = () => {
+    if (aboutSectionRef.current) {
+      aboutSectionRef.current.scrollIntoView();
+    }
+  };
 
   return (
     <>
       <main className="home-container">
-        <div className="carousel-container">
-          <Image src="/milton-1.png" alt="Milton" fill={true} className="home-carousel-item" priority />
-          <HomeTitle />
+        <HomeSection navigateToNext={navigateToNext}></HomeSection>
+        <div ref={aboutSectionRef}>
+          <AboutSection />
         </div>
-        <AboutSection />
         <Section title="How are we doing?">
-          <div>
+          <div className="pt-4">
             <h5>
               Our goal is for every <strong className="text-blue">neighbourhood in Milton</strong> to be actively loved
               and cared for by a <strong className="text-purple">Neighbourhood Advocate</strong> within the next five
@@ -51,33 +58,7 @@ export default async function Home() {
             </div>
           </div>
         </Section>
-        <Section title="Participating churches" shaded={true}>
-          <div>
-            <SectionText>
-              Jesus’ last prayer (John 17) was that his followers would join together in unity, and that through that
-              unity the world would be introduced to his love. If you’d like your church to join us, let’s us know!
-            </SectionText>
-            <Button className="btn-lg mt-4 mb-4">Join us!</Button>
-            <div className="churches-container">
-              {churches.map((c, index) => (
-                <div className="church" key={index}>
-                  <div
-                    className="church-image-container"
-                    style={{
-                      backgroundImage: `url(${c.imageSrc})`,
-                      backgroundSize: 'cover',
-                      backgroundPosition: 'center center',
-                    }}
-                  >
-                    {/* <Image className="church-image" src={c.imageSrc} alt={c.name} fill={true} sizes="100%"></Image> */}
-                  </div>
-                  <div className="church-name">{c.name}</div>
-                  <div className="church-address">{c.address}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </Section>
+        <ChurchSection />
       </main>
       <Footer />
     </>

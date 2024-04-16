@@ -2,9 +2,6 @@
   .flex-container {
     display: flex;
     gap: 32px;
-    section {
-      padding: 64px 0;
-    }
     .section-side-container {
       border-radius: 0;
     }
@@ -19,17 +16,27 @@
       border-radius: 24px;
     }
   }
+
+  .who-for-inner-container {
+    display: flex;
+    gap: 24px;
+  }
 }
 
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
-  section {
-    padding: 48px;
+  .page-about {
+    .who-for-inner-container {
+      flex-direction: column;
+    }
   }
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 600px) {
+  section {
+    padding: 64px 0;
+  }
 }
 
 /* Medium devices (landscape tablets, 768px and up) */

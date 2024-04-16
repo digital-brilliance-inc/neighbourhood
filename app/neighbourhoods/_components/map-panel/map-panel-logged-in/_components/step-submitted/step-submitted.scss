@@ -1,0 +1,11 @@
+@import '@/app/globals.scss';
+
+.map-panel-logged-in-step-submitted {
+  .step-submitted-container {
+    background-color: $color-green;
+    color: white;
+    font-weight: 700;
+    padding: 24px;
+    border-radius: 24px;
+  }
+}

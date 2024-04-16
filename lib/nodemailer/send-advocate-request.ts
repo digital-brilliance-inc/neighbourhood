@@ -11,14 +11,12 @@ export async function sendAdvocateRequestEmail({
   fromEmail,
   fromName,
   neighbourhoodName,
-  church,
 }: {
   toEmail: string;
   fromUserId: string;
   fromEmail: string;
   fromName: string;
   neighbourhoodName: string;
-  church: string;
 }) {
   const transport = createTransport(server);
   await transport.sendMail({
@@ -26,7 +24,7 @@ export async function sendAdvocateRequestEmail({
     to: toEmail,
     replyTo: fromEmail,
     subject: `Advocate Request`,
-    html: toHtml({ fromUserId, fromName, fromEmail, neighbourhoodName, church }),
+    html: toHtml({ fromUserId, fromName, fromEmail, neighbourhoodName }),
   });
 }
 
@@ -35,8 +33,7 @@ function toHtml({
   fromName,
   fromEmail,
   neighbourhoodName,
-  church,
-}: Record<'fromUserId' | 'fromName' | 'fromEmail' | 'neighbourhoodName' | 'church', string>) {
+}: Record<'fromUserId' | 'fromName' | 'fromEmail' | 'neighbourhoodName', string>) {
   return mjml2html(`
   <mjml>
     <mj-head>
@@ -61,7 +58,6 @@ function toHtml({
               Name: ${fromName}<br/>
               Email: ${fromEmail}<br/>
               Neighbourhood name: ${neighbourhoodName}<br/>
-              Church: ${church}<br/>
             </div>
           </mj-text>
         </mj-column>

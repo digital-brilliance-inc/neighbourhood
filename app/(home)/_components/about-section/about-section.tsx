@@ -30,40 +30,42 @@ export const AboutSection = () => {
             relationships within our neighbourhoods and bring the broader Church of Milton together in the process.
           </h5>
           <p>There are three main ways to get involved (depending on how engaged you want to be!):</p>
-          <div className="section-bullet-container">
-            <AboutLevel num={1} color="purple"></AboutLevel>
-            <p>
-              Are you a follower of Jesus?{' '}
-              <a className="purple bold" onClick={() => setModalVisible(true)}>
-                Sign up for the newsletter
-              </a>{' '}
-              to be in the loop with what God is doing in our city and learn how you can connect with others.
-            </p>
-          </div>
-          <div className="section-bullet-container">
-            <AboutLevel num={2} color="blue"></AboutLevel>
-            <p>
-              Ready for more? Check out{' '}
-              <a className="blue bold" href="/neighbourhoods">
-                our neighbourhoods
-              </a>{' '}
-              to see if there is a Neighbourhood Advocate near you and get in touch to see how you can help.
-            </p>
-          </div>
-          <div className="section-bullet-container">
-            <AboutLevel num={3} color="pink"></AboutLevel>
-            <p>
-              Do you want to love your neighbourhood? Connect with us to find out how to{' '}
-              <a className="pink bold">become a Neighbourhood Advocate</a> yourself to see the Kingdom come in your
-              area.
-            </p>
+          <div className="section-bullets">
+            <div className="section-bullet-container">
+              <AboutLevel num={1} color="purple"></AboutLevel>
+              <p>
+                Are you a follower of Jesus?{' '}
+                <a className="purple bold" onClick={() => setModalVisible(true)}>
+                  Sign up for the newsletter
+                </a>{' '}
+                to be in the loop with what God is doing in our city and learn how you can connect with others.
+              </p>
+            </div>
+            <div className="section-bullet-container">
+              <AboutLevel num={2} color="blue"></AboutLevel>
+              <p>
+                Ready for more? Check out{' '}
+                <a className="blue bold" href="/neighbourhoods">
+                  our neighbourhoods
+                </a>{' '}
+                to see if there is a Neighbourhood Advocate near you and get in touch to see how you can help.
+              </p>
+            </div>
+            <div className="section-bullet-container">
+              <AboutLevel num={3} color="pink"></AboutLevel>
+              <p>
+                Do you want to love your neighbourhood? Connect with us to find out how to{' '}
+                <a className="pink bold">become a Neighbourhood Advocate</a> yourself to see the Kingdom come in your
+                area.
+              </p>
+            </div>
           </div>
           <p>
             As helpful we we hope this site will be, we know that technology can’t do the slow, hard – but very
             rewarding – work of building relationships. Are you ready to do your part to bring the love of Jesus to
             Milton?
           </p>
-          <Button className="btn-lg mt-3" href="/about">
+          <Button className="btn btn-lg mt-3" href="/about">
             Learn More
           </Button>
         </div>

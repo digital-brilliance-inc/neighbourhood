@@ -1,0 +1,67 @@
+@use 'sass:color';
+@import '@/app/globals.scss';
+
+.church-section {
+  .churches-container {
+    display: flex;
+    max-width: 1024px;
+    flex-wrap: wrap;
+    gap: 48px;
+    padding: 48px 0;
+    text-align: center;
+    color: $color-charcoal;
+
+    .church {
+      max-width: 250px;
+
+      .church-image-container {
+        position: relative;
+        height: 250px;
+        width: 250px;
+        border-radius: 150px;
+        overflow: hidden;
+        border: 8px solid $color-blue;
+        margin-bottom: 24px;
+        box-shadow: 0 0 8px lighten($color-charcoal, 25);
+
+        .church-image {
+          width: auto;
+          height: auto;
+          background-size: cover;
+        }
+      }
+      .church-name {
+        font-weight: bold;
+        margin-bottom: 8px;
+        font-size: 20px;
+      }
+      .church-address {
+      }
+    }
+  }
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  .church-section {
+    .churches-container {
+      justify-content: center;
+    }
+  }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+}

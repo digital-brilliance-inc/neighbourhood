@@ -82,33 +82,35 @@ export default async function Page() {
         </SectionSide>
       </div>
       <Section title={whoIsItForTitle} shaded={true}>
-        <div>
-          <h4>Milton.Church is for the Church in Milton.</h4>
-          <p>
-            When we say “the Church in Milton” (with a capital C), we mean all the people in the city who are actively
-            following Jesus.
-          </p>
+        <div className="who-for-inner-container">
+          <div>
+            <h4>Milton.Church is for the Church in Milton.</h4>
+            <p>
+              When we say “the Church in Milton” (with a capital C), we mean all the people in the city who are actively
+              following Jesus.
+            </p>
 
-          <p>
-            Many members of the Church gather within churches (with a lowercase C) to grow closer to Jesus together.
-            Let’s call these wonderful people the Gathered Church. But there are also those who follow Jesus outside of
-            the more traditional church structures. We call these wonderful people the Scattered Church.
-          </p>
+            <p>
+              Many members of the Church gather within churches (with a lowercase C) to grow closer to Jesus together.
+              Let’s call these wonderful people the Gathered Church. But there are also those who follow Jesus outside
+              of the more traditional church structures. We call these wonderful people the Scattered Church.
+            </p>
 
-          <p>
-            Milton.Church exists to help the Church (both Gathered and Scattered) to be united in our mission to spread
-            God’s Kingdom through the active pursuit of loving, flourishing relationships with each other and within our
-            neighbourhoods.
-          </p>
-        </div>
+            <p>
+              Milton.Church exists to help the Church (both Gathered and Scattered) to be united in our mission to
+              spread God’s Kingdom through the active pursuit of loving, flourishing relationships with each other and
+              within our neighbourhoods.
+            </p>
+          </div>
 
-        <div className="section-side-inner-container">
-          <Image
-            className="section-side-picture"
-            src={picture_church}
-            alt="The Gathered and Scattered Churchj"
-            width={350}
-          ></Image>
+          <div className="section-side-inner-container">
+            <Image
+              className="section-side-picture"
+              src={picture_church}
+              alt="The Gathered and Scattered Churchj"
+              width={350}
+            ></Image>
+          </div>
         </div>
       </Section>
       <FaqSection></FaqSection>

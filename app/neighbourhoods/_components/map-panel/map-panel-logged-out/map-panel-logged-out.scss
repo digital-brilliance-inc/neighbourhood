@@ -1,19 +1,25 @@
 @import '@/app/globals.scss';
 
 .map-panel-logged-out {
+  .steps-container {
+    margin-top: 48px;
+    gap: 24px;
+    display: flex;
+    flex-direction: column;
+  }
   .step-container {
     .step-number {
-      font-size: 32px;
-      font-weight: 700;
-      height: 50px;
-      width: 50px;
-      line-height: 50px;
-      color: $color-white;
-      border-radius: 100px;
-      text-align: center;
-      margin: auto;
-      margin-bottom: 16px;
-      margin-top: 32px;
+      // font-size: 32px;
+      // font-weight: 700;
+      // height: 50px;
+      // width: 50px;
+      // line-height: 50px;
+      // color: $color-white;
+      // border-radius: 100px;
+      // text-align: center;
+      // margin: auto;
+      // margin-bottom: 16px;
+      // margin-top: 32px;
 
       &.purple {
         background-color: $color-purple;

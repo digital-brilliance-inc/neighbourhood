@@ -4,6 +4,9 @@ import { signIn } from '@/auth';
 import { createTransport } from 'nodemailer';
 import { sendEmailMessage } from './nodemailer/send-message';
 import { sendAdvocateRequestEmail } from './nodemailer/send-advocate-request';
+import { Neighbourhood, NeighbourhoodStatusEnum } from './model/neighbourhood';
+import { User } from 'next-auth';
+import clientPromise from './mongodb/client';
 
 export async function authenticate(_currentState: unknown, formData: FormData) {
   try {
@@ -35,24 +38,22 @@ export async function sendMessage(_currentState: unknown, formData: FormData) {
   }
 }
 
-export async function sendAdvocateRequest(_currentState: unknown, formData: FormData) {
+export async function submitAdvocateRequest(user: User, neighbourhood: Neighbourhood): Promise<Neighbourhood> {
   try {
-    const userId = formData.get('userId')?.toString()!;
-    const userName = formData.get('userName')?.toString()!;
-    const userEmail = formData.get('userEmail')?.toString()!;
-    const church = formData.get('church')?.toString()!;
-    const neighbourhoodName = formData.get('neighbourhoodName')?.toString()!;
+    const newNeighbourhood = { ...neighbourhood, status: NeighbourhoodStatusEnum.IN_REVIEW };
+    const mongodb = await clientPromise;
+    await mongodb.db(process.env.MONGODB_DB).collection('neighbourhoods').insertOne(newNeighbourhood);
 
     await sendAdvocateRequestEmail({
-      fromUserId: userId,
+      fromUserId: neighbourhood.userId,
       toEmail: 'curtis@digitalbrilliance.ca',
-      fromEmail: userEmail,
-      fromName: userName,
-      church,
-      neighbourhoodName,
+      fromEmail: neighbourhood.userId,
+      fromName: user.name as string,
+      neighbourhoodName: neighbourhood.name,
     });
+    return newNeighbourhood;
   } catch (error: any) {
-    console.log('sendAdvocateRequest(): error = %o', error);
+    console.log('submitAdvocateRequest(): error = %o', error);
     throw error;
   }
 }

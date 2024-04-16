@@ -1,0 +1,346 @@
+[
+  {
+    "name": "Saint Benedict Parish",
+    "address": "300 Yates Dr, Milton, ON L9T 2W3",
+    "leaders": [
+      {
+        "name": "Father Lawrence Parent",
+        "title": "Pastor"
+      }
+    ],
+    "contactEmail": "stbenedictmilton@hamiltondiocese.com",
+    "contactUrl": "https://stbenedictparish.ca/parish-staff/",
+    "primaryImageUrl": "/st.benedict.jpg",
+    "additionalImageUrls": [],
+    "lat": 43.501232019603826,
+    "lng": -79.8442798903881
+  },
+  {
+    "name": "New Life Church",
+    "address": "824 Thompson Rd S, Milton, ON L9T 9H2",
+    "leaders": [],
+    "contactEmail": "info@newlifemilton.com",
+    "contactUrl": "https://www.newlifemilton.com/contact-us",
+    "primaryImageUrl": "/Newlifechurch.jpg",
+    "additionalImageUrls": [],
+    "lat": 43.511566576121425,
+    "lng": -79.84524411564611
+  },
+  {
+    "name": "Milton City Church",
+    "address": "500 Childs Dr, Milton, ON L9T 5G2",
+    "leaders": [
+      {
+        "name": "Rev Jerry Samuels",
+        "title": "Lead Pastor"
+      }
+    ],
+    "contactEmail": "info@newworldministries.net",
+    "contactUrl": "www.newworldministries.net/contacts/",
+    "primaryImageUrl": "/Miltoncitychurch.jpg",
+    "additionalImageUrls": [],
+    "lat": 43.51723862738666,
+    "lng": -79.8724225193405
+  },
+  {
+    "name": "PORTICO Community Church Milton",
+    "address": "45 Bruce St, Milton, ON L9T 2L5",
+    "leaders": [
+      {
+        "name": "Rick Carrol",
+        "title": "Senior Pastor"
+      }
+    ],
+    "contactEmail": "",
+    "contactUrl": "https://infohelpdesk.paperform.co/",
+    "primaryImageUrl": "/Portico.jpg",
+    "additionalImageUrls": [],
+    "lat": 43.5168740025223,
+    "lng": -79.87669851990425
+  },
+  {
+    "name": "Milton Baptist Church",
+    "address": "900 Nipissing Rd, Milton, ON L9T 4Z9",
+    "leaders": [],
+    "contactEmail": "miltonbaptist900@gmail.com",
+    "contactUrl": "https://miltonbaptistchurchca.webnode.page/",
+    "primaryImageUrl": "/MiltonBaptistChurch.jpg",
+    "additionalImageUrls": [],
+    "lat": 43.52602149104841,
+    "lng": -79.85228451719831
+  },
+  {
+    "name": "Omagh Church Of Christ Milton Ontario",
+    "address": "9850 Britannia Rd, Milton, ON L9T 7E8",
+    "leaders": [],
+    "contactEmail": "",
+    "contactUrl": "https://omaghchurchofchrist.cloversites.com/connect/contact-us",
+    "primaryImageUrl": "/Omagh Church of Christ.jpg",
+    "additionalImageUrls": [],
+    "lat": 43.50664460473919,
+    "lng": -79.80548655009419
+  },
+  {
+    "name": "Holy Rosary Parish",
+    "address": "139 Martin St, Milton, ON L9T 2R3",
+    "leaders": [
+      {
+        "name": "Rev. John Van Hees",
+        "title": "Pastor"
+      }
+    ],
+    "contactEmail": "reception@holyrosaryparish.ca",
+    "contactUrl": "",
+    "primaryImageUrl": "/Holy Rosary Parish.JPG",
+    "additionalImageUrls": [],
+    "lat": 43.51892656414437,
+    "lng": -79.88610180610276
+  },
+  {
+    "name": "Crosstowne Church",
+    "address": "8815 Britannia Rd, Milton, ON L9T 7E7",
+    "leaders": [
+      {
+        "name": "John Bouwers",
+        "title": "Pastor"
+      }
+    ],
+    "contactEmail": "info@crosstowne.org",
+    "contactUrl": "",
+    "primaryImageUrl": "/Crosstowne Church.jpg",
+    "additionalImageUrls": [],
+    "lat": 43.49664057992719,
+    "lng": -79.82722195790873
+  },
+  {
+    "name": "Graceway Baptist Church",
+    "address": "103 Martin St, Milton, ON L9T 2R3",
+    "leaders": [],
+    "contactEmail": "email@gracewaybaptist.org",
+    "contactUrl": "https://www.gracewaybaptist.org/contact",
+    "primaryImageUrl": "/Graceway Baptist Church.jpg",
+    "additionalImageUrls": [],
+    "lat": 43.51880208429504,
+    "lng": -79.88610180610276
+  },
+  {
+    "name": "The House of David",
+    "address": "348 Bronte St. S #6, Milton, ON L9T 5B6",
+    "leaders": [],
+    "contactEmail": "info@thehouseofdavid.ca",
+    "contactUrl": "https://thehouseofdavid.ca/contact/",
+    "primaryImageUrl": "/The House of David.png",
+    "additionalImageUrls": [],
+    "lat": 43.50261751716484,
+    "lng": -79.872025574173
+  },
+  {
+    "name": "True North Church",
+    "address": "900 Nipissing Rd, Milton, ON L9T 4Z9",
+    "leaders": [
+      {
+        "name": "Alan Wachob",
+        "title": "Pastor"
+      }
+    ],
+    "contactEmail": "info@truenorthchurch.ca",
+    "contactUrl": "https://truenorthchurch.ca/contact-us",
+    "primaryImageUrl": "/True North Milton.png",
+    "additionalImageUrls": [],
+    "lat": 43.526892740335235,
+    "lng": -79.86224087636816
+  },
+  {
+    "name": "Omagh Presbyterian Church",
+    "address": "8815 Britannia Rd, Milton, ON L9T 7E7",
+    "leaders": [
+      {
+        "name": "Lincoln Bryant",
+        "title": "Interim Moderator"
+      }
+    ],
+    "contactEmail": "omaghpresbyterianchurch@ gmail.com",
+    "contactUrl": "",
+    "primaryImageUrl": "/Omagh Presbyterian Church.jpg",
+    "additionalImageUrls": [],
+    "lat": 43.49651605410979,
+    "lng": -79.81915387375388
+  },
+  {
+    "name": "Christ Embassy Milton",
+    "address": "810 Nipissing Rd, Milton, ON L9T 4Z9",
+    "leaders": [],
+    "contactEmail": "cemiltonchurch@gmail.com",
+    "contactUrl": "",
+    "primaryImageUrl": "/Christ Embassy Milton.jpg",
+    "additionalImageUrls": [],
+    "lat": 43.524403423272894,
+    "lng": -79.87357052645797
+  },
+  {
+    "name": "Milton Missionary Baptist Church",
+    "address": "88 Tremaine Rd, Milton, ON L9T 2W9",
+    "leaders": [
+      {
+        "name": "Pastor Gao Wanying",
+        "title": "Senior Pastor"
+      }
+    ],
+    "contactEmail": "miltoncbc@gmail.com",
+    "contactUrl": "http://www.miltonmbc.org/contacts/",
+    "primaryImageUrl": "/Milton Missionary Baptist Church.jpg",
+    "additionalImageUrls": [],
+    "lat": 43.51591365275291,
+    "lng": -79.91502587282417
+  },
+  {
+    "name": "Christ Our Cornerstone Ministries",
+    "address": "123 Main St E, Milton, ON L9T 1N4",
+    "leaders": [
+      {
+        "name": "Alex and Cora",
+        "title": "Pastors"
+      }
+    ],
+    "contactEmail": "",
+    "contactUrl": "https://www.christourcornerstoneministries.com/visit-us",
+    "primaryImageUrl": "/Christourcornerstoneministries.jpg",
+    "additionalImageUrls": [],
+    "lat": 43.51432063868362,
+    "lng": -79.88558682200777
+  },
+  {
+    "name": "The Salvation Army Khi Community Church & Family Services",
+    "address": "820 Nipissing Rd #4, Milton, ON L9T 4Z9",
+    "leaders": [
+      {
+        "name": "Ruth Hickman",
+        "title": "Family Services Director & Pastor"
+      }
+    ],
+    "contactEmail": "Khi.Info@salvationarmy.ca",
+    "contactUrl": "https://www.khicommunity.com/contactus",
+    "primaryImageUrl": "/The Salvation Army Khi Community Church & Family Services.jpg",
+    "additionalImageUrls": [],
+    "lat": 43.52502576216897,
+    "lng": -79.86447247411313
+  },
+  {
+    "name": "St. George and St. Abanoub Coptic Orthodox Church",
+    "address": "555 Steeles Ave E, Milton, ON L9T 1Y6",
+    "leaders": [
+      {
+        "name": "Fr. Kyrillos Attia",
+        "title": "Priest"
+      }
+    ],
+    "contactEmail": "fr.kyrillos.attia@gmail.com",
+    "contactUrl": "https://sgsa.ca/",
+    "primaryImageUrl": "/St. George and St. Abanoub Coptic Orthodox Church.jpg",
+    "additionalImageUrls": [],
+    "lat": 43.53149770609024,
+    "lng": -79.88043698105785
+  },
+  {
+    "name": "Kingdom Faith Center International Ministries - KFCIM",
+    "address": "555 Steeles Ave E, Milton, ON L9T 1Y6",
+    "leaders": [
+      {
+        "name": "Agbor Nadakaw",
+        "title": "Preacher"
+      }
+    ],
+    "contactEmail": "",
+    "contactUrl": "https://kingdomfaithcenterim.org/",
+    "primaryImageUrl": "/Kingdom Faith Center International Ministries - KFCIM.jpg",
+    "additionalImageUrls": [],
+    "lat": 43.509465363689905,
+    "lng": -79.83632001025359
+  },
+  {
+    "name": "St. Mathews Mar Thoma Church",
+    "address": "9238 Regional Rd 25, Milton, ON L9T 2X7",
+    "leaders": [
+      {
+        "name": "Rev. Sunil Chacko",
+        "title": "Vicar"
+      }
+    ],
+    "contactEmail": "",
+    "contactUrl": "https://marthomachurch.ca/contact-us/",
+    "primaryImageUrl": "/St. Mathews Mar Thoma Church.jpg",
+    "additionalImageUrls": [],
+    "lat": 43.54564214138956,
+    "lng": -79.91546043869923
+  },
+  {
+    "name": "Boston Presbyterian Church",
+    "address": "9185 3 Line, Milton, ON L9T 2X9",
+    "leaders": [
+      {
+        "name": "Rev. Lincoln Bryant",
+        "title": "Interim Moderator"
+      }
+    ],
+    "contactEmail": "bryantlgb@gmail.com",
+    "contactUrl": "https://bostonpresbyterianchurch.ca/contact/",
+    "primaryImageUrl": "/Boston Presbyterian Church.jpg",
+    "additionalImageUrls": [],
+    "lat": 43.556893622298546,
+    "lng": -79.91629210926399
+  },
+  {
+    "name": "Divine Vine Gospel Church",
+    "address": "9185 3 Line, Milton, ON L9T 2X9",
+    "leaders": [],
+    "contactEmail": "divinevinegospelministries@yahoo.com",
+    "contactUrl": "https://divinevinegospelministries.com/contact-us",
+    "primaryImageUrl": "/Divine Vine Gospel Church.jpg",
+    "additionalImageUrls": [],
+    "lat": 43.520058052680945,
+    "lng": -79.89686105454003
+  },
+  {
+    "name": "St. George's Lowville",
+    "address": "9185 3 Line, Milton, ON L9T 2X9",
+    "leaders": [
+      {
+        "name": "Stephen Blackmore",
+        "title": "Priest"
+      }
+    ],
+    "contactEmail": "stephen.blackmore@me.com",
+    "contactUrl": "https://www.stgeorgeslowville.ca/contact-us-2/",
+    "primaryImageUrl": "/St. George's Lowville.png",
+    "additionalImageUrls": [],
+    "lat": 43.452408605540406,
+    "lng": -79.92882429677843
+  },
+  {
+    "name": "Holy Transfiguration Serbian Orthodox Monastery",
+    "address": "7470 McNiven Rd, Milton, ON L0P 1B0",
+    "leaders": [],
+    "contactEmail": "epkanadaska@gmail.com",
+    "contactUrl": "http://istocnik.ca/contact",
+    "primaryImageUrl": "/Holy Transfiguration Serbian Orthodox Monastery.jpg",
+    "additionalImageUrls": [],
+    "lat": 43.44219313713976,
+    "lng": -79.96203128031777
+  },
+  {
+    "name": "Ebenezer United Church",
+    "address": "12274 Guelph Line, Milton, ON L0P 1B0",
+    "leaders": [
+      {
+        "name": "Rev. Jeff Werner",
+        "title": "Minister"
+      }
+    ],
+    "contactEmail": "ebenzeruc2274@gmail.com",
+    "contactUrl": "https://fc.churchwebcanada.ca/ebenezer#About",
+    "primaryImageUrl": "/Ebenezer United Church.jpg",
+    "additionalImageUrls": [],
+    "lat": 43.55417402320421,
+    "lng": -80.07431306558306
+  }
+]

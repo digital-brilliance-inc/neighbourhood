@@ -1,0 +1,77 @@
+@import '@/app/globals.scss';
+
+.home-container-mobile {
+  height: 91vh;
+  position: relative;
+  background-color: $color-light-gray;
+
+  .home-title-container-mobile {
+    // position: absolute;
+    // width: 100%;
+    // z-index: 3;
+    color: $color-charcoal;
+    font-weight: 700;
+    line-height: 135%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    font-size: 28px;
+    padding: 16px 32px;
+    padding-top: 75px;
+    .highlight {
+      transition: color 500ms ease;
+    }
+  }
+  .carousel {
+    transform: translateY(-15%);
+
+    .carousel-control-next,
+    .carousel-control-prev {
+      filter: invert(100%);
+    }
+  }
+  .carousel-container {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-color: $color-white;
+    padding: 32px 0 0;
+    .carousel-item {
+      padding-bottom: 16px;
+    }
+    .carousel-image {
+      background-size: contain;
+      background-repeat: no-repeat;
+      width: 300px;
+      height: 400px;
+      background-position: center center;
+      margin: auto;
+      border-radius: 24px;
+      box-shadow: 0 4px 10px $color-charcoal;
+    }
+  }
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+  .home-title-container-mobile {
+    display: none;
+  }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+}

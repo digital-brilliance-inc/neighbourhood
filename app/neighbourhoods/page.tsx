@@ -2,7 +2,7 @@
 import './styles.scss';
 import { auth } from '@/auth';
 import clientPromise from '@/lib/mongodb/client';
-import { Neighbourhood } from '@/lib/model/neighbourhood';
+import { Neighbourhood, NeighbourhoodStatusEnum } from '@/lib/model/neighbourhood';
 import { useSession } from 'next-auth/react';
 import { useEffect, useState } from 'react';
 import { Map } from './_components/map/map';
@@ -51,31 +51,18 @@ export default function Page() {
   };
 
   const handleCreateNeighbourhood = () => {
-    if (!mapCenter) {
-      return;
-    }
     const newN = {
-      coords: [
-        // { lat: 43.55514388072844, lng: -79.84321922724511 },
-        // { lat: 43.55381707612784, lng: -79.84134704535272 },
-        // { lat: 43.5549221001711, lng: -79.84019369547632 },
-        // { lat: 43.556178845889245, lng: -79.84208733504083 },
-        { lat: mapCenter.lat + 0.0003, lng: mapCenter.lng + 0.005 },
-        { lat: mapCenter.lat + 0.0035, lng: mapCenter.lng },
-        { lat: mapCenter.lat - 0.0003, lng: mapCenter.lng - 0.005 },
-        { lat: mapCenter.lat - 0.003, lng: mapCenter.lng },
-      ],
+      id: uuid(),
       userId: session?.user?.email!,
       name: '',
-      id: uuid(),
-      imageUrl: '/milton-1.png',
+      imageUrl: '',
+      status: NeighbourhoodStatusEnum.EDITABLE,
+      coords: [],
     };
     setNewNeighbourhood(newN);
   };
 
-  const handlePositionChange = (newCenter: any) => {
-    setMapCenter(newCenter);
-  };
+  console.log('User = %o', session?.user);
 
   return (
     <div className="map-page-container">
@@ -88,14 +75,15 @@ export default function Page() {
         selectChurch={selectChurch}
         newNeighbourhood={newNeighbourhood}
         setNewNeighbourhood={setNewNeighbourhood}
-        onPositionChange={handlePositionChange}
       ></Map>
       <MapPanel
         isLoading={churchesLoading || neighbourhoodsLoading}
         user={session?.user}
+        myNeighbourhood={newNeighbourhood}
         selectedNeighbourhood={selectedNeighbourhood}
         selectedChurch={selectedChurch}
         createNeighbourhood={handleCreateNeighbourhood}
+        setNeighbourhood={setNewNeighbourhood}
       ></MapPanel>
     </div>
   );
