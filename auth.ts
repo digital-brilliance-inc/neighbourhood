@@ -45,15 +45,12 @@ export const config = {
   session: {
     strategy: 'jwt',
   },
-  // jwt: {
-  //   secret: process.env.NEXTAUTH_SECRET,
-  // },
   pages: {
     // signIn: '/auth2/signin',
     // signOut: '/auth2/signout',
     //   error: '/auth2/error', // Error code passed in query string as ?error=
     //   verifyRequest: '/auth2/verify-request', // (used for check email message)
-    newUser: '/auth2/new-user', // New users will be directed here on first sign in (leave the property out if not of interest)
+    // newUser: '/auth2/new-user', // New users will be directed here on first sign in (leave the property out if not of interest)
   },
 } satisfies NextAuthConfig;
 
