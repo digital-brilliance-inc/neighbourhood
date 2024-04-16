@@ -1,3 +1,4 @@
+'use client';
 import { Section } from '@/components/section/section';
 import './styles.scss';
 import { MiltonChurchLabel } from '@/components/milton-church/milton-church';
@@ -11,8 +12,17 @@ import picture_church from '@/public/images/GatheredAndScatteredChurch.png';
 import Image from 'next/image';
 import { FaqSection } from './_components/faq-section/faq-section';
 import { Footer } from '@/components/footer/footer';
+import { useRef, useState } from 'react';
+import { MailingListModal } from '@/components/modals/mailing-list-modal/mailing-list-modal';
+import { SendMessageModal } from '@/components/modals/send-message-modal/send-message-modal';
+import { useSession } from 'next-auth/react';
 
-export default async function Page() {
+export default function Page() {
+  const faqRef = useRef<HTMLDivElement>(null);
+  const { data: session } = useSession();
+  const [modalVisible, setModalVisible] = useState(false);
+  const [contactModalVisible, setContactModalVisible] = useState(false);
+
   const title = (
     <div>
       About <MiltonChurchLabel />
@@ -34,16 +44,21 @@ export default async function Page() {
             </h4>
             <p>
               Our desire is to see every neighbourhood in Milton be cared for by a{' '}
-              <a className="pink">Neighbourhood Advocate</a> and other local Jesus followers who are praying for their
-              neighbourhood and actively partnering with God to build loving relationships that demonstrate God’s
-              Kingdom here in Milton.
+              <a className="pink" onClick={() => faqRef.current?.scrollIntoView()}>
+                Neighbourhood Advocate
+              </a>{' '}
+              and other local Jesus followers who are praying for their neighbourhood and actively partnering with God
+              to build loving relationships that demonstrate God’s Kingdom here in Milton.
             </p>
 
             <p>
               Beyond Neighbourhood Advocates, we want to make it possible for all Christians in Milton to be in the loop
-              with what God in doing in our city. To that end, we are creating a <a className="blue">newsletter</a> that
-              we can use to share stories of God on the move, bring awareness to events organized by local churches and
-              individuals, and provide information to help people connect with one another.
+              with what God in doing in our city. To that end, we are creating a{' '}
+              <a className="blue" onClick={() => setModalVisible(true)}>
+                newsletter
+              </a>{' '}
+              that we can use to share stories of God on the move, bring awareness to events organized by local churches
+              and individuals, and provide information to help people connect with one another.
             </p>
 
             <p>
@@ -54,7 +69,9 @@ export default async function Page() {
             </p>
 
             <p>Still have questions? Feel free to get in touch, or check out our Frequently Asked Questions below.</p>
-            <Button className="btn-lg mt-4">Get in Touch</Button>
+            <Button className="btn-lg mt-4" onClick={() => setContactModalVisible(true)}>
+              Get in Touch
+            </Button>
           </div>
         </Section>
         <SectionSide>
@@ -113,8 +130,19 @@ export default async function Page() {
           </div>
         </div>
       </Section>
+      <div ref={faqRef} />
       <FaqSection></FaqSection>
+
       <Footer />
+      <MailingListModal modalVisible={modalVisible} setModalVisible={setModalVisible} />
+      <SendMessageModal
+        modalVisible={contactModalVisible}
+        setModalVisible={setContactModalVisible}
+        description={`Do you have questions, ideas, or suggestions for Milton.Church? We'd love to hear from you!`}
+        successMessage="Your message was sent successfully. We'll be in touch soon!"
+        user={session?.user}
+        title="Get in Touch"
+      />
     </div>
   );
 }

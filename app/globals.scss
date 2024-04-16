@@ -10,7 +10,7 @@ $color-light-gray: #f5f7f8;
 
 $theme-colors: (
   'primary': $color-blue,
-  'secondary': $color-charcoal,
+  'secondary': $color-orange,
   'tertiary': $color-light-gray,
   'danger': $color-pink,
 );
@@ -116,6 +116,9 @@ a.btn,
     padding: 12px 32px;
     font-size: 20px;
     font-weight: 700;
+  }
+  &.btn-secondary {
+    color: $color-white;
   }
   // &:hover {
   //   background-color: darken($color-blue, 10%);

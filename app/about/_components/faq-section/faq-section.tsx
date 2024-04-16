@@ -4,9 +4,13 @@ import { Section } from '@/components/section/section';
 import './faq-section.scss';
 import { useState } from 'react';
 import { Accordion, Button } from 'react-bootstrap';
+import { SendMessageModal } from '@/components/modals/send-message-modal/send-message-modal';
+import { useSession } from 'next-auth/react';
+import { MiltonChurchLabel } from '@/components/milton-church/milton-church';
 
 export const FaqSection = () => {
-  const [modalVisible, setModalVisible] = useState(false);
+  const [contactModalVisible, setContactModalVisible] = useState(false);
+  const { data: session } = useSession();
 
   return (
     <div className="faq-section">
@@ -14,7 +18,9 @@ export const FaqSection = () => {
         <div>
           <h4 className="pt-2 mb-4">Here are some of the questions we get asked regularly.</h4>
           <h5 className="mb-4"> Don’t see your question below? Just let us know so we can add it to the list.</h5>
-          <Button className="btn-lg">Ask a Question</Button>
+          <Button className="btn-lg" onClick={() => setContactModalVisible(true)}>
+            Ask a Question
+          </Button>
           <h5 className="faq-title mb-3 bold mt-5">Signing up for the Newsletter</h5>
           <Accordion alwaysOpen>
             <Accordion.Item eventKey="0">
@@ -55,30 +61,35 @@ export const FaqSection = () => {
                   Neighbourhood advocates to share ideas and strategies.
                 </p>
 
-                <p>
-                  Becoming a Neighbourhood Advocate means that you are committing to:
-                  <ul>
-                    <li>Pray for your neighbourhood regularly</li>
-                    <li>Respond to others nearby who reach out to you via this website looking to connect and help</li>
-                    <li>Meeting monthly with your Advocate Coach to share updates and stay connected</li>
-                    <li>
-                      Join the quarterly Advocate Gatherings, where all the Neighbourhood Advocates meet to share
-                      stories, encourage, and equip one another in our shared mission
-                    </li>
-                  </ul>
-                </p>
+                <p>Becoming a Neighbourhood Advocate means that you are committing to:</p>
+                <ul className="mb-3">
+                  <li>Pray for your neighbourhood regularly</li>
+                  <li>Respond to others nearby who reach out to you via this website looking to connect and help</li>
+                  <li>Meeting monthly with your Advocate Coach to share updates and stay connected</li>
+                  <li>
+                    Join the quarterly Advocate Gatherings, where all the Neighbourhood Advocates meet to share stories,
+                    encourage, and equip one another in our shared mission
+                  </li>
+                </ul>
               </Accordion.Body>
             </Accordion.Item>
             <Accordion.Item eventKey="1">
               <Accordion.Header>How do I become a Neighbourhood Advocate</Accordion.Header>
               <Accordion.Body>
                 <p>
-                  Just <a className="pink">let us know</a> you’re interested, or head over to the{' '}
-                  <a className="blue">Neighbourhoods page</a> and mark the area that you would like to take
-                  responsibility for. An Advocate Coach will then be in touch to find a time to chat in order to further
-                  explain what it means to be a Neighbourhood Advocate, and to can answer any questions you might have.
-                  If you’re still interested after having that conversation, we’ll mark your geographical area of
-                  responsibility on the map and you’re up and running!
+                  After creating a{' '}
+                  <a className="pink" href="/api/auth/signin">
+                    free account
+                  </a>{' '}
+                  (if you haven’t done so already) head over to the{' '}
+                  <a className="blue" href="/neighbourhoods">
+                    Neighbourhoods page
+                  </a>{' '}
+                  and follow the instructions to mark the area that you would like to take responsibility for. An
+                  Advocate Coach will then be in touch to find a time to chat in order to further explain what it means
+                  to be a Neighbourhood Advocate, and to can answer any questions you might have. If you’re still
+                  interested after having that conversation, we’ll mark your geographical area of responsibility on the
+                  map and you’ll be up and running!
                 </p>
               </Accordion.Body>
             </Accordion.Item>
@@ -93,18 +104,36 @@ export const FaqSection = () => {
                   let us know! We’re happy to represent churches of all shapes and sizes. And if you’d like to go beyond
                   just being listed on the map and become involved as a participating church, let us know that too!
                 </p>
-                <Button className="mb-4">Get in Touch</Button>
+                <Button className="mb-4" onClick={() => setContactModalVisible(true)}>
+                  Get in Touch
+                </Button>
               </Accordion.Body>
             </Accordion.Item>
             <Accordion.Item eventKey="1">
               <Accordion.Header>How can my church show up on the Churches page?</Accordion.Header>
               <Accordion.Body>
-                <p>Answer here...</p>
+                <p>
+                  We work closely with any church who wants to get more involved with <MiltonChurchLabel />. We know
+                  church leaders are busy so we’ve intentionally created a process that allows your congregation to plug
+                  in without adding extra overhead for you.{' '}
+                  <a className="text-pink" onClick={() => setContactModalVisible(true)}>
+                    Contact us
+                  </a>{' '}
+                  to find out more.
+                </p>
               </Accordion.Body>
             </Accordion.Item>
           </Accordion>
         </div>
       </Section>
+      <SendMessageModal
+        modalVisible={contactModalVisible}
+        setModalVisible={setContactModalVisible}
+        description={`Do you have questions, ideas, or suggestions for Milton.Church? We'd love to hear from you!`}
+        successMessage="Your message was sent successfully. We'll be in touch soon!"
+        user={session?.user}
+        title="Get in Touch"
+      />
     </div>
   );
 };

@@ -14,9 +14,11 @@ import { Section } from '@/components/section/section';
 import { MiltonChurchLabel } from '@/components/milton-church/milton-church';
 import { SectionSide } from '@/components/section/section-side/section-side';
 import { MailingListModal } from '@/components/modals/mailing-list-modal/mailing-list-modal';
+import { useSession } from 'next-auth/react';
 
 export const AboutSection = () => {
   const [modalVisible, setModalVisible] = useState(false);
+  const { data: session } = useSession();
 
   return (
     <div className="about-section">
@@ -55,8 +57,10 @@ export const AboutSection = () => {
               <AboutLevel num={3} color="pink"></AboutLevel>
               <p>
                 Do you want to love your neighbourhood? Connect with us to find out how to{' '}
-                <a className="pink bold">become a Neighbourhood Advocate</a> yourself to see the Kingdom come in your
-                area.
+                <a className="pink bold" href={session?.user ? '/neighbourhoods' : '/api/auth/signin'}>
+                  become a Neighbourhood Advocate
+                </a>{' '}
+                yourself to see the Kingdom come in your area.
               </p>
             </div>
           </div>

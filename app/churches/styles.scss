@@ -38,6 +38,27 @@
       font-size: 16px;
     }
 
+    &.empty {
+      .church-image-container {
+        border: 3px solid $color-orange;
+        background-image: url('/church-icon.png');
+        background-size: 55%;
+        background-position: center 16px;
+        background-repeat: no-repeat;
+        position: relative;
+      }
+      .empty-text {
+        position: absolute;
+        bottom: 0px;
+        padding-left: 24px;
+        padding-right: 24px;
+        text-align: center;
+        left: 0;
+        right: 0;
+        font-weight: 700;
+      }
+    }
+
     &:hover {
       .church-image-container {
         box-shadow: 0 4px 10px color.change($color-charcoal, $alpha: 0.7);

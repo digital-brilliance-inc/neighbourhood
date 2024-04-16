@@ -24,6 +24,25 @@
         margin-bottom: 24px;
         box-shadow: 0 0 8px lighten($color-charcoal, 25);
 
+        &.empty {
+          border-color: $color-orange;
+          padding: 10%;
+          background-size: 60%;
+          background-repeat: no-repeat;
+          background-image: url('/church-icon.png');
+          background-position: center 16px;
+          position: relative;
+          .empty-text {
+            position: absolute;
+            bottom: 20px;
+            left: 25%;
+            right: 25%;
+            font-weight: bold;
+            color: $color-charcoal;
+            line-height: 120%;
+          }
+        }
+
         .church-image {
           width: auto;
           height: auto;

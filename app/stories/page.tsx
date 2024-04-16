@@ -1,3 +1,4 @@
+'use client';
 import { Section } from '@/components/section/section';
 import './styles.scss';
 import { SectionText } from '@/components/section-text/section-text';
@@ -9,8 +10,13 @@ import Image from 'next/image';
 import picture_neighbours1 from '@/public/images/neighbours-1.png';
 import picture_neighbours2 from '@/public/images/neighbours-2.jpg';
 import picture_neighbourhood1 from '@/public/images/neighbourhood-1.jpg';
+import { useState } from 'react';
+import { SendMessageModal } from '@/components/modals/send-message-modal/send-message-modal';
+import { useSession } from 'next-auth/react';
 
-export default async function Page() {
+export default function Page() {
+  const [modalVisible, setModalVisible] = useState(false);
+  const { data: session } = useSession();
   return (
     <div className="page-stories">
       <div className="flex-container">
@@ -28,7 +34,9 @@ export default async function Page() {
             </p>
 
             <p>If this sounds like a fit for you, please reach out and let us know!</p>
-            <Button className="btn-lg mt-4">Get in Touch</Button>
+            <Button className="btn-lg mt-4" onClick={() => setModalVisible(true)}>
+              Get in Touch
+            </Button>
           </div>
         </Section>
         <SectionSide>
@@ -55,6 +63,14 @@ export default async function Page() {
         </SectionSide>
       </div>
       <Footer />
+      <SendMessageModal
+        modalVisible={modalVisible}
+        setModalVisible={setModalVisible}
+        description={`Thanks for your interest in helping out with Milton.Church. Fill out the form below to let us know how you'd like to get involved and we'll be in touch shortly!`}
+        successMessage="Your message was sent successfully. We'll be in touch soon. Thank you!"
+        user={session?.user}
+        title="Get Involved"
+      />
     </div>
   );
 }

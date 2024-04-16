@@ -19,7 +19,7 @@ export const SendMessageModal = ({
   title?: string;
   description: string;
   successMessage: string;
-  user: User;
+  user?: User;
   setModalVisible: (modalVisible: boolean) => void;
 }) => {
   const [errorMessage, dispatchSendMessage] = useFormState(sendMessageAction, undefined);
@@ -54,8 +54,22 @@ export const SendMessageModal = ({
             <>
               <p>{description}</p>
               <div className="form-body">
-                <input type="text" name="name" placeholder="Name" readOnly={true} defaultValue={user?.name || ''} />
-                <input type="text" name="email" placeholder="Email" readOnly={true} defaultValue={user?.email!} />
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Name"
+                  readOnly={user?.name ? true : false}
+                  defaultValue={user?.name || ''}
+                  required
+                />
+                <input
+                  type="text"
+                  name="email"
+                  placeholder="Email"
+                  readOnly={user?.name ? true : false}
+                  defaultValue={user?.email || ''}
+                  required
+                />
                 <textarea required name="message" rows={10} placeholder="Enter your message here" />
               </div>
             </>

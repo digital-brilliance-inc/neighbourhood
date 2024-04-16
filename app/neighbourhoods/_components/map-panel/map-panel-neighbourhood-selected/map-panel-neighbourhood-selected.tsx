@@ -25,7 +25,9 @@ export const MapPanelNeighbourhoodSelected = ({
       {!user && (
         <div className="create-account-container mb-4">
           <p className="mb-0">
-            <a className="pink bold">Create a Free Account</a>
+            <a className="pink bold" href="/api/auth/signin">
+              Create a Free Account
+            </a>
             <br /> to send a message to this Neighbourhood Advocate.
           </p>
         </div>

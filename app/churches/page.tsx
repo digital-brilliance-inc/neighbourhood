@@ -8,13 +8,17 @@ import { ChurchModal } from '@/components/modals/church-modal/church-modal';
 import { useEffect, useState } from 'react';
 import { Church } from '@/lib/model/church';
 import { Footer } from '@/components/footer/footer';
-import { Spinner } from 'react-bootstrap';
+import { Button, Spinner } from 'react-bootstrap';
+import { SendMessageModal } from '@/components/modals/send-message-modal/send-message-modal';
+import { useSession } from 'next-auth/react';
 
 export default function Page() {
   const [modalVisible, setModalVisible] = useState(false);
+  const [contactModalVisible, setContactModalVisible] = useState(false);
   const [selectedChurch, setSelectedChurch] = useState<Church | undefined>();
   const [churches, setChurches] = useState<Array<Church>>([]);
   const [loading, setLoading] = useState(true);
+  const { data: session } = useSession();
 
   useEffect(() => {
     fetch('/api/churches?sponsor=true').then(async (response) => {
@@ -64,11 +68,25 @@ export default function Page() {
                   <div className="church-address">{c.address}</div>
                 </div>
               ))}
+              <div className="church-card mb-2 empty" onClick={() => setContactModalVisible(true)}>
+                <div className="church-image-container mb-3">
+                  <div className="empty-text p-absolute pb-3">Your church here</div>
+                </div>
+                <Button className="btn-small btn-secondary">Join us!</Button>
+              </div>
             </div>
           )}
         </div>
       </Section>
       <ChurchModal modalVisible={modalVisible} setModalVisible={setModalVisible} churchData={selectedChurch} />
+      <SendMessageModal
+        modalVisible={contactModalVisible}
+        setModalVisible={setContactModalVisible}
+        description={`We’re excited to work closely with any church who wants to get more involved with Milton.Church. Tell us about you and your church below and we'll be in touch shortly!`}
+        successMessage="Your message was sent successfully. We'll be in touch soon. Thank you!"
+        user={session?.user}
+        title="Get Involved"
+      />
       <Footer />
     </div>
   );
