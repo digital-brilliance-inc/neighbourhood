@@ -63,11 +63,11 @@ export const Header = ({ user }: { user?: User }) => {
             <div className="underline" />
           </Link>
           <Link
-            className={clsx('page', { current: pathname === '/churches' })}
-            href="/churches"
+            className={clsx('page', { current: pathname === '/team' })}
+            href="/team"
             onClick={() => toggleExpanded()}
           >
-            <div>Churches</div>
+            <div>Team</div>
             <div className="underline" />
           </Link>
         </Nav>

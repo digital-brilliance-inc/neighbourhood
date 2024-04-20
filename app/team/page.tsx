@@ -11,6 +11,7 @@ import { Footer } from '@/components/footer/footer';
 import { Button, Spinner } from 'react-bootstrap';
 import { SendMessageModal } from '@/components/modals/send-message-modal/send-message-modal';
 import { useSession } from 'next-auth/react';
+import { MiltonChurchLabel } from '@/components/milton-church/milton-church';
 
 export default function Page() {
   const [modalVisible, setModalVisible] = useState(false);
@@ -21,7 +22,7 @@ export default function Page() {
   const { data: session } = useSession();
 
   useEffect(() => {
-    fetch('/api/churches?sponsor=true').then(async (response) => {
+    fetch('/api/churches?sponsor=true', { cache: 'no-store' }).then(async (response) => {
       const _churches = await response.json();
       setChurches(_churches);
       setLoading(false);
@@ -34,16 +35,28 @@ export default function Page() {
   };
   return (
     <div className="page-churches">
-      <Section title="The Church in Milton">
+      <Section title="Who Are We?">
         <div>
-          <h4 className="mb-4">Working together for the flourishing of our city</h4>
+          <h4 className="mb-4">
+            <MiltonChurchLabel /> is the joint effort of an ever-growing collection of Jesus followers and local
+            churches in Milton.
+          </h4>
           <h5 className="mb-5">
-            The following churches are actively partnering together to achieve our goal: for every{' '}
-            <strong className="text-blue">neighbourhood in Milton</strong> to be actively loved and cared for by a{' '}
+            We believe that theological differences should not stop us from working together to share the love our Jesus
+            with our neighbours. The following churches are actively partnering together to achieve our goal of every{' '}
+            <strong className="text-blue">neighbourhood in Milton</strong> being actively loved and cared for by a{' '}
             <strong className="text-purple">Neighbourhood Advocate</strong> within the next five years and for{' '}
             <strong className="text-pink">100% of churches</strong> in the city to be actively engaged in this shared
             mission.
           </h5>
+          <h5 className="mb-5">
+            Interested in learning more or joining the team?
+            <br />
+            <Button className="btn-lg mt-4" onClick={() => setContactModalVisible(true)}>
+              Get in Touch
+            </Button>
+          </h5>
+
           {loading && (
             <div className="loading-container">
               <Spinner animation="grow" variant="primary" />

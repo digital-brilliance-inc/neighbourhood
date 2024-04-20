@@ -17,7 +17,7 @@ export const ChurchSection = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('/api/churches?sponsor=true').then(async (response) => {
+    fetch('/api/churches?sponsor=true', { cache: 'no-store' }).then(async (response) => {
       const _churches = await response.json();
       setChurches(_churches);
       setLoading(false);

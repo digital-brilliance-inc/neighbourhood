@@ -23,7 +23,7 @@ export default function Page() {
   const [mapCenter, setMapCenter] = useState<{ lat: number; lng: number }>();
 
   useEffect(() => {
-    fetch('/api/map/neighbourhoods').then(async (response) => {
+    fetch('/api/map/neighbourhoods', { cache: 'no-store' }).then(async (response) => {
       const neighbourhoods = await response.json();
       console.log('Retrieved neighbourhoods response: %o', response);
       setNeighbourhoods(neighbourhoods);
@@ -38,7 +38,7 @@ export default function Page() {
   };
 
   useEffect(() => {
-    fetch('/api/churches').then(async (response) => {
+    fetch('/api/churches', { cache: 'no-store' }).then(async (response) => {
       const churches = await response.json();
       setChurches(churches);
       setChurchesLoading(false);
