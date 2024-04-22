@@ -1,7 +1,6 @@
 'use client';
 import './styles.scss';
 import { auth } from '@/auth';
-import clientPromise from '@/lib/mongodb/client';
 import { Neighbourhood, NeighbourhoodStatusEnum } from '@/lib/model/neighbourhood';
 import { useSession } from 'next-auth/react';
 import { useEffect, useState } from 'react';

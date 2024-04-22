@@ -4,14 +4,14 @@ import Google from 'next-auth/providers/google';
 import type { NextAuthConfig } from 'next-auth';
 import Nodemailer from '@auth/core/providers/nodemailer';
 import { MongoDBAdapter } from '@auth/mongodb-adapter';
-import clientPromise from './lib/mongodb/client';
+import getClientPromise from './lib/mongodb/client';
 import { sendVerificationRequest } from './lib/nodemailer/send-verification-request';
 
 export const config = {
   theme: {
     logo: '/litn-logo.png',
   },
-  adapter: MongoDBAdapter(clientPromise),
+  adapter: MongoDBAdapter(getClientPromise()),
   providers: [
     Google({ clientId: process.env.GOOGLE_CLIENT_ID, clientSecret: process.env.GOOGLE_CLIENT_SECRET }),
     Nodemailer({

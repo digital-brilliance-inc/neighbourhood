@@ -1,6 +1,8 @@
 import { Church } from '@/lib/model/church';
 import { Neighbourhood } from '@/lib/model/neighbourhood';
-import clientPromise from '@/lib/mongodb/client';
+import getClientPromise from '@/lib/mongodb/client';
+
+export const revalidate = 0;
 
 export async function GET(request: Request) {
   const url = new URL(request.url);
@@ -9,7 +11,7 @@ export async function GET(request: Request) {
   if (params.get('sponsor') === 'true') {
     filter.isSponsor = true;
   }
-  const mongodb = await clientPromise;
+  const mongodb = await getClientPromise();
   const churches = await mongodb.db('test').collection('churches').find<Church>(filter).toArray();
   return Response.json(churches);
 }

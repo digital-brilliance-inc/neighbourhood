@@ -14,7 +14,7 @@ import { GoogleAnalytics } from '@next/third-parties/google';
 
 export const metadata: Metadata = {
   title: 'Milton.church',
-  description: 'Uniting the Church of Milton for the flourishing of the city',
+  description: "Let's saturate every neighbourhood in Milton with the practical love of Jesus.",
   icons: [
     {
       rel: 'apple-touch-icon',

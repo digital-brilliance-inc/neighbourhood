@@ -52,8 +52,8 @@ export default function Home() {
               in this shared mission.
             </h5>
             <div className="progress-container">
-              <ActivityRing value={3.3} color="orange" label="of neighbourhoods accounted for"></ActivityRing>
-              <Metric value={1} color="pink" label="neighbourhood advocates identified"></Metric>
+              <ActivityRing value={4.1} color="orange" label="of neighbourhoods accounted for"></ActivityRing>
+              <Metric value={3} color="pink" label="neighbourhood advocates identified"></Metric>
               <ActivityRing value={8} color="blue" label="of churches participating"></ActivityRing>
             </div>
           </div>

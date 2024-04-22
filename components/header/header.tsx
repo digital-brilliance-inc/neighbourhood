@@ -15,9 +15,11 @@ export const Header = ({ user }: { user?: User }) => {
   const pathname = usePathname();
   const [isExpanded, setExpanded] = useState<boolean>(false);
   const toggleExpanded = () => {
-    setTimeout(() => {
-      setExpanded(!isExpanded);
-    }, 500);
+    if (window.innerWidth <= 600) {
+      setTimeout(() => {
+        setExpanded(!isExpanded);
+      }, 500);
+    }
   };
   return (
     <Navbar expand="lg" expanded={isExpanded} className="bg-body-tertiary header-navbar" sticky="top">

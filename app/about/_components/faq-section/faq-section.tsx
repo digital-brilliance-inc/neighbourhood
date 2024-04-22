@@ -87,9 +87,9 @@ export const FaqSection = () => {
                   </a>{' '}
                   and follow the instructions to mark the area that you would like to take responsibility for. An
                   Advocate Coach will then be in touch to find a time to chat in order to further explain what it means
-                  to be a Neighbourhood Advocate, and to can answer any questions you might have. If you’re still
-                  interested after having that conversation, we’ll mark your geographical area of responsibility on the
-                  map and you’ll be up and running!
+                  to be a Neighbourhood Advocate, and to answer any questions you might have. If you’re still interested
+                  after having that conversation, we’ll mark your geographical area of responsibility on the map and
+                  you’ll be up and running!
                 </p>
               </Accordion.Body>
             </Accordion.Item>

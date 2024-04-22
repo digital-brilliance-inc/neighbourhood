@@ -66,7 +66,7 @@ export const AboutSection = () => {
             </div>
           </div>
           <p>
-            As helpful we we hope this site will be, we know that technology can’t do the slow, hard – but very
+            As helpful as we hope this site will be, we know that technology can’t do the slow, hard – but very
             rewarding – work of building relationships. Are you ready to do your part to bring the love of Jesus to
             Milton?
           </p>

@@ -6,7 +6,7 @@ import { sendEmailMessage } from './nodemailer/send-message';
 import { sendAdvocateRequestEmail } from './nodemailer/send-advocate-request';
 import { Neighbourhood, NeighbourhoodStatusEnum } from './model/neighbourhood';
 import { User } from 'next-auth';
-import clientPromise from './mongodb/client';
+import getClientPromise from './mongodb/client';
 
 export async function authenticate(_currentState: unknown, formData: FormData) {
   try {
@@ -41,7 +41,7 @@ export async function sendMessage(_currentState: unknown, formData: FormData) {
 export async function submitAdvocateRequest(user: User, neighbourhood: Neighbourhood): Promise<Neighbourhood> {
   try {
     const newNeighbourhood = { ...neighbourhood, status: NeighbourhoodStatusEnum.IN_REVIEW };
-    const mongodb = await clientPromise;
+    const mongodb = await getClientPromise();
     await mongodb.db(process.env.MONGODB_DB).collection('neighbourhoods').insertOne(newNeighbourhood);
 
     await sendAdvocateRequestEmail({
