@@ -17,4 +17,5 @@ export type Church = {
   additionalImageUrls: Array<string>;
   lat: number;
   lng: number;
+  isSponsor: boolean;
 };

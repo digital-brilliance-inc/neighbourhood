@@ -13,12 +13,12 @@ export const ActivityRing = ({ color = 'pink', value, label }: { color: string; 
             cx="50%"
             cy="50%"
             className="completed"
-            strokeDasharray={`${value}, 100`}
+            strokeDasharray={`${value * 100}, 100`}
           />
         </g>
       </svg>
       <div className="ring-label-container">
-        <div className="ring-value">{value}%</div>
+        <div className="ring-value">{(value * 100).toFixed(1)}%</div>
         <div className="ring-label">{label}</div>
       </div>
     </div>

@@ -41,6 +41,14 @@ export const Footer = ({}) => {
             </a>
             .
           </div>
+          <div className="collaboration-text" style={{ display: 'flex', gap: 16 }}>
+            <Link className="text-white" href="/privacy-policy">
+              Privacy Policy
+            </Link>
+            <Link className="text-white" href="/data-deletion">
+              Data Deletion
+            </Link>
+          </div>
         </div>
       </div>
     </div>

@@ -12,23 +12,54 @@ import { Button } from 'react-bootstrap';
 import { ActivityRing } from './_components/activity-ring/activity-ring';
 import { Metric } from './_components/metric/metric';
 import { HomeSection } from './_components/home-section/home-section';
-import { useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { ChurchSection } from './_components/church-section/church-section';
+import { Loader } from '@googlemaps/js-api-loader';
+import { Neighbourhood } from '@/lib/model/neighbourhood';
+import { Church } from '@/lib/model/church';
 
 export default function Home() {
   const aboutSectionRef = useRef<HTMLDivElement>(null);
-  const churches = [
-    { name: 'Knox Presbyterian', address: '170 Main St. E.', imageSrc: '/church-knox-presbyterian.jpg' },
-    { name: 'Grace Anglican', address: '317 Main St. E.', imageSrc: '/church-grace-anglican.webp' },
-    { name: 'Southside @ Main', address: '317 Main St. E.', imageSrc: '/church-southside.jpg' },
-    { name: "St. Paul's United", address: '317 Main St. E.', imageSrc: '/church-st-pauls.jpg' },
-    { name: 'Red Hill', address: '317 Main St. E.', imageSrc: '/church-red-hill.jpg' },
-    {
-      name: 'Milton Bible Church',
-      address: '121 Chisholm Dr.',
-      imageSrc: '/church-milton-bible.webp',
-    },
-  ];
+  const [isDataLoading, setDataLoading] = useState(true);
+  const [areaCoveredPct, setAreaCoveredPct] = useState(0);
+  const [neighbourhoodAdvocateCount, setNeighbourhoodAdvocateCount] = useState(0);
+  const [churchParticipationPct, setChurchParticipationPct] = useState(0);
+
+  useEffect(() => {
+    const loader = new Loader({ apiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY!, version: 'weekly' });
+    const initMap = async () => {
+      await loader.importLibrary('geometry');
+      fetch('/api/map/neighbourhoods', { cache: 'no-store' }).then(async (response) => {
+        const neighbourhoods = await response.json();
+        setNeighbourhoodAdvocateCount(neighbourhoods.length);
+        console.log('Retrieved neighbourhoods: %o', neighbourhoods);
+        let area = 0;
+        neighbourhoods.forEach((n: Neighbourhood) => {
+          const coords = [];
+          for (let v of n.coords) {
+            coords.push(new google.maps.LatLng(v));
+          }
+          console.log('Neighbourhood area: %o', google.maps.geometry.spherical.computeArea(coords));
+          area += google.maps.geometry.spherical.computeArea(coords);
+        });
+        console.log('Milton area: %o', process.env.NEXT_PUBLIC_CITY_RESIDENTIAL_AREA_M2);
+        console.log(
+          'Total area covered: %o (%o%)',
+          area,
+          area / Number(process.env.NEXT_PUBLIC_CITY_RESIDENTIAL_AREA_M2),
+        );
+        setAreaCoveredPct(area / Number(process.env.NEXT_PUBLIC_CITY_RESIDENTIAL_AREA_M2));
+        setDataLoading(false);
+      });
+
+      fetch('/api/churches', { cache: 'no-store' }).then(async (response) => {
+        const churches = await response.json();
+        setChurchParticipationPct(churches.filter((c: Church) => c.isSponsor).length / churches.length);
+        console.log('Retrieved churches: %o', churches);
+      });
+    };
+    initMap();
+  }, []);
 
   const navigateToNext = () => {
     if (aboutSectionRef.current) {
@@ -52,9 +83,21 @@ export default function Home() {
               in this shared mission.
             </h5>
             <div className="progress-container">
-              <ActivityRing value={4.1} color="orange" label="of neighbourhoods accounted for"></ActivityRing>
-              <Metric value={3} color="pink" label="neighbourhood advocates identified"></Metric>
-              <ActivityRing value={8} color="blue" label="of churches participating"></ActivityRing>
+              <ActivityRing
+                value={areaCoveredPct}
+                color="orange"
+                label="of neighbourhoods accounted for"
+              ></ActivityRing>
+              <Metric
+                value={neighbourhoodAdvocateCount}
+                color="pink"
+                label="neighbourhood advocates identified"
+              ></Metric>
+              <ActivityRing
+                value={churchParticipationPct}
+                color="blue"
+                label="of churches participating"
+              ></ActivityRing>
             </div>
           </div>
         </Section>

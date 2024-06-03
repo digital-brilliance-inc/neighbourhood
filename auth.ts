@@ -1,8 +1,8 @@
 import NextAuth from 'next-auth';
-import Google from 'next-auth/providers/google';
-
 import type { NextAuthConfig } from 'next-auth';
+import Google from 'next-auth/providers/google';
 import Nodemailer from '@auth/core/providers/nodemailer';
+import FacebookProvider from 'next-auth/providers/facebook';
 import { MongoDBAdapter } from '@auth/mongodb-adapter';
 import getClientPromise from './lib/mongodb/client';
 import { sendVerificationRequest } from './lib/nodemailer/send-verification-request';
@@ -14,6 +14,21 @@ export const config = {
   adapter: MongoDBAdapter(getClientPromise()),
   providers: [
     Google({ clientId: process.env.GOOGLE_CLIENT_ID, clientSecret: process.env.GOOGLE_CLIENT_SECRET }),
+    FacebookProvider({
+      clientId: process.env.FACEBOOK_CLIENT_ID,
+      clientSecret: process.env.FACEBOOK_CLIENT_SECRET,
+      style: {
+        bg: '#FFFFFF',
+        text: '#000000',
+        logo: 'https://authjs.dev/img/providers/facebook.svg',
+      },
+      authorization: {
+        url: 'https://www.facebook.com/v20.0/dialog/oauth',
+        params: {
+          scope: 'email',
+        },
+      },
+    }),
     Nodemailer({
       server: {
         host: process.env.SMTP_HOST,
