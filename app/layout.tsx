@@ -13,7 +13,7 @@ import { ModalProvider } from './contexts/modal-context/modal-context';
 import { GoogleAnalytics } from '@next/third-parties/google';
 
 export const metadata: Metadata = {
-  title: 'Milton.church',
+  title: 'Welcoeme to the home of Milton.Church',
   description: "Let's saturate every neighbourhood in Milton with the practical love of Jesus.",
   icons: [
     {

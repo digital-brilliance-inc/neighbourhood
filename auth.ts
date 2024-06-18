@@ -1,17 +1,18 @@
 import NextAuth from 'next-auth';
-import type { NextAuthConfig } from 'next-auth';
+import type { NextAuthConfig, User } from 'next-auth';
 import Google from 'next-auth/providers/google';
 import Nodemailer from '@auth/core/providers/nodemailer';
 import FacebookProvider from 'next-auth/providers/facebook';
+import CredentialsProvider from 'next-auth/providers/credentials';
 import { MongoDBAdapter } from '@auth/mongodb-adapter';
-import getClientPromise from './lib/mongodb/client';
+import mongoDBClient from './lib/mongodb/client';
 import { sendVerificationRequest } from './lib/nodemailer/send-verification-request';
 
 export const config = {
   theme: {
     logo: '/litn-logo.png',
   },
-  adapter: MongoDBAdapter(getClientPromise()),
+  adapter: MongoDBAdapter(new Promise((resolve) => mongoDBClient)),
   providers: [
     Google({ clientId: process.env.GOOGLE_CLIENT_ID, clientSecret: process.env.GOOGLE_CLIENT_SECRET }),
     FacebookProvider({
