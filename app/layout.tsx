@@ -35,6 +35,7 @@ export const metadata: Metadata = {
       url: '/favicon-16x16.png',
     },
   ],
+  metadataBase: new URL('https://milton.church'),
 };
 
 export default function RootLayout({
