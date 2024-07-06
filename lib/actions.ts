@@ -107,13 +107,18 @@ export async function subscribeToMailingListAction(_currentState: unknown, formD
     // Now, because the church field doesn't populate via the form (because we're on the HubSpot free plan),
     // update the user record to associate the church with an extra call
     if (church) {
+      await new Promise((resolve) => setTimeout(resolve, 3000));
       const updateContactBody = { properties: [{ property: 'church', value: church }] };
-      await fetch(`https://api.hubapi.com/contacts/v1/contact/createOrUpdate/email/${email}/`, {
+      const updateResult = await fetch(`https://api.hubapi.com/contacts/v1/contact/createOrUpdate/email/${email}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', authorization: 'Bearer ' + process.env.HUBSPOT_API_KEY },
         body: JSON.stringify(updateContactBody),
       });
-      console.log('subscribeToMailingListAction(): Successfully updated contact with body = %o', updateContactBody);
+      console.log(
+        'subscribeToMailingListAction(): Successfully updated contact with body = %o, result = %o',
+        updateContactBody,
+        updateResult,
+      );
     }
   } catch (error: any) {
     console.log('subscribeToMailingListAction(): error = %o', error);
