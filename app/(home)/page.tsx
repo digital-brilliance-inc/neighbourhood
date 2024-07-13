@@ -78,30 +78,25 @@ export default function Home() {
           <div className="pt-4">
             <h5>
               Our goal is for every <strong className="text-blue">neighbourhood in Milton</strong> to be actively loved
-              and cared for by a <strong className="text-purple">Neighbourhood Advocate</strong> within the next five
-              years and for <strong className="text-pink">100% of churches</strong> in the city to be actively engaged
-              in this shared mission.
+              and cared for by a <strong className="text-pink">Neighbourhood Advocate</strong> within the next five
+              years.
             </h5>
             <div className="progress-container">
-              <ActivityRing
-                value={areaCoveredPct}
-                color="orange"
-                label="of neighbourhoods accounted for"
-              ></ActivityRing>
               <Metric
                 value={neighbourhoodAdvocateCount}
                 color="pink"
                 label="neighbourhood advocates identified"
               ></Metric>
               <ActivityRing
-                value={churchParticipationPct}
-                color="blue"
-                label="of churches participating"
+                value={areaCoveredPct}
+                color="orange"
+                label="of neighbourhoods accounted for"
               ></ActivityRing>
+              <Metric value={10} color="blue" label="churches participating"></Metric>
             </div>
           </div>
         </Section>
-        <ChurchSection />
+        {/* <ChurchSection /> */}
       </main>
       <Footer />
     </>

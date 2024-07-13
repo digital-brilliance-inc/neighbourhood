@@ -13,7 +13,7 @@ export const Footer = ({}) => {
       </div>
       <div className="footer-inner-container">
         <div className="footer-row1-container">
-          <div className="logo-text">Milton.church</div>
+          <div className="logo-text">Milton.Church</div>
           <div className="pages-container">
             <Link className={clsx('page')} href="/">
               <div>Home</div>
@@ -35,7 +35,7 @@ export const Footer = ({}) => {
         <hr />
         <div className="footer-row2-container">
           <div className="collaboration-text">
-            Milton.church is a collaboration by the Churches in Milton, Ontario. For more information{' '}
+            Milton.Church is a collaboration of Jesus followers in Milton, Ontario. For more information{' '}
             <a className="text-white" href="mailto:contact@digitalbrilliance.ca">
               contact us
             </a>

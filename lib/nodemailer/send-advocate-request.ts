@@ -49,7 +49,7 @@ function toHtml({
         <mj-column >
           <mj-image width="40" src="https://milton.church/litn-logo.png"/>
           <mj-text mj-class="title">
-            Milton.church
+            Milton.Church
           </mj-text>
           <mj-text mj-class="body">
             <div style="font-weight: 600; margin-bottom: 16px">A Neighbourhood Advocate request was submitted by ${fromName}</div>

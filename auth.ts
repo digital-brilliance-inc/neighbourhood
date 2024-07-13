@@ -7,6 +7,7 @@ import CredentialsProvider from 'next-auth/providers/credentials';
 import { MongoDBAdapter } from '@auth/mongodb-adapter';
 import mongoDBClient from './lib/mongodb/client';
 import { sendVerificationRequest } from './lib/nodemailer/send-verification-request';
+import { subscribeToMailingList } from './lib/actions';
 
 export const config = {
   theme: {
@@ -73,13 +74,28 @@ export const config = {
   basePath: '/api/auth',
   callbacks: {
     authorized({ request, auth }) {
+      console.log('authorized(): auth = %o, request = %o', auth, request);
       const { pathname } = request.nextUrl;
       if (pathname === '/middleware-example') return !!auth;
       return true;
     },
-    jwt({ token, trigger, session, profile }) {
-      // console.log('jwt(): token = %o, trigger = %o, session = %o, profile = %o', token, trigger, session, profile);
-      if (trigger === 'update') token.name = session.user.name;
+    async jwt({ token, trigger, session, profile }) {
+      console.log('jwt(): token = %o, trigger = %o, session = %o, profile = %o', token, trigger, session, profile);
+      if (trigger === 'signUp') {
+        try {
+          await subscribeToMailingList({
+            email: profile?.email ?? '',
+            firstName: profile?.given_name ?? '',
+            lastName: profile?.family_name ?? '',
+            pageName: 'signUp',
+            pageUri: '/signup',
+          });
+        } catch (e) {
+          console.error('auth.callbacks.jwt(): Error subscribing user to HubSpot: ' + e);
+        }
+      } else if (trigger === 'update') {
+        token.name = session.user.name;
+      }
       return token;
     },
   },

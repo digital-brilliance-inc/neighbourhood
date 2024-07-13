@@ -45,7 +45,7 @@ function toHtml({ url, host, email }: Record<'url' | 'host' | 'email', string>) 
         <mj-column >
           <mj-image width="40" src="https://milton.church/litn-logo.png"/>
           <mj-text mj-class="title">
-            Milton.church
+            Milton.Church
           </mj-text>
           <mj-text mj-class="body">
             <div style="font-weight: 600; margin-bottom: 8px">Click the button below to finish signing in.</div>
