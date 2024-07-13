@@ -16,21 +16,21 @@ export const config = {
   adapter: MongoDBAdapter(new Promise((resolve) => resolve(mongoDBClient))),
   providers: [
     Google({ clientId: process.env.GOOGLE_CLIENT_ID, clientSecret: process.env.GOOGLE_CLIENT_SECRET }),
-    FacebookProvider({
-      clientId: process.env.FACEBOOK_CLIENT_ID,
-      clientSecret: process.env.FACEBOOK_CLIENT_SECRET,
-      style: {
-        bg: '#FFFFFF',
-        text: '#000000',
-        logo: 'https://authjs.dev/img/providers/facebook.svg',
-      },
-      authorization: {
-        url: 'https://www.facebook.com/v20.0/dialog/oauth',
-        params: {
-          scope: 'email',
-        },
-      },
-    }),
+    // FacebookProvider({
+    //   clientId: process.env.FACEBOOK_CLIENT_ID,
+    //   clientSecret: process.env.FACEBOOK_CLIENT_SECRET,
+    //   style: {
+    //     bg: '#FFFFFF',
+    //     text: '#000000',
+    //     logo: 'https://authjs.dev/img/providers/facebook.svg',
+    //   },
+    //   authorization: {
+    //     url: 'https://www.facebook.com/v20.0/dialog/oauth',
+    //     params: {
+    //       scope: 'email',
+    //     },
+    //   },
+    // }),
     Nodemailer({
       server: {
         host: process.env.SMTP_HOST,
