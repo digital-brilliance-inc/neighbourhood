@@ -10,7 +10,7 @@ export type Neighbourhood = {
   userId: string;
   imageUrls: Array<string>;
   imagesPath: string;
-  currentPrayerRequest: string;
+  currentPrayerRequest?: string;
   status: NeighbourhoodStatusEnum;
 };
 
