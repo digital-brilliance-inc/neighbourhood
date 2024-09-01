@@ -25,15 +25,21 @@
   .pages-container {
     justify-content: center;
     flex-grow: 1;
+    padding: 0 24px;
+    .page-container {
+      flex-grow: 1;
+      text-align: center;
+    }
     .page {
       text-decoration: none;
       padding: 20px 30px;
-      border-bottom: 2px solid transparent;
+      // border-bottom: 2px solid transparent;
       cursor: pointer;
       color: $color-charcoal;
       font-size: 20px;
       position: relative;
       transition: all 0.5s ease;
+      display: inline-block;
 
       .underline {
         margin-top: 4px;
@@ -98,18 +104,6 @@
 
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
-  .header-navbar {
-    .login-container {
-      flex-direction: column-reverse;
-      align-items: flex-start;
-      gap: 16px;
-      margin: 40px 30px 24px 30px;
-
-      a {
-        font-size: 20px;
-      }
-    }
-  }
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
@@ -121,9 +115,62 @@
 }
 
 /* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (max-width: 992px) {
+  .header-navbar {
+    .pages-container {
+      .page {
+        .underline {
+          left: 50%;
+          transform: translateX(-60%);
+        }
+
+        &.current {
+          .underline {
+            transform: translateX(-50%);
+          }
+        }
+      }
+    }
+    .login-container {
+      flex-direction: column-reverse;
+      align-items: center;
+      gap: 16px;
+      margin: 40px 30px 24px 30px;
+
+      a {
+        font-size: 20px;
+      }
+    }
+  }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
+  .header-navbar {
+    .pages-container {
+      .page {
+        font-size: 16px;
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+    }
+    font-size: 16px;
+  }
 }
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {
+  .header-navbar {
+    .pages-container {
+      .page-container {
+        flex-grow: 0;
+      }
+      .page {
+        font-size: 20px;
+        padding-left: 30px;
+        padding-right: 30px;
+      }
+    }
+    font-size: 20px;
+  }
 }

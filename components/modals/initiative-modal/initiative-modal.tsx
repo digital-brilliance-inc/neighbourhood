@@ -63,6 +63,8 @@ export const InitiativeModal = ({
         setModalVisible={setContactModalVisible}
         description={`Send a message to the organizers of this initiative and someone will be in touch soon.`}
         successMessage="Your message was sent successfully. Thank you for reaching out!"
+        subject="Initiative Connection Request"
+        context={'Initiative: ' + initiativeData?.title}
         user={session?.user}
         title="Get in Touch"
       />

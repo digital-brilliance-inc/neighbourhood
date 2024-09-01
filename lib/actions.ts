@@ -30,8 +30,17 @@ export async function sendMessage(_currentState: unknown, formData: FormData) {
     const name = formData.get('name')?.toString()!;
     const email = formData.get('email')?.toString()!;
     const message = formData.get('message')?.toString()!;
+    const subject = formData.get('subject')?.toString()!;
+    const context = formData.get('context')?.toString()!;
 
-    await sendEmailMessage({ toEmail: 'curt.miles@gmail.com', fromEmail: email, fromName: name, message });
+    await sendEmailMessage({
+      toEmail: 'curtis@milton.church',
+      fromEmail: email,
+      fromName: name,
+      message,
+      subject,
+      context,
+    });
   } catch (error: any) {
     console.log('sendMessage(): error = %o', error);
     throw error;
@@ -45,7 +54,7 @@ export async function submitAdvocateRequest(user: User, neighbourhood: Neighbour
 
     await sendAdvocateRequestEmail({
       fromUserId: neighbourhood.userId,
-      toEmail: 'curtis@digitalbrilliance.ca',
+      toEmail: 'curtis@milton.church',
       fromEmail: neighbourhood.userId,
       fromName: user.name as string,
       neighbourhoodName: neighbourhood.name,

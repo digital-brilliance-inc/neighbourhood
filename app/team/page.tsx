@@ -97,6 +97,8 @@ export default function Page() {
         setModalVisible={setContactModalVisible}
         description={`We’re excited to work closely with any church who wants to get more involved with Milton.Church. Tell us about you and your church below and we'll be in touch shortly!`}
         successMessage="Your message was sent successfully. We'll be in touch soon. Thank you!"
+        subject="Church Connection Request"
+        context="Team: Church Connection Request"
         user={session?.user}
         title="Get Involved"
       />

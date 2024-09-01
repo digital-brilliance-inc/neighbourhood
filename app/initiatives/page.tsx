@@ -123,10 +123,12 @@ export default function Page() {
       <SendMessageModal
         modalVisible={contactModalVisible}
         setModalVisible={setContactModalVisible}
-        description={`Thanks for your interest in helping out with Milton.Church. Fill out the form below to let us know how you'd like to get involved and we'll be in touch shortly!`}
+        description={`Do you have an idea for how to grow the Kingdom of God in Milton that you're looking for others to help bring to life? Explain a little bit about your idea below and we'll be in touch!`}
         successMessage="Your message was sent successfully. We'll be in touch soon. Thank you!"
+        context="Initiative Suggestion / Feedback"
+        subject="Initiative Suggestion / Feedback"
         user={session?.user}
-        title="Get Involved"
+        title="Suggest an Initiative"
       />
     </div>
   );

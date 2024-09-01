@@ -131,6 +131,8 @@ export const FaqSection = () => {
         setModalVisible={setContactModalVisible}
         description={`Do you have questions, ideas, or suggestions for Milton.Church? We'd love to hear from you!`}
         successMessage="Your message was sent successfully. We'll be in touch soon!"
+        context="FAQ: Feedback on Milton.Church"
+        subject="Feedback on Milton.Church"
         user={session?.user}
         title="Get in Touch"
       />

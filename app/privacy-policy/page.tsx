@@ -1,21 +1,11 @@
 'use client';
 import { Section } from '@/components/section/section';
 import './styles.scss';
-import { SectionText } from '@/components/section-text/section-text';
-import { SectionTitle } from '@/components/section-title/section-title';
 import { Footer } from '@/components/footer/footer';
-import { Button } from 'react-bootstrap';
-import { SectionSide } from '@/components/section/section-side/section-side';
-import Image from 'next/image';
-import picture_neighbours1 from '@/public/images/neighbours-1.png';
-import picture_neighbours2 from '@/public/images/neighbours-2.jpg';
-import picture_neighbourhood1 from '@/public/images/neighbourhood-1.jpg';
 import { useState } from 'react';
-import { SendMessageModal } from '@/components/modals/send-message-modal/send-message-modal';
 import { useSession } from 'next-auth/react';
 
 export default function Page() {
-  const [modalVisible, setModalVisible] = useState(false);
   const { data: session } = useSession();
   return (
     <div className="page-privacy-policy">
@@ -338,8 +328,8 @@ export default function Page() {
                   age of 13, we will delete that information as quickly as possible. If parents or guardians believe
                   that we have unintentionally collected their children’s personal information, they may request the
                   deletion of the information by contacting us at{' '}
-                  <a href="mailto:milton.church@digitalbrilliance.ca" target="_blank">
-                    milton.church@digitalbrilliance.ca
+                  <a href="mailto:hello@milton.church" target="_blank">
+                    hello@milton.church
                   </a>
                   .
                 </p>
@@ -374,14 +364,14 @@ export default function Page() {
                 <p>
                   You will always have the opportunity to unsubscribe from receiving any of our e-mail or other
                   communications at any time by contacting us at (six four seven)-612-2878 or by email at{' '}
-                  <a href="mailto://milton.church@digitalbrilliance.ca" target="_blank">
-                    milton.church@digitalbrilliance.ca
+                  <a href="mailto://hello@milton.church" target="_blank">
+                    hello@milton.church
                   </a>{' '}
                   and we will ensure that our e-mails include instructions on how to unsubscribe if you no longer wish
                   to receive future e-mails from us. We provide an on-going opportunity to unsubscribe or opt-out of
                   contact by us as described in the footer of all emails, or at{' '}
-                  <a href="milton.church@digitalbrilliance.ca" target="_blank">
-                    milton.church@digitalbrilliance.ca
+                  <a href="hello@milton.church" target="_blank">
+                    hello@milton.church
                   </a>
                   .
                 </p>
@@ -438,8 +428,8 @@ export default function Page() {
                 </ul>
                 <p>
                   Please contact us via email at{' '}
-                  <a href="mailto:milton.church@digitalbrilliance.ca" target="_blank">
-                    milton.church@digitalbrilliance.ca
+                  <a href="mailto:hello@milton.church" target="_blank">
+                    hello@milton.church
                   </a>{' '}
                   and we will endeavour to get back to you within a reasonable time.
                 </p>

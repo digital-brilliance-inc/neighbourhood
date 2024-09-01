@@ -68,6 +68,8 @@ export default function Page() {
         setModalVisible={setModalVisible}
         description={`Thanks for your interest in helping out with Milton.Church. Fill out the form below to let us know how you'd like to get involved and we'll be in touch shortly!`}
         successMessage="Your message was sent successfully. We'll be in touch soon. Thank you!"
+        subject="Offer to Help with Milton.Church"
+        context="Offer to Help with Milton.Church"
         user={session?.user}
         title="Get Involved"
       />

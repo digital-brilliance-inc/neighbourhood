@@ -11,10 +11,8 @@ export default function Page() {
             <p className="">These data deletion instructions were last modified on June 3, 2024.</p>
             <p>
               To have you account information deleted, simply drop us an email at{' '}
-              <a href="mailto:milton.church@digitalbrilliance.ca?subject=Account deletion request">
-                milton.church@digitalbrilliance.ca
-              </a>{' '}
-              and we will be happy to assist you by deleting your personal information.
+              <a href="mailto:hello@milton.church?subject=Account deletion request">hello@milton.church</a> and we will
+              be happy to assist you by deleting your personal information.
             </p>
           </div>
         </Section>

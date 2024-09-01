@@ -68,6 +68,8 @@ export const ChurchSection = () => {
         description={`We’re excited to work closely with any church who wants to get more involved with Milton.Church. Tell us about you and your church below and we'll be in touch shortly!`}
         successMessage="Your message was sent successfully. We'll be in touch soon!"
         user={session?.user}
+        subject="New Church Request"
+        context="New Church Request"
         title="Join Us!"
       />
     </div>

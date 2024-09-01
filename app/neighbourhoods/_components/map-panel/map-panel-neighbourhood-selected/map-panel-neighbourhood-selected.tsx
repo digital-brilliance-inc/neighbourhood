@@ -56,6 +56,8 @@ export const MapPanelNeighbourhoodSelected = ({
         <SendMessageModal
           modalVisible={modalVisible}
           setModalVisible={setModalVisible}
+          subject="Neighbourhood Advocate Connection Request"
+          context="Neighbourhood Advocate Connection Request"
           user={user}
           description={`Send a message to the neighbourhood advocate for ${neighbourhood.name}`}
           successMessage={`Your message has been sent successfully. The neighbourhood advocate for ${neighbourhood?.name} should be in touch soon.`}

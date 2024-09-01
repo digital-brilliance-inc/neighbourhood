@@ -56,6 +56,8 @@ export const ChurchModal = ({
         setModalVisible={setContactModalVisible}
         description={`Send a message to ${churchData?.name || 'the church'} and someone will be in touch soon.`}
         successMessage="Your message was sent successfully. Thank you for reaching out!"
+        subject="Connection Request via Milton.Church"
+        context="Connection Request via Milton.Church"
         user={session?.user}
         title="Get in Touch"
       />

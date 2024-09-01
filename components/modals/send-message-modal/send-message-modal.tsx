@@ -11,6 +11,8 @@ export const SendMessageModal = ({
   modalVisible,
   title = 'Send a Message',
   description,
+  subject,
+  context,
   successMessage,
   user,
   setModalVisible,
@@ -18,6 +20,8 @@ export const SendMessageModal = ({
   modalVisible: boolean;
   title?: string;
   description: string;
+  context: string;
+  subject: string;
   successMessage: string;
   user?: User;
   setModalVisible: (modalVisible: boolean) => void;
@@ -70,7 +74,9 @@ export const SendMessageModal = ({
                   defaultValue={user?.email || ''}
                   required
                 />
-                <textarea required name="message" rows={10} placeholder="Enter your message here" />
+                <input type="hidden" name="context" readOnly={true} defaultValue={context} />
+                <input type="hidden" name="subject" readOnly={true} defaultValue={subject} />
+                <textarea className="text-area" required name="message" placeholder="Enter your message here" />
               </div>
             </>
           )}

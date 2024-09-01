@@ -4,6 +4,7 @@ import { usePathname } from 'next/navigation';
 import clsx from 'clsx';
 import Logo from '@/public/logo-white-bottom.svg';
 import Image from 'next/image';
+import { MiltonChurchLabel } from '../milton-church/milton-church';
 
 export const Footer = ({}) => {
   return (
@@ -13,7 +14,9 @@ export const Footer = ({}) => {
       </div>
       <div className="footer-inner-container">
         <div className="footer-row1-container">
-          <div className="logo-text">Milton.Church</div>
+          <div className="logo-text">
+            <span className="text-blue">Milton</span>.<span className="text-pink">Church</span>
+          </div>
           <div className="pages-container">
             <Link className={clsx('page')} href="/">
               <div>Home</div>
@@ -23,6 +26,9 @@ export const Footer = ({}) => {
             </Link>
             <Link className={clsx('page')} href="/neighbourhoods">
               <div>Neighbourhoods</div>
+            </Link>
+            <Link className={clsx('page')} href="/initiatives">
+              <div>Initiatives</div>
             </Link>
             <Link className={clsx('page')} href="/stories">
               <div>Stories</div>
@@ -36,7 +42,7 @@ export const Footer = ({}) => {
         <div className="footer-row2-container">
           <div className="collaboration-text">
             Milton.Church is a collaboration of Jesus followers in Milton, Ontario. For more information{' '}
-            <a className="text-white" href="mailto:contact@digitalbrilliance.ca">
+            <a className="text-white" href="mailto:hello@milton.church">
               contact us
             </a>
             .

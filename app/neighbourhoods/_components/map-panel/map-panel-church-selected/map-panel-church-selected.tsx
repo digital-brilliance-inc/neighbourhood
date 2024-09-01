@@ -44,6 +44,8 @@ export const MapPanelChurchSelected = ({ church, user }: { church: Church; user:
           modalVisible={modalVisible}
           setModalVisible={setModalVisible}
           user={user}
+          subject="Connection Request via Milton.Church"
+          context="Connection Request via Milton.Church"
           description={`Send a message to ${church.name}`}
           successMessage={`Your message has been sent successfully. ${church?.name} should be in touch soon.`}
         />

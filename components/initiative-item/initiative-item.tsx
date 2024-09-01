@@ -29,7 +29,7 @@ export const InitiativeItem = ({ initiative }: { initiative: Initiative }) => {
   };
   return (
     <div
-      className="initiative"
+      className="initiative class-for-specificity"
       style={{
         backgroundImage: `url(${initiative.imageUrl})`,
       }}

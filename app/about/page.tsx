@@ -124,7 +124,7 @@ export default function Page() {
             <Image
               className="section-side-picture"
               src={picture_church}
-              alt="The Gathered and Scattered Churchj"
+              alt="The Gathered and Scattered Church"
               width={350}
             ></Image>
           </div>
@@ -140,6 +140,8 @@ export default function Page() {
         setModalVisible={setContactModalVisible}
         description={`Do you have questions, ideas, or suggestions for Milton.Church? We'd love to hear from you!`}
         successMessage="Your message was sent successfully. We'll be in touch soon!"
+        subject="Feedback on Milton.Church"
+        context="About: Feedback on Milton.Church"
         user={session?.user}
         title="Get in Touch"
       />

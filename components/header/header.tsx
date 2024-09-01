@@ -15,11 +15,11 @@ export const Header = ({ user }: { user?: User }) => {
   const pathname = usePathname();
   const [isExpanded, setExpanded] = useState<boolean>(false);
   const toggleExpanded = () => {
-    if (window.innerWidth <= 600) {
-      setTimeout(() => {
-        setExpanded(!isExpanded);
-      }, 500);
-    }
+    // if (window.innerWidth <= 600) {
+    //   setTimeout(() => {
+    setExpanded(!isExpanded);
+    //   }, 500);
+    // }
   };
   return (
     <Navbar expand="lg" expanded={isExpanded} className="bg-body-tertiary header-navbar" sticky="top">
@@ -39,49 +39,58 @@ export const Header = ({ user }: { user?: User }) => {
       ></Navbar.Toggle>
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="pages-container">
-          <Link
-            className={clsx('page', { current: pathname === '/about' })}
-            href="/about"
-            onClick={() => toggleExpanded()}
-          >
-            <div>About</div>
-            <div className="underline" />
-          </Link>
-
-          <Link
-            className={clsx('page', { current: pathname === '/neighbourhoods' })}
-            href="/neighbourhoods"
-            onClick={() => toggleExpanded()}
-          >
-            <div>Neighbourhoods</div>
-            <div className="underline" />
-          </Link>
-          <Link
-            className={clsx('page', { current: pathname === '/initiatives' })}
-            href="/initiatives"
-            onClick={() => toggleExpanded()}
-          >
-            <div>Initiatives</div>
-            <div className="underline" />
-          </Link>
-          <Link
-            className={clsx('page', { current: pathname === '/stories' })}
-            href="/stories"
-            onClick={() => toggleExpanded()}
-          >
-            <div>Stories</div>
-            <div className="underline" />
-          </Link>
-          <Link
-            className={clsx('page', { current: pathname === '/team' })}
-            href="/team"
-            onClick={() => toggleExpanded()}
-          >
-            <div>Team</div>
-            <div className="underline" />
-          </Link>
+          <div className="page-container">
+            <Link
+              className={clsx('page', { current: pathname === '/about' })}
+              href="/about"
+              onClick={() => toggleExpanded()}
+            >
+              <div>About</div>
+              <div className="underline" />
+            </Link>
+          </div>
+          <div className="page-container">
+            <Link
+              className={clsx('page', { current: pathname === '/neighbourhoods' })}
+              href="/neighbourhoods"
+              onClick={() => toggleExpanded()}
+            >
+              <div>Neighbourhoods</div>
+              <div className="underline" />
+            </Link>
+          </div>
+          <div className="page-container">
+            <Link
+              className={clsx('page', { current: pathname === '/initiatives' })}
+              href="/initiatives"
+              onClick={() => toggleExpanded()}
+            >
+              <div>Initiatives</div>
+              <div className="underline" />
+            </Link>
+          </div>
+          <div className="page-container">
+            <Link
+              className={clsx('page', { current: pathname === '/stories' })}
+              href="/stories"
+              onClick={() => toggleExpanded()}
+            >
+              <div>Stories</div>
+              <div className="underline" />
+            </Link>
+          </div>
+          <div className="page-container">
+            <Link
+              className={clsx('page', { current: pathname === '/team' })}
+              href="/team"
+              onClick={() => toggleExpanded()}
+            >
+              <div>Team</div>
+              <div className="underline" />
+            </Link>
+          </div>
         </Nav>
-        <Nav className="me-3 me-md-4">
+        <Nav className="me-lg-4">
           {user && (
             <div className="login-container">
               <a href="/api/auth/signout" className="blue" onClick={() => toggleExpanded()}>
