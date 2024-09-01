@@ -16,7 +16,7 @@ export const InitiativeModal = ({
   setModalVisible,
 }: {
   modalVisible: boolean;
-  initiativeData: Initiative;
+  initiativeData: Initiative | undefined;
   setModalVisible: (modalVisible: boolean) => void;
 }) => {
   const [contactModalVisible, setContactModalVisible] = useState(false);
@@ -27,16 +27,18 @@ export const InitiativeModal = ({
       <Modal.Header closeButton className="pt-3 pb-3 ps-4 pe-4">
         <div>
           <Modal.Title>{initiativeData?.title}</Modal.Title>
-          <div className="initiative-stage-tag-container">
-            <InitiativeStageTag initiative={initiativeData}></InitiativeStageTag>
-          </div>
+          {initiativeData && (
+            <div className="initiative-stage-tag-container">
+              <InitiativeStageTag initiative={initiativeData}></InitiativeStageTag>
+            </div>
+          )}
         </div>
       </Modal.Header>
 
       <Modal.Body className="pt-3 pb-3 ps-4 pe-4">
         <h5>{initiativeData?.shortDescription}</h5>
         <div className="initiative-info-container">
-          {initiativeData?.leaders?.length > 0 && (
+          {initiativeData && initiativeData?.leaders?.length > 0 && (
             <div className="initiative-leader-container">
               {initiativeData?.leaders?.[0]?.imageUrl && (
                 <div
