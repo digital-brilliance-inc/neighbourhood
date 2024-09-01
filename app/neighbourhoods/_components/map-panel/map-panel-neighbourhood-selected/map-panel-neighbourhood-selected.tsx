@@ -38,13 +38,19 @@ export const MapPanelNeighbourhoodSelected = ({
         </Button>
       )}
 
-      <h5 className="bold mb-2">Stories</h5>
+      {neighbourhood.currentPrayerRequest && (
+        <>
+          <h5 className="bold mb-2">Prayer Requests</h5>
+          <p className="mb-3">{neighbourhood.currentPrayerRequest}</p>
+        </>
+      )}
+      {/* <h5 className="bold mb-2">Stories</h5>
       <p className="mb-3">
         As stories of progress and change are gathered in this neighbourhood, check back here to see them.
-      </p>
+      </p> */}
       <div
         className="neighbourhood-picture-container"
-        style={{ backgroundImage: `url(${neighbourhood.imageUrl})` }}
+        style={{ backgroundImage: `url(${neighbourhood.imageUrls?.[0]})` }}
       ></div>
       {user && (
         <SendMessageModal

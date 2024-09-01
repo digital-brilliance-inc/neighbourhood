@@ -4,8 +4,17 @@ import './home-title-mobile.scss';
 import clsx from 'clsx';
 import { Button, Carousel } from 'react-bootstrap';
 import Image from 'next/image';
+import { Neighbourhood } from '@/lib/model/neighbourhood';
+import Slider from 'react-slick';
+import { NeighbourhoodImageItem } from '../../home-section';
 
-export const HomeTitleMobile = ({ navigateToNext }: { navigateToNext: () => void }) => {
+export const HomeTitleMobile = ({
+  neighbourhoodImageItems,
+  navigateToNext,
+}: {
+  neighbourhoodImageItems: Array<NeighbourhoodImageItem>;
+  navigateToNext: () => void;
+}) => {
   const [highlightStates, setHighlightStates] = useState<any>();
 
   useEffect(() => {
@@ -64,13 +73,19 @@ export const HomeTitleMobile = ({ navigateToNext }: { navigateToNext: () => void
         </div>
       </div>
       <div className="carousel-container">
-        <Carousel interval={null} variant="primary">
-          {images.map((imgUrl) => (
-            <Carousel.Item key={imgUrl}>
-              <div className="carousel-image" style={{ backgroundImage: `url('${imgUrl}')` }} />
-            </Carousel.Item>
+        <Slider fade={true} speed={2000} autoplay={true} autoplaySpeed={5000} pauseOnHover={false}>
+          {neighbourhoodImageItems.map((nii) => (
+            <div key={nii.imageUrl}>
+              <div className="carousel-image-container">
+                <div className="carousel-image" style={{ backgroundImage: `url('${nii.imageUrl}')` }} />
+                <div className="neighbourhood-label">
+                  <div className="neighbourhood-name">{nii.neighbourhoodName}</div>
+                  <div className="neighbourhood-sublabel">has a neighbourhood advocate</div>
+                </div>
+              </div>
+            </div>
           ))}
-        </Carousel>
+        </Slider>
       </div>
     </div>
   );

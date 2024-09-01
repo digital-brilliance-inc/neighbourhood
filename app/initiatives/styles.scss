@@ -1,0 +1,101 @@
+@use 'sass:color';
+@import '@/app/globals.scss';
+
+.page-initiatives {
+  .flex-container {
+    display: flex;
+    gap: 32px;
+
+    .section-side {
+      background-color: color.change($color-charcoal, $alpha: 0.1);
+      position: relative;
+    }
+    .section-side-container {
+      border-radius: 0;
+      margin-top: 150px;
+      padding-top: 48px;
+      padding-left: 32px;
+      padding-right: 32px;
+      padding-bottom: 48px;
+      // border-radius: 0 40px 40px 0;
+      border-radius: 40px;
+      align-self: stretch;
+
+      margin-left: -20px;
+      margin-right: -20px;
+      background-color: color.change($color-charcoal, $lightness: 80%);
+      box-shadow: 0 4px 10px color.change($color-charcoal, $alpha: 0.7);
+    }
+  }
+
+  .loading-container {
+    display: inline-block;
+    text-align: center;
+    margin: 75px 0;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    .loading-label {
+      color: $color-charcoal;
+      margin-top: 8px;
+    }
+  }
+
+  p a {
+    color: $color-pink;
+  }
+
+  .section-side-inner-container {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    max-width: 250px;
+  }
+
+  .stage-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: center;
+    .arrow {
+      transform: rotate(90deg);
+    }
+  }
+
+  .initiatives-container {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+  .page-initiatives {
+    section {
+      padding: 64px 0;
+    }
+  }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+  .page-initiatives {
+    .flex-container {
+      max-width: 1200px;
+      margin: auto;
+    }
+  }
+}

@@ -8,7 +8,9 @@ export type Neighbourhood = {
   name: string;
   coords: Array<LatLng>;
   userId: string;
-  imageUrl: string;
+  imageUrls: Array<string>;
+  imagesPath: string;
+  currentPrayerRequest: string;
   status: NeighbourhoodStatusEnum;
 };
 

@@ -1,0 +1,76 @@
+@import '@/app/globals.scss';
+
+.initiative-modal {
+  .initiative-stage-tag-container {
+  }
+  .initiative-info-container {
+    display: flex;
+    gap: 32px;
+    // padding: 24px;
+    padding: 24px 0;
+
+    .initiative-leader-container {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-width: 150px;
+
+      .initiative-leader-image-container {
+        width: 150px;
+        height: 150px;
+        background-size: cover;
+        background-position: center center;
+        border-radius: 150px;
+        box-shadow: 0 2px 6px $color-charcoal;
+      }
+      .initiative-leader-name {
+        font-weight: 700;
+      }
+    }
+    .initiative-description-container {
+    }
+  }
+  .modal-content {
+    overflow: hidden;
+  }
+  .modal-body {
+    max-height: 60vh;
+    overflow: auto;
+  }
+  .modal-footer {
+    background-color: $color-blue;
+    justify-content: center;
+  }
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  .initiative-modal {
+    .initiative-info-container {
+      flex-direction: column-reverse;
+      padding: 0;
+    }
+  }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+  .initiative-modal {
+    .modal-dialog {
+      min-width: 768px;
+    }
+  }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+}

@@ -37,8 +37,10 @@ export const Map = ({
       const { Map } = await loader.importLibrary('maps');
 
       const position = {
-        lat: 43.5183,
-        lng: -79.8774,
+        lat: 43.51609157256481,
+        lng: -79.8509209290498,
+        // lat: 43.5183,
+        // lng: -79.8774,
       };
 
       const mapOptions: google.maps.MapOptions = {

@@ -29,7 +29,7 @@ export default function Home() {
     const loader = new Loader({ apiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY!, version: 'weekly' });
     const initMap = async () => {
       await loader.importLibrary('geometry');
-      fetch('/api/map/neighbourhoods', { cache: 'no-store' }).then(async (response) => {
+      fetch('/api/neighbourhoods', { cache: 'no-store' }).then(async (response) => {
         const neighbourhoods = await response.json();
         setNeighbourhoodAdvocateCount(neighbourhoods.length);
         console.log('Retrieved neighbourhoods: %o', neighbourhoods);

@@ -53,7 +53,12 @@
         }
       }
       &:hover:not(.current) {
-        color: $color-pink;
+        color: $color-blue;
+        .underline {
+          background-color: $color-pink;
+          transform: translateX(0px);
+        }
+
         // .underline {
         //   height: 3px;
         //   background-color: $color-charcoal;

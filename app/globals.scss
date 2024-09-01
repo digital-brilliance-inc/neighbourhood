@@ -120,6 +120,15 @@ a.btn,
   &.btn-secondary {
     color: $color-white;
   }
+  &.btn-inverse {
+    color: $color-blue;
+    background-color: $color-white;
+    &:hover {
+      // background-color: lighten($color-charcoal, 50%);
+      background-color: $color-charcoal;
+      color: $color-white;
+    }
+  }
   // &:hover {
   //   background-color: darken($color-blue, 10%);
   // }
@@ -205,6 +214,30 @@ form {
   }
   &.purple {
     background-color: $color-purple;
+  }
+}
+
+.stage-tag {
+  text-transform: uppercase;
+  font-size: 10px;
+  padding: 4px 16px;
+  border-radius: 4px;
+  color: $color-white;
+  font-weight: 700;
+  display: inline-block;
+
+  &.new {
+    background-color: $color-yellow;
+    color: $color-charcoal;
+  }
+  &.gathering-interest {
+    background-color: $color-purple;
+  }
+  &.planning-organizing {
+    background-color: $color-blue;
+  }
+  &.running {
+    background-color: $color-green;
   }
 }
 

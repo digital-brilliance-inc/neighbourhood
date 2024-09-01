@@ -22,7 +22,7 @@ export default function Page() {
   const [mapCenter, setMapCenter] = useState<{ lat: number; lng: number }>();
 
   useEffect(() => {
-    fetch('/api/map/neighbourhoods', { cache: 'no-store' }).then(async (response) => {
+    fetch('/api/neighbourhoods', { cache: 'no-store' }).then(async (response) => {
       const neighbourhoods = await response.json();
       console.log('Retrieved neighbourhoods response: %o', response);
       setNeighbourhoods(neighbourhoods);
@@ -54,7 +54,8 @@ export default function Page() {
       id: uuid(),
       userId: session?.user?.email!,
       name: '',
-      imageUrl: '',
+      imageUrls: [],
+      imagesPath: '',
       status: NeighbourhoodStatusEnum.EDITABLE,
       coords: [],
     };

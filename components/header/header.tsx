@@ -57,6 +57,14 @@ export const Header = ({ user }: { user?: User }) => {
             <div className="underline" />
           </Link>
           <Link
+            className={clsx('page', { current: pathname === '/initiatives' })}
+            href="/initiatives"
+            onClick={() => toggleExpanded()}
+          >
+            <div>Initiatives</div>
+            <div className="underline" />
+          </Link>
+          <Link
             className={clsx('page', { current: pathname === '/stories' })}
             href="/stories"
             onClick={() => toggleExpanded()}
