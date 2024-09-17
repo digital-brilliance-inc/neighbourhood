@@ -20,7 +20,7 @@ export async function sendAdvocateRequestEmail({
 }) {
   const transport = createTransport(server);
   await transport.sendMail({
-    from: 'curtis@digitalbrilliance.ca',
+    from: 'hello@milton.church',
     to: toEmail,
     replyTo: fromEmail,
     subject: `Advocate Request`,

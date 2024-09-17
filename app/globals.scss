@@ -239,6 +239,9 @@ form {
   &.running {
     background-color: $color-green;
   }
+  &.completed {
+    background-color: $color-charcoal;
+  }
 }
 
 /* Extra small devices (phones, 600px and down) */

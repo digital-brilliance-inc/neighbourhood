@@ -39,7 +39,7 @@ export default function Page() {
 
   return (
     <div className="page-initiatives">
-      <div className="flex-container">
+      <div className="flex-container mb-5">
         <Section title="Initiatives">
           <div>
             <h4>
@@ -91,7 +91,7 @@ export default function Page() {
           <div className="section-side-inner-container">
             <p>
               {' '}
-              An initiative can be in one of four stages of maturity depending on how far along the concept has
+              An initiative can be in one of the following stages of maturity depending on how far along the concept has
               involved, and how many people have come alongside to help:
             </p>
             <div className="stage-container">
@@ -109,6 +109,10 @@ export default function Page() {
               <Image className="arrow" src={ArrowRight} alt="Arrow" />
               <span className="stage-tag running" style={{ boxShadow: '0 2px 4px #37393b' }}>
                 Up and Running
+              </span>
+              <Image className="arrow" src={ArrowRight} alt="Arrow" />
+              <span className="stage-tag completed" style={{ boxShadow: '0 2px 4px #37393b' }}>
+                Finished
               </span>
             </div>
           </div>

@@ -3,6 +3,7 @@ export enum InitiativeStageEnum {
   GATHERING_INTEREST = 'GATHERING_INTEREST',
   PLANNING_ORGANIZING = 'PLANNING_ORGANIZING',
   RUNNING = 'RUNNING',
+  COMPLETED = 'COMPLETED',
 }
 
 export type InitiativeLeader = {

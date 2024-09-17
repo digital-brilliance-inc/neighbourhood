@@ -13,6 +13,8 @@ export const InitiativeItem = ({ initiative }: { initiative: Initiative }) => {
         return 'planning-organizing';
       case InitiativeStageEnum.RUNNING:
         return 'running';
+      case InitiativeStageEnum.COMPLETED:
+        return 'completed';
     }
   };
   const stageToTagLabel = (stage: string) => {
@@ -25,6 +27,8 @@ export const InitiativeItem = ({ initiative }: { initiative: Initiative }) => {
         return 'Planning & Organizing';
       case InitiativeStageEnum.RUNNING:
         return 'Up and Running';
+      case InitiativeStageEnum.COMPLETED:
+        return 'Finished';
     }
   };
   return (
