@@ -147,6 +147,9 @@
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
   .header-navbar {
+    .navbar-collapse.collapsing {
+      height: auto !important; // Needed to stop the collapsing effect on large screens when clicking menu items
+    }
     .pages-container {
       .page {
         font-size: 16px;
