@@ -50,8 +50,8 @@ export default function Page() {
 
             <p>
               Think of this page as a shared community calendar for the Church in Milton. Every event listed here is
-              open to everyone, regardless of what church you attend on Sunday morning. Let's come together to support
-              one another as we reach the city together!
+              open to everyone, regardless of what church you attend on Sunday morning. Let&apos;s come together to
+              support one another as we reach the city together!
             </p>
 
             <p>
