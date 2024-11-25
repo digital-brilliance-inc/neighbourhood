@@ -13,6 +13,7 @@ import { datetime, RRule, RRuleSet, rrulestr } from 'rrule';
 import { eventOccurrences, toRRule } from '@/lib/utils';
 import { EventModel } from '@/lib/model/event-model';
 import { EventModal } from '@/components/modals/event-modal/event-modal';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 
 export default function Page() {
   const [loading, setLoading] = useState(true);
@@ -22,10 +23,16 @@ export default function Page() {
   const [eventModalVisible, setEventModalVisible] = useState(false);
   const [contactModalVisible, setContactModalVisible] = useState(false);
   const [selectedEvent, setSelectedEvent] = useState<EventModel>();
+  const currentSearchParams = useSearchParams();
+  const pathname = usePathname(); // let's get the pathname to make the component reusable - could be used anywhere in the project
+  const router = useRouter();
 
   const handleEventSelected = (eventItem: EventModel) => {
     setSelectedEvent(eventItem);
     setEventModalVisible(true);
+    const updatedSearchParams = new URLSearchParams(currentSearchParams.toString());
+    updatedSearchParams.set('eventId', eventItem.id);
+    router.push(pathname + '?' + updatedSearchParams.toString());
   };
 
   useEffect(() => {
@@ -39,8 +46,20 @@ export default function Page() {
       console.log('allEvents = %o', allEvents);
       setEvents(allEvents);
       setLoading(false);
+
+      if (currentSearchParams.get('eventId')) {
+        handleEventSelected(allEvents.find((ev) => ev.id === currentSearchParams.get('eventId')));
+      }
     });
   }, []);
+
+  useEffect(() => {
+    console.log('useEffect[currentSearchParams]: currentSearchParams = ' + currentSearchParams.toString());
+    if (!currentSearchParams.get('eventId')) {
+      setEventModalVisible(false);
+    }
+  }, [currentSearchParams]);
+
   return (
     <div className="page-events">
       <div className="flex-container">

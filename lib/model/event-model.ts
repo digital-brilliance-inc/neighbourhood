@@ -9,5 +9,7 @@ export type EventModel = {
   startDate?: string;
   startTime: string;
   endTime?: string;
+  hubspotCTALabel?: string;
+  hubspotCTAClass?: string;
   rruleOptions: any; // rrule options, to be instantiated with toRRule() util
 };

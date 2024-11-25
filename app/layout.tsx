@@ -52,6 +52,7 @@ export default function RootLayout({
           <SessionProvider>{children}</SessionProvider>
         </ModalProvider>
         {/* </SSRProvider> */}
+        <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/39895125.js"></script>
       </body>
       <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_TAG!} />
     </html>

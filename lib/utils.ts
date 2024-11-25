@@ -15,18 +15,17 @@ export function toRRule(options: any) {
 }
 
 export function eventOccurrences(eventModels: Array<EventModel>, from: string, to: string) {
-  const result: Array<any> = eventModels.reduce((p: any, eventModel) => {
+  const result: Array<any> = eventModels.reduce((p: any, eventModel: EventModel) => {
+    const occs = toRRule(eventModel.rruleOptions).between(moment(from).toDate(), moment(to).toDate());
     return [
       ...p,
-      ...toRRule(eventModel.rruleOptions)
-        .between(moment(from).toDate(), moment(to).toDate())
-        .map((occDate: Date, index: number) => ({
-          ...eventModel,
-          id: eventModel.id + '-' + index,
-          startDate: moment(occDate).format('YYYY-MM-DD'),
-        })),
+      ...occs.map((occDate: Date, index: number) => ({
+        ...eventModel,
+        id: eventModel.id + (occs.length > 1 ? '-' + index : ''),
+        startDate: moment(occDate).format('YYYY-MM-DD'),
+      })),
     ];
   }, []);
-  result.sort((a, b) => (a.start < b.start ? -1 : 1));
+  result.sort((a, b) => (a.startDate < b.startDate ? -1 : 1));
   return result;
 }

@@ -10,6 +10,7 @@ import { useSession } from 'next-auth/react';
 import { EventModel } from '@/lib/model/event-model';
 import { AddToCalendarButton } from 'add-to-calendar-button-react';
 import moment from 'moment';
+import { useSearchParams } from 'next/navigation';
 
 export const EventModal = ({
   modalVisible,
@@ -23,8 +24,14 @@ export const EventModal = ({
   const [contactModalVisible, setContactModalVisible] = useState(false);
   const { data: session } = useSession();
 
+  const closeModal = () => {
+    const updatedSearchParams = new URLSearchParams();
+    window.history.pushState(null, '', '?' + updatedSearchParams.toString());
+    setModalVisible(false);
+  };
+
   return (
-    <Modal className="event-modal" show={modalVisible} onHide={() => setModalVisible(false)} centered>
+    <Modal className="event-modal" show={modalVisible} onHide={closeModal} centered>
       <Modal.Header closeButton className="pt-3 pb-3 ps-4 pe-4">
         <Modal.Title className="w-100">
           <div style={{ flexGrow: 1 }}>{eventItem?.title}</div>
@@ -64,9 +71,16 @@ export const EventModal = ({
         </div>
       </Modal.Body>
       <Modal.Footer>
-        <Button className="btn-sm btn-inverse" onClick={() => setContactModalVisible(true)}>
-          Get in Touch
-        </Button>
+        {eventItem?.hubspotCTALabel && eventItem?.hubspotCTAClass && (
+          <div>
+            <Button className={'btn-sm btn-inverse ' + eventItem.hubspotCTAClass}>{eventItem.hubspotCTALabel}</Button>
+          </div>
+        )}
+        {!eventItem?.hubspotCTALabel && !eventItem?.hubspotCTAClass && (
+          <Button className="btn-sm btn-inverse" onClick={() => setContactModalVisible(true)}>
+            Get in Touch
+          </Button>
+        )}
       </Modal.Footer>
       <SendMessageModal
         modalVisible={contactModalVisible}
