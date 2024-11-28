@@ -186,7 +186,7 @@ export default function Page() {
         wordItem.isInvalid =
           wordItem.word.toLowerCase().trim() !== (wordItemValues[wordItem.id] || '').toLowerCase().trim();
         newScoreCorrect += !wordItem.isInvalid ? 1 : 0;
-        newScoreTotal++;
+        newScoreTotal += wordItem.isEditable;
       }
     }
     setVerseItems({ ...verseItems });
