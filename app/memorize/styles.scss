@@ -1,0 +1,100 @@
+@use 'sass:color';
+@import '@/app/globals.scss';
+
+.page-memorize {
+  .flex-container {
+    display: flex;
+    gap: 32px;
+    flex-direction: column;
+    .section-side-container {
+      border-radius: 0;
+    }
+  }
+
+  .section-side-inner-container {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+
+    .section-side-picture {
+      border-radius: 24px;
+    }
+  }
+
+  .verse-number {
+    font-size: 12px;
+    vertical-align: top;
+  }
+
+  .word-input {
+    border: 1px solid $color-charcoal;
+    border-radius: 4px;
+    padding: 4px 8px;
+
+    &.invalid {
+      border-color: $color-pink;
+    }
+    &.valid {
+      border-color: $color-green;
+    }
+  }
+
+  .score {
+    padding: 24px;
+    margin-bottom: 24px;
+    background: color.adjust($color-charcoal, $alpha: -0.9);
+    border-radius: 4px;
+    .correct {
+      color: $color-green;
+      font-weight: 700;
+    }
+    .total {
+      color: $color-charcoal;
+    }
+  }
+
+  .submission-container {
+    margin-bottom: 48px;
+  }
+
+  .loading-container {
+    display: inline-block;
+    text-align: center;
+    margin: 75px 0;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    .loading-label {
+      color: $color-charcoal;
+      margin-top: 8px;
+    }
+  }
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+  .page-events {
+    .flex-container {
+      max-width: 1200px;
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+    }
+  }
+}
