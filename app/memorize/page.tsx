@@ -228,7 +228,7 @@ export default function Page() {
                       {verseItems[cItem.verseNumber].wordItems.map((wi: any) => {
                         if (wi.isEditable) {
                           return (
-                            <span>
+                            <span key={wi.id}>
                               <span>{wi.beforePunctuation}</span>
                               <input
                                 style={{ width: 20 + wi.word.length * 12, marginBottom: '8px' }}
@@ -248,7 +248,7 @@ export default function Page() {
                           );
                         } else {
                           return (
-                            <span style={{ lineHeight: '48px' }}>
+                            <span key={wi.id} style={{ lineHeight: '48px' }}>
                               {wi.beforePunctuation || ''}
                               {wi.word}
                               {wi.afterPunctuation || ''}
