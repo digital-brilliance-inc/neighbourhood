@@ -11,6 +11,7 @@ import { EventModel } from '@/lib/model/event-model';
 import { AddToCalendarButton } from 'add-to-calendar-button-react';
 import moment from 'moment';
 import { useSearchParams } from 'next/navigation';
+import { PrayerWalkModal } from '../prayer-walk-modal/prayer-walk-modal';
 
 export const EventModal = ({
   modalVisible,
@@ -22,6 +23,7 @@ export const EventModal = ({
   setModalVisible: (modalVisible: boolean) => void;
 }) => {
   const [contactModalVisible, setContactModalVisible] = useState(false);
+  const [prayerWalkModalVisible, setPrayerWalkModalVisible] = useState(false);
   const { data: session } = useSession();
 
   const closeModal = () => {
@@ -76,6 +78,11 @@ export const EventModal = ({
             <Button className={'btn-sm btn-inverse ' + eventItem.hubspotCTAClass}>{eventItem.hubspotCTALabel}</Button>
           </div>
         )}
+        {eventItem?.id === 'christmas-prayer-walk' && (
+          <Button className="btn-sm btn-inverse" onClick={() => setPrayerWalkModalVisible(true)}>
+            Register (optional)
+          </Button>
+        )}
         {!eventItem?.hubspotCTALabel && !eventItem?.hubspotCTAClass && (
           <Button className="btn-sm btn-inverse" onClick={() => setContactModalVisible(true)}>
             Get in Touch
@@ -92,6 +99,7 @@ export const EventModal = ({
         user={session?.user}
         title="Get in Touch"
       />
+      <PrayerWalkModal modalVisible={prayerWalkModalVisible} setModalVisible={setPrayerWalkModalVisible} />
     </Modal>
   );
 };

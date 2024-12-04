@@ -99,6 +99,54 @@ export async function subscribeToMailingListAction(_currentState: unknown, formD
   }
 }
 
+export async function registerForPrayerWalkActionAction(_currentState: unknown, formData: FormData) {
+  try {
+    const firstName = formData.get('firstName')?.toString()!;
+    const lastName = formData.get('lastName')?.toString()!;
+    const email = formData.get('email')?.toString()!;
+    const church = formData.get('church')?.toString();
+    const closestMeetingLocation = formData.get('location')?.toString();
+    const pageUri = formData.get('pageUri')?.toString()!;
+    const pageName = formData.get('pageUri')?.toString()!;
+
+    // First subscribe to the mailing list
+    await subscribeToMailingList({ firstName, lastName, email, pageUri, pageName });
+
+    // Now, because the extra fields don't populate via the form
+    // update the user record to associate the church with an extra call
+    if (church) {
+      await new Promise((resolve) => setTimeout(resolve, 3000));
+      const updateContactBody = {
+        inputs: [
+          {
+            properties: {
+              firstname: firstName,
+              lastname: lastName,
+              church: church,
+              closest_meeting_location: closestMeetingLocation,
+            },
+            id: email,
+            idProperty: 'email',
+          },
+        ],
+      };
+      const updateResult = await fetch(`https://api.hubapi.com/crm/v3/objects/contacts/batch/upsert`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', authorization: 'Bearer ' + process.env.HUBSPOT_API_KEY },
+        body: JSON.stringify(updateContactBody),
+      });
+      console.log(
+        'registerForPrayerWalkActionAction(): Successfully updated contact with body = %o, result = %o',
+        updateContactBody,
+        updateResult,
+      );
+    }
+  } catch (error: any) {
+    console.log('registerForPrayerWalkActionAction(): error = %o', error);
+    throw error;
+  }
+}
+
 export async function subscribeToMailingList({
   email,
   firstName,

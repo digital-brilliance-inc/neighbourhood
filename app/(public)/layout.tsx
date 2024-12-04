@@ -1,10 +1,10 @@
 import type { Metadata } from 'next';
-import './globals.css';
-import { inter } from './fonts';
+import '../globals.css';
+import { inter } from '../fonts';
 import clsx from 'clsx';
 import { AuthHeaderWrapper } from '@/components/auth-header-wrapperr/auth-header-wrapper';
 import { SessionProvider } from 'next-auth/react';
-import { ModalProvider } from './contexts/modal-context/modal-context';
+import { ModalProvider } from '../contexts/modal-context/modal-context';
 import { GoogleAnalytics } from '@next/third-parties/google';
 
 export const metadata: Metadata = {
@@ -39,14 +39,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={clsx(inter.className)}>
-        <ModalProvider>
-          <SessionProvider>{children}</SessionProvider>
-        </ModalProvider>
-        {/* <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/39895125.js"></script> */}
-      </body>
-      <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_TAG!} />
-    </html>
+    <>
+      <AuthHeaderWrapper />
+      {children}
+    </>
   );
 }
