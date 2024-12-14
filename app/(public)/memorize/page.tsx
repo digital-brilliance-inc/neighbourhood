@@ -10,13 +10,23 @@ import { v4 as uuid } from 'uuid';
 
 export default function Page() {
   const [loading, setLoading] = useState(true);
-  const [difficulty, setDifficulty] = useState(1);
+  const [difficulty, setDifficulty] = useState(2);
   const { data: session } = useSession();
   const [passage, setPassage] = useState<any>({});
   const [verseItems, setVerseItems] = useState<any>({});
   const [wordItemValues, setWordItemValues] = useState<any>({});
   const [scoreCorrect, setScoreCorrect] = useState<number>();
   const [scoreTotal, setScoreTotal] = useState<number>();
+
+  const DIFFICULTY_MAX = 5;
+  const NUMBER_MAP = [
+    { w: 'No' },
+    { w: 'One', singular: true },
+    { w: 'Two' },
+    { w: 'Three' },
+    { w: 'Four' },
+    { w: 'All' },
+  ];
 
   useEffect(() => {
     const newPassage = {
@@ -152,7 +162,29 @@ export default function Page() {
     let match;
     const verseItem: any = { wordItems: [] };
 
+    let editableWordsSoFar = 0;
+    let editableWords = [];
+
+    // First get all the words in the verse to pick which ones should be editable
     while ((match = regex.exec(verseText)) !== null) {
+      editableWords.push({ index: match[0], word: match[2] });
+    }
+
+    // Now pick which ones should be editable
+    editableWords.sort((ew1, ew2) => ew2.word.length - ew1.word.length);
+    editableWords = editableWords.filter((ew) => {
+      if (difficulty === DIFFICULTY_MAX) {
+        return true;
+      } else if (editableWordsSoFar < difficulty && Math.random() < 0.8) {
+        editableWordsSoFar++;
+        return true;
+      } else {
+        return false;
+      }
+    });
+
+    while ((match = regex.exec(verseText)) !== null) {
+      const index = match[0];
       const beforePunctuation = match[1];
       const word = match[2];
       const afterPunctuation = match[3];
@@ -166,7 +198,7 @@ export default function Page() {
         lineBreak: afterPunctuation.endsWith('\n'),
         value: '',
         isValid: null,
-        isEditable: Math.random() < difficulty / 4,
+        isEditable: editableWords.some((ew) => index === ew.index),
       });
     }
     return verseItem;
@@ -209,8 +241,19 @@ export default function Page() {
               scripture, it enables the Holy Spirit to bring it to mind in situations in our lives when we need it most.
             </p>
             <div style={{ maxWidth: 300 }}>
-              <Form.Label>Level of difficulty</Form.Label>
-              <Form.Range min={0} max={4} step={1} defaultValue={difficulty} onChange={difficultyChanged} />
+              <Form.Label className="bold mt-3">Level of difficulty</Form.Label>
+              <Form.Range
+                className="mt-2"
+                min={0}
+                max={5}
+                step={1}
+                defaultValue={difficulty}
+                onChange={difficultyChanged}
+              />
+              <div className="mt-3">
+                Level {difficulty}:{' '}
+                {`${NUMBER_MAP[difficulty].w} ${NUMBER_MAP[difficulty].singular ? 'word' : 'words'}`} missing
+              </div>
             </div>
           </div>
         </Section>
