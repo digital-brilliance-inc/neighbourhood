@@ -30,8 +30,8 @@ export const Footer = ({}) => {
             <Link className={clsx('page')} href="/initiatives">
               <div>Initiatives</div>
             </Link>
-            <Link className={clsx('page')} href="/stories">
-              <div>Stories</div>
+            <Link className={clsx('page')} href="/events">
+              <div>Events</div>
             </Link>
             <Link className={clsx('page')} href="/team">
               <div>Team</div>

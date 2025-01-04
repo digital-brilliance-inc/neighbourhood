@@ -17,9 +17,10 @@ import { ChurchSection } from './_components/church-section/church-section';
 import { Loader } from '@googlemaps/js-api-loader';
 import { Neighbourhood } from '@/lib/model/neighbourhood';
 import { Church } from '@/lib/model/church';
+import { SignUpSection } from './_components/sign-up-section/sign-up-section';
 
 export default function Home() {
-  const aboutSectionRef = useRef<HTMLDivElement>(null);
+  const signUpSectionRef = useRef<HTMLDivElement>(null);
   const [isDataLoading, setDataLoading] = useState(true);
   const [areaCoveredPct, setAreaCoveredPct] = useState(0);
   const [neighbourhoodAdvocateCount, setNeighbourhoodAdvocateCount] = useState(0);
@@ -62,8 +63,8 @@ export default function Home() {
   }, []);
 
   const navigateToNext = () => {
-    if (aboutSectionRef.current) {
-      aboutSectionRef.current.scrollIntoView();
+    if (signUpSectionRef.current) {
+      signUpSectionRef.current.scrollIntoView();
     }
   };
 
@@ -71,7 +72,10 @@ export default function Home() {
     <>
       <main className="home-container">
         <HomeSection navigateToNext={navigateToNext}></HomeSection>
-        <div ref={aboutSectionRef}>
+        <div ref={signUpSectionRef}>
+          <SignUpSection />
+        </div>
+        <div>
           <AboutSection />
         </div>
         <Section title="How are we doing?">

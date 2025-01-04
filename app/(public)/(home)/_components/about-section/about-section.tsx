@@ -28,9 +28,9 @@ export const AboutSection = () => {
             The Word became flesh and blood, and moved into the neighborhood. - John 1:14a (MSG)
           </h4>
           <h5>
-            Welcome to <MiltonChurchLabel />! We want to help spread God’s Kingdom by growing loving relationships
-            within our neighbourhoods. And in the process, we want to build a network of Jesus followers across the city
-            who are passionate about doing this work together.
+            We want to help spread God’s Kingdom by growing loving relationships within our neighbourhoods. And in the
+            process, we want to build a network of Jesus followers across the city who are passionate about doing this
+            work together.
           </h5>
           <p>There are three main ways to get involved (depending on how engaged you want to be!):</p>
           <div className="section-bullets">

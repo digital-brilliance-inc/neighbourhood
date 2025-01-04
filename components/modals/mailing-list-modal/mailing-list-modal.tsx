@@ -53,8 +53,8 @@ export const MailingListModal = ({
                   required={true}
                 />
               </div>
-              <input type="email" name="email" placeholder="Enter your email address" required={true} />
-              <input type="text" name="church" placeholder="What church are you currently connected to (if any)?" />
+              <input type="email" name="email" placeholder="Email address" required={true} />
+              <input type="text" name="church" placeholder="What church are you connected to (if any)?" />
               <input type="hidden" name="pageUri" value="https://milton.church" />
               <input type="hidden" name="pageName" value="Home" />
             </div>
