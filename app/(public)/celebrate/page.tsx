@@ -70,8 +70,9 @@ export default function Page() {
             <SectionSubtitle>Discussion Groups</SectionSubtitle>
             <h5>Are you looking for a way to meet people and talk about things that are meaningful to you?</h5>
             <p>
-              You'll find some suggested topics below... Is there something there that interests you? If so, let us know
-              how to reach you, and we'll be in touch when there is enough interest in that topic to start a group.{' '}
+              You&apos;ll find some suggested topics below... Is there something there that interests you? If so, let us
+              know how to reach you, and we&apos;ll be in touch when there is enough interest in that topic to start a
+              group.{' '}
             </p>
 
             <h5>Truth</h5>
