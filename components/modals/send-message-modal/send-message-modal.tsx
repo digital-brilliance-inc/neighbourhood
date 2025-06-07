@@ -30,7 +30,7 @@ export const SendMessageModal = ({
 }) => {
   const [errorMessage, dispatchSendMessage] = useFormState(sendMessageAction, undefined);
   const [formStatus, setFormStatus] = useState<string>('none');
-  const formRef = useRef<HTMLFormElement>();
+  const formRef = useRef<HTMLFormElement | null>(null);
 
   const validateEmail = () => {
     const form = formRef.current;

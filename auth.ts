@@ -1,7 +1,8 @@
 import NextAuth from 'next-auth';
 import type { NextAuthConfig, User } from 'next-auth';
 import Google from 'next-auth/providers/google';
-import Nodemailer from '@auth/core/providers/nodemailer';
+// import Nodemailer from '@auth/core/providers/nodemailer';
+import EmailProvider from 'next-auth/providers/email';
 import FacebookProvider from 'next-auth/providers/facebook';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import { MongoDBAdapter } from '@auth/mongodb-adapter';
@@ -31,7 +32,20 @@ export const config = {
         },
       },
     }),
-    Nodemailer({
+    // Nodemailer({
+    //   server: {
+    //     host: process.env.SMTP_HOST,
+    //     port: Number(process.env.SMTP_PORT),
+    //     auth: {
+    //       user: process.env.SMTP_USER,
+    //       pass: process.env.SMTP_PASSWORD,
+    //     },
+    //   },
+    //   name: 'Email',
+    //   sendVerificationRequest,
+    //   from: process.env.EMAIL_FROM,
+    // }),
+    EmailProvider({
       server: {
         host: process.env.SMTP_HOST,
         port: Number(process.env.SMTP_PORT),

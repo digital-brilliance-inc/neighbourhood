@@ -9,7 +9,7 @@ import { list } from '@vercel/blob';
 
 export const revalidate = 0;
 
-export const GET = async (req: NextRequest, res: NextResponse) => {
+export const GET = async (req: NextRequest): Promise<Response> => {
   // const token = await getToken({ req: request, secret: process.env.NEXT_AUTH_SECRET!, salt: 'hello' });
   // console.log('/GET(): getToken = %o', token);
 
