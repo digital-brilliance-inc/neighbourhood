@@ -1,230 +1,288 @@
 'use client';
-import { Section } from '@/components/section/section';
 import './styles.scss';
 import { Footer } from '@/components/footer/footer';
-import { Button, Spinner } from 'react-bootstrap';
+import { Accordion, Button, Spinner } from 'react-bootstrap';
 import { useEffect, useRef, useState } from 'react';
 import { SendMessageModal } from '@/components/modals/send-message-modal/send-message-modal';
 import { useSession } from 'next-auth/react';
-import moment from 'moment';
-import { SectionSubtitle } from '@/components/section-subtitle/section-subtitle';
-import { EventItem } from '@/components/event-item/event-item';
-import { datetime, RRule, RRuleSet, rrulestr } from 'rrule';
-import { eventOccurrences, toRRule } from '@/lib/utils';
-import { EventModel } from '@/lib/model/event-model';
-import { EventModal } from '@/components/modals/event-modal/event-modal';
-import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { Church } from '@/lib/model/church';
+import { topics } from './topics';
+import { kidsPrograms } from './kids-programs';
 
 export default function Page() {
-  const [loading, setLoading] = useState(true);
   const [modalVisible, setModalVisible] = useState(false);
   const { data: session } = useSession();
   const [eventModalVisible, setEventModalVisible] = useState(false);
-  const [contactModalVisible, setContactModalVisible] = useState(false);
-  const [selectedEvent, setSelectedEvent] = useState<EventModel>();
-  const currentSearchParams = useSearchParams();
-  const pathname = usePathname(); // let's get the pathname to make the component reusable - could be used anywhere in the project
-  const router = useRouter();
+  const [selectedTab, setSelectedTab] = useState<'pink' | 'blue' | 'orange' | null>(null);
+  const [selectedTopicItems, setSelectedTopicItems] = useState<Array<string>>([]);
+  const [churches, setChurches] = useState<Array<Church>>([]);
+  const [churchesLoading, setChurchesLoading] = useState(true);
 
-  const handleEventSelected = (eventItem: EventModel) => {
-    setSelectedEvent(eventItem);
-    setEventModalVisible(true);
-    const updatedSearchParams = new URLSearchParams(currentSearchParams.toString());
-    updatedSearchParams.set('eventId', eventItem.id);
-    router.push(pathname + '?' + updatedSearchParams.toString());
+  useEffect(() => {
+    const order = [
+      'Knox Presbyterian Church',
+      "St. Paul's United Church",
+      'Grace Anglican Church',
+      'PORTICO Community Church Milton',
+      'Grace Expression House',
+      'Freedom Centre',
+      'Saint Benedict Parish',
+      'Southside @ Main',
+      'Holy Rosary Parish',
+      'Milton Bible Church',
+      'Milton Micro-Church',
+      'Redhill',
+      'Hillside Church',
+      'Crosstowne Church',
+      'St. George and St. Abanoub Coptic Orthodox Church',
+      'Milton Baptist Church',
+      'The Salvation Army Khi Community Church & Family Services',
+      'New Life Church',
+      'Boston Presbyterian Church',
+      'Center of Life Church',
+      'The House of David',
+      'Graceway Baptist Church',
+    ];
+    fetch('/api/churches', { cache: 'no-store' }).then(async (response) => {
+      const churches = await response.json();
+      setChurches(
+        churches
+          .filter((c: any) => !c.hidden)
+          .sort((a: any, b: any) => {
+            const indexA = order.indexOf(a.name);
+            const indexB = order.indexOf(b.name);
+            return indexA < indexB ? -1 : 1;
+          }),
+      );
+      console.log('churches = %o', churches);
+      setChurchesLoading(false);
+    });
+  }, []);
+
+  const toggleTopicItemSelection = (item: any) => {
+    if (selectedTopicItems.includes(item.id)) {
+      setSelectedTopicItems(selectedTopicItems.filter((element) => element !== item.id));
+    } else {
+      setSelectedTopicItems([...selectedTopicItems, item.id]);
+    }
   };
 
-  // useEffect(() => {
-  //   console.log('useEffect[currentSearchParams]: currentSearchParams = ' + currentSearchParams.toString());
-  //   if (!currentSearchParams.get('eventId')) {
-  //     setEventModalVisible(false);
-  //   }
-  // }, [currentSearchParams]);
+  const getItemById = (itemId: string) => {
+    for (let topic of topics) {
+      const item = topic.items.find((item) => item.id === itemId);
+      if (item) {
+        return item;
+      }
+    }
+    return null;
+  };
 
   return (
     <div className="page-celebrate">
-      <div className="flex-container">
-        <Section title="Welcome to the party!">
-          <div>
-            <p>
-              PLACEHOLDER: This will be an introduction paragraph to welcome people to the site and help orient them to
-              what they will find here.
-            </p>
-
-            <div className="mt-4"></div>
-            <SectionSubtitle>Summer programs for kids</SectionSubtitle>
-            <p>&lt; Summer Vacation Bible School info will be filled in here! &gt;</p>
-            {/* <Button className="btn-lg" onClick={() => setModalVisible(true)}>
-              Something missing?
-            </Button> */}
-
-            <div className="mt-4"></div>
-            <SectionSubtitle>Church gatherings</SectionSubtitle>
-            <p>&lt; Church list with Sunday service times will be filled in here! &gt;</p>
-            {/* <Button className="btn-lg" onClick={() => setModalVisible(true)}>
-              Something missing?
-            </Button> */}
-            <div className="mt-5" />
-
-            <div className="mt-4"></div>
-            <SectionSubtitle>Discussion Groups</SectionSubtitle>
-            <h5>Are you looking for a way to meet people and talk about things that are meaningful to you?</h5>
-            <p>
-              You&apos;ll find some suggested topics below... Is there something there that interests you? If so, let us
-              know how to reach you, and we&apos;ll be in touch when there is enough interest in that topic to start a
-              group.{' '}
-            </p>
-
-            <h5>Truth</h5>
-            <ul>
-              <li>
-                <a href="">Courage</a>
-              </li>
-              <li>
-                <a href="">Faith</a>
-              </li>
-              <li>
-                <a href="">Hope</a>
-              </li>
-              <li>
-                <a href="">Justic</a>
-              </li>
-              <li>
-                <a href="">Love</a>
-              </li>
-              <li>
-                <a href="">Obedience</a>
-              </li>
-              <li>
-                <a href="">Peace</a>
-              </li>
-            </ul>
-
-            <h5>Challenge</h5>
-            <ul>
-              <li>
-                <a href="">Anger</a>
-              </li>
-              <li>
-                <a href="">Crisis</a>
-              </li>
-              <li>
-                <a href="">Grief</a>
-              </li>
-              <li>
-                <a href="">Hurt</a>
-              </li>
-              <li>
-                <a href="">Money</a>
-              </li>
-              <li>
-                <a href="">Reconciliation</a>
-              </li>
-              <li>
-                <a href="">Self Esteem</a>
-              </li>
-              <li>
-                <a href="">Stress</a>
-              </li>
-            </ul>
-
-            {/* <h5>Money</h5>
-            <ul>
-              <li>
-                <a href="">Money and God</a>
-              </li>
-              <li>
-                <a href="">Money Advice</a>
-              </li>
-              <li>
-                <a href="">Giving</a>
-              </li>
-              <li>
-                <a href="">Marketplace</a>
-              </li>
-            </ul> */}
-
-            <h5>People</h5>
-            <ul>
-              <li>
-                <a href="">Marriage</a>
-              </li>
-              <li>
-                <a href="">Men</a>
-              </li>
-              <li>
-                <a href="">Parenting</a>
-              </li>
-              <li>
-                <a href="">Singles</a>
-              </li>
-              <li>
-                <a href="">Women</a>
-              </li>
-              <li>
-                <a href="">Youth</a>
-              </li>
-            </ul>
-
-            <h5>God</h5>
-            <ul>
-              <li>
-                <a href="">Father</a>
-              </li>
-              <li>
-                <a href="">Son</a>
-              </li>
-              <li>
-                <a href="">Holy Spirit</a>
-              </li>
-              <li>
-                <a href="">3 in 1</a>
-              </li>
-              <li>
-                <a href="">Bible</a>
-              </li>
-              <li>
-                <a href="">Kingdom</a>
-              </li>
-              <li>
-                <a href="">Mission</a>
-              </li>
-              <li>
-                <a href="">Prayer</a>
-              </li>
-            </ul>
-
-            <h5>Jesus</h5>
-            <ul>
-              <li>
-                <a href="">Miracles</a>
-              </li>
-              <li>
-                <a href="">Parables</a>
-              </li>
-              <li>
-                <a href="">Teachings</a>
-              </li>
-            </ul>
-            {/* <Button className="btn-lg mt-4" onClick={() => setModalVisible(true)}>
-              Something missing?
-            </Button> */}
-            <div className="mt-5" />
+      <div className="banner">
+        <img src="/images/celebrate/summerfest-text.png" />
+      </div>
+      <div className="flex-container1">
+        <div className="top-content-container">
+          <h3>Welcome! We’re so glad you’re here.</h3>
+          <p style={{ lineHeight: '140%' }}>
+            This is a space where you can <span className="text-pink bold">connect with others</span> around meaningful
+            conversations, <span className="text-blue bold">explore local churches</span>, and{' '}
+            <span className="text-orange bold">discover amazing kids programs</span> happening this summer.
+          </p>
+          <p>We’re celebrating what God is doing in Milton — and we’d love for you to be a part of it.</p>
+        </div>
+        <div>
+          <div className="button-bar">
+            <div
+              className={`tab-button pink ${selectedTab === 'pink' && 'selected'}`}
+              onClick={() => setSelectedTab('pink')}
+            >
+              <div>
+                Join a new
+                <br />
+                <span className="bold">Community Conversation</span>
+                <br />
+                group
+              </div>
+            </div>
+            <div
+              className={`tab-button blue ${selectedTab === 'blue' && 'selected'}`}
+              onClick={() => setSelectedTab('blue')}
+            >
+              <div>
+                See the participating
+                <br />
+                <span className="bold">Local Churches</span>
+                <br />
+                in Milton
+              </div>
+            </div>
+            <div
+              className={`tab-button orange ${selectedTab === 'orange' && 'selected'}`}
+              onClick={() => setSelectedTab('orange')}
+            >
+              <div>
+                Discover
+                <br />
+                <span className="bold">Fun Kids Programs</span>
+                <br />
+                running this summer
+              </div>
+            </div>
           </div>
-        </Section>
+          <div className={`gradient-container ${selectedTab}`}>
+            <div className="gradient-tail"></div>
+          </div>
+
+          <div
+            className={`mobile-tab-button pink ${selectedTab === 'pink' && 'selected'}`}
+            onClick={() => (selectedTab === 'pink' ? setSelectedTab(null) : setSelectedTab('pink'))}
+          >
+            <div>
+              Join a new <span className="bold">Community Conversation</span> group
+            </div>
+          </div>
+          <div className={`tab-content-container ${selectedTab === 'pink' && 'pink visible'}`}>
+            <div className="intro-text">
+              <h4 className="bold">Let’s talk about the things that matter, together.</h4>
+              <p>
+                Below you’ll find a list of topics that people in our community are curious about, wrestling with, or
+                simply want to explore more deeply. Pick the ones that interest you and when enough people (between
+                8-10) choose the same topic, we’ll launch a new group where you can meet others, share perspectives, and
+                discover what God might be saying in the middle of it all.{' '}
+              </p>
+              <p>
+                It’s a fresh start with new faces and real conversations — a simple way to connect, grow, and not go it
+                alone.
+              </p>
+            </div>
+            <Accordion alwaysOpen>
+              {topics.map((t, index) => (
+                <Accordion.Item key={t.id} eventKey={index + ''}>
+                  <Accordion.Header>{t.label}</Accordion.Header>
+                  <Accordion.Body>
+                    <div className="topics-container">
+                      {t.items.map((item) => (
+                        <div
+                          key={item.id}
+                          className={`topic-item ${selectedTopicItems.includes(item.id) && 'selected'}`}
+                          onClick={() => toggleTopicItemSelection(item)}
+                        >
+                          <img className="icon" src={item.icon} />
+                          <div className="text-container">
+                            <div className="title">{item.label}</div>
+                            <div className="description">{item.description}</div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </Accordion.Body>
+                </Accordion.Item>
+              ))}
+            </Accordion>
+          </div>
+
+          <div
+            className={`mobile-tab-button blue ${selectedTab === 'blue' && 'selected'}`}
+            onClick={() => (selectedTab === 'blue' ? setSelectedTab(null) : setSelectedTab('blue'))}
+          >
+            <div>
+              See the participating <span className="bold">Local Churches</span> in Milton
+            </div>
+          </div>
+          <div className={`tab-content-container ${selectedTab === 'blue' && 'blue visible'}`}>
+            <div className="church-list-container">
+              {churches.map((c) => (
+                <div className="church" key={c.id} onClick={() => c.contactUrl && window.open(c.contactUrl, '_blank')}>
+                  <div className="church-inner-container">
+                    <div
+                      className="church-image-container"
+                      style={{
+                        backgroundImage: `url(${c.primaryImageUrl})`,
+                        backgroundSize: 'cover',
+                        backgroundPosition: 'center center',
+                      }}
+                    ></div>
+                    <div className="church-details">
+                      <div className={`church-name bold ${c.contactUrl && 'has-link'}`}>{c.name}</div>
+                      <div className="church-address text-small">{c.address}</div>
+                      {c.shortDescription && (
+                        <div
+                          className="church-description text-small"
+                          dangerouslySetInnerHTML={{ __html: c.shortDescription }}
+                        ></div>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div
+            className={`mobile-tab-button orange ${selectedTab === 'orange' && 'selected'}`}
+            onClick={() => (selectedTab === 'orange' ? setSelectedTab(null) : setSelectedTab('orange'))}
+          >
+            <div>
+              Discover <span className="bold">Fun Kids Programs</span> running this summer
+            </div>
+          </div>
+          <div className={`tab-content-container ${selectedTab === 'orange' && 'orange visible'}`}>
+            <div className="kids-program-list-container">
+              {kidsPrograms.map((kp) => (
+                <div
+                  className="kids-program"
+                  key={kp.id}
+                  onClick={() => kp.contactUrl && window.open(kp.contactUrl, '_blank')}
+                >
+                  <div className="kids-program-inner-container">
+                    <div
+                      className="kids-program-image-container"
+                      style={{
+                        backgroundImage: `url(${kp.imgUrl})`,
+                        backgroundSize: 'cover',
+                        backgroundPosition: 'center center',
+                      }}
+                    ></div>
+                    <div className="kids-program-details">
+                      <div className={`kids-program-name bold ${kp.contactUrl && 'has-link'}`}>{kp.name}</div>
+                      <div className="kids-program-address text-small">{kp.location1}</div>
+                      <div className="kids-program-address text-small">{kp.location2}</div>
+                      {kp.description && (
+                        <div
+                          className="kids-program-description text-small"
+                          dangerouslySetInnerHTML={{ __html: kp.description }}
+                        ></div>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className={`submit-bar ${selectedTab === 'pink' && selectedTopicItems.length > 0 && 'visible'}`}>
+        <Button className="btn btn-inverse" onClick={() => setModalVisible(true)}>
+          Register My Interest ({selectedTopicItems.length} topic{selectedTopicItems.length > 1 && 's'})
+        </Button>
       </div>
       <Footer />
       <SendMessageModal
         modalVisible={modalVisible}
         setModalVisible={setModalVisible}
-        description={`Thanks for your interest in helping out with Milton.Church. Fill out the form below to let us know how you'd like to get involved and we'll be in touch shortly!`}
-        successMessage="Your message was sent successfully. We'll be in touch soon. Thank you!"
-        subject="Offer to Help with Milton.Church"
-        context="Offer to Help with Milton.Church"
+        description={`<div><strong>We’d love to connect you with others who care about the same things.</strong></div>
+<div>Share your name and email below so we can reach out when a group forms around one of the topics you’ve selected. No pressure — just an open door to meaningful conversation and new community.</div>`}
+        successMessage="Your interest was registered successfully. We'll be in touch soon. Thank you!"
+        subject="Discussion Group Interest"
+        context="Discussion Group Interest"
         user={session?.user}
-        title="Get Involved"
+        messageDefault={[
+          'Please let me know when there is a group forming around any of the following topics:',
+          ...selectedTopicItems.map((tid) => '- ' + getItemById(tid)?.label),
+        ].join('\n')}
+        title="Register My Interest in a Community Group"
       />
-      <EventModal modalVisible={eventModalVisible} setModalVisible={setEventModalVisible} eventItem={selectedEvent} />
     </div>
   );
 }

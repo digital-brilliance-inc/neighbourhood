@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { Button, Modal } from 'react-bootstrap';
 import { useFormState } from 'react-dom';
 import { sendMessage as sendMessageAction } from '@/lib/actions';
@@ -15,6 +15,7 @@ export const SendMessageModal = ({
   context,
   successMessage,
   user,
+  messageDefault,
   setModalVisible,
 }: {
   modalVisible: boolean;
@@ -24,19 +25,40 @@ export const SendMessageModal = ({
   subject: string;
   successMessage: string;
   user?: User;
+  messageDefault?: string;
   setModalVisible: (modalVisible: boolean) => void;
 }) => {
   const [errorMessage, dispatchSendMessage] = useFormState(sendMessageAction, undefined);
   const [formStatus, setFormStatus] = useState<string>('none');
+  const formRef = useRef<HTMLFormElement>();
+
+  const validateEmail = () => {
+    const form = formRef.current;
+    if (!form) return;
+
+    const formData = new FormData(form);
+    const email = formData.get('email') as string;
+    return email.match(
+      /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+    );
+  };
 
   /* <div className="modal-description">
     Your message has been sent successfully. The neighbourhood advocate for {selectedNeighbourhood?.name} should
     be in touch soon.
   </div> */
 
-  const handleSubmit = async (args: FormData) => {
+  const handleEmailEdit = () => {
+    if (!validateEmail()) {
+      setFormStatus('invalid_email');
+    } else {
+      setFormStatus('');
+    }
+  };
+
+  const handleSubmit = async (formData: FormData) => {
     setFormStatus('working');
-    await dispatchSendMessage(args);
+    await dispatchSendMessage(formData);
     setFormStatus('complete');
     // setModalVisible(false);
   };
@@ -52,11 +74,11 @@ export const SendMessageModal = ({
         <Modal.Title>{title}</Modal.Title>
       </Modal.Header>
 
-      <form className="form" action={handleSubmit}>
+      <form className="form" ref={formRef} action={handleSubmit}>
         <Modal.Body className="pt-3 pb-3 ps-4 pe-4">
           {formStatus !== 'complete' && (
             <>
-              <p>{description}</p>
+              <p dangerouslySetInnerHTML={{ __html: description }}></p>
               <div className="form-body">
                 <input
                   type="text"
@@ -70,13 +92,19 @@ export const SendMessageModal = ({
                   type="text"
                   name="email"
                   placeholder="Email"
+                  onChange={() => handleEmailEdit()}
                   readOnly={user?.name ? true : false}
                   defaultValue={user?.email || ''}
                   required
                 />
                 <input type="hidden" name="context" readOnly={true} defaultValue={context} />
                 <input type="hidden" name="subject" readOnly={true} defaultValue={subject} />
-                <textarea className="text-area" required name="message" placeholder="Enter your message here" />
+                <textarea
+                  className="text-area"
+                  {...(messageDefault ? { defaultValue: messageDefault } : {})}
+                  name="message"
+                  placeholder="Enter your message here"
+                />
               </div>
             </>
           )}
@@ -89,7 +117,7 @@ export const SendMessageModal = ({
               <Button variant="tertiary" onClick={() => handleClose()}>
                 Cancel
               </Button>
-              <Button variant="primary" type="submit">
+              <Button variant="primary" type="submit" {...(formStatus === 'invalid_email' ? { disabled: true } : {})}>
                 Send Message
               </Button>
             </>

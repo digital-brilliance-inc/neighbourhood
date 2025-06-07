@@ -1,61 +1,536 @@
 @use 'sass:color';
 @import '@/app/globals.scss';
 
+$accordion-icon-color: red;
+
 .page-celebrate {
-  .flex-container {
+  .banner {
+    background-image: url('../../\(public\)/../../public/images/celebrate/summerfest-banner.png');
+    background-size: cover;
+    background-position: center 200px;
+    min-height: 200px;
     display: flex;
-    gap: 32px;
-    .section-side-container {
-      border-radius: 0;
+    justify-content: center;
+    align-items: center;
+    img {
+      min-width: 300px;
+      max-width: 500px;
+      width: 80%;
     }
   }
 
-  .section-side-inner-container {
+  .top-content-container {
+    max-width: 900px;
+    padding: 0 24px;
+    margin: 48px auto 48px;
+    text-align: center;
     display: flex;
     flex-direction: column;
-    gap: 32px;
-
-    .section-side-picture {
-      border-radius: 24px;
+    gap: 24px;
+    p {
+      font-size: 20px;
     }
   }
 
-  .loading-container {
-    display: inline-block;
-    text-align: center;
-    margin: 75px 0;
+  .button-bar {
+    display: none;
+    align-items: stretch;
+    justify-content: center;
+    gap: 16px;
+    .tab-button {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      flex: 1 0 0;
+      max-width: 280px;
+      border-radius: 20px;
+      text-align: center;
+      align-items: center;
+      border: 3px solid $color-charcoal;
+      padding: 24px 16px;
+      font-size: 18px;
+      position: relative;
+      z-index: 2;
+      cursor: pointer;
+      &.selected {
+        z-index: 1;
+      }
+
+      &.pink {
+        border-color: $color-pink;
+        color: $color-pink;
+        background-color: #fdf4f7;
+        &.selected {
+          color: $color-white;
+          background-color: $color-pink;
+        }
+      }
+      &.blue {
+        border-color: $color-blue;
+        color: $color-blue;
+        background-color: #f5f8fc;
+        &.selected {
+          color: $color-white;
+          background-color: $color-blue;
+        }
+      }
+      &.orange {
+        border-color: $color-orange;
+        color: $color-orange;
+        background-color: #fff8f5;
+        &.selected {
+          color: $color-white;
+          background-color: $color-orange;
+        }
+      }
+    }
+  }
+
+  .gradient-container {
+    display: none;
     position: relative;
-    left: 50%;
-    transform: translateX(-50%);
-    .loading-label {
-      color: $color-charcoal;
-      margin-top: 8px;
+    z-index: 1;
+    margin-top: -20px;
+    //background-image: linear-gradient($color-pink 0%, $color-white 50%);
+    position: relative;
+    height: 25px;
+    .gradient-tail {
+      height: 50px;
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 100%;
+    }
+    &.pink {
+      background-color: $color-pink;
+      .gradient-tail {
+        background-image: linear-gradient(
+          rgba(225, 31, 92, 1) 0%,
+          rgba(225, 31, 92, 0.3) 50%,
+          rgba(225, 31, 92, 0.15) 65%,
+          rgba(225, 31, 92, 0.075) 75.5%,
+          rgba(225, 31, 92, 0.037) 82.85%,
+          rgba(225, 31, 92, 0.019) 88%,
+          rgba(225, 31, 92, 0) 100%
+        );
+      }
+    }
+    &.blue {
+      background-color: $color-blue;
+      .gradient-tail {
+        background-image: linear-gradient(
+          rgba(50, 122, 189, 1) 0%,
+          rgba(50, 122, 189, 0.3) 50%,
+          rgba(50, 122, 189, 0.15) 65%,
+          rgba(50, 122, 189, 0.075) 75.5%,
+          rgba(50, 122, 189, 0.037) 82.85%,
+          rgba(50, 122, 189, 0.019) 88%,
+          rgba(50, 122, 189, 0) 100%
+        );
+      }
+    }
+    &.orange {
+      background-color: $color-orange;
+      .gradient-tail {
+        background-image: linear-gradient(
+          rgba(255, 108, 55, 1) 0%,
+          rgba(255, 108, 55, 0.3) 50%,
+          rgba(255, 108, 55, 0.15) 65%,
+          rgba(255, 108, 55, 0.075) 75.5%,
+          rgba(255, 108, 55, 0.037) 82.85%,
+          rgba(255, 108, 55, 0.019) 88%,
+          rgba(255, 108, 55, 0) 100%
+        );
+      }
+    }
+  }
+
+  .tab-content-container {
+    max-height: 0;
+    overflow: hidden;
+    position: relative;
+    margin-left: 24px;
+    margin-right: 24px;
+    margin-bottom: 24px;
+
+    &.visible {
+      max-height: unset;
+      border: 2px solid $color-pink;
+      background-color: #fdf4f7;
+      position: relative;
+      z-index: 1;
+      padding: 48px 24px 24px;
+      margin-top: -24px;
+    }
+
+    &.pink {
+      border-color: $color-pink;
+      background-color: #fdf4f7;
+    }
+    &.blue {
+      border-color: $color-blue;
+      background-color: #f5f8fc;
+    }
+    &.orange {
+      border-color: $color-orange;
+      background-color: #fff8f5;
+    }
+
+    .intro-text {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 16px;
+      margin-bottom: 16px;
+      h4 {
+        font-size: 20px;
+      }
+    }
+  }
+
+  .accordion-item {
+    border: 0;
+    margin: 8px 0;
+    border-radius: 25px !important;
+  }
+  .accordion-button.collapsed::after {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+  }
+  .accordion-button::after {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+  }
+  .accordion-button {
+    background-color: $color-charcoal;
+    font-size: 18px;
+    font-weight: 500;
+    border-radius: 24px !important;
+    box-shadow: 0 2px 4px color.change($color-charcoal, $alpha: 0.2);
+    color: $color-white;
+    &:not(.collapsed) {
+      color: $color-white;
+      background-color: $color-charcoal;
+    }
+    &:focus {
+      box-shadow: none;
+    }
+    &.collapsed {
+      box-shadow: none;
+    }
+  }
+
+  .accordion-body {
+    padding-top: 0;
+    padding-bottom: 0;
+    font-size: 16px;
+  }
+
+  .topics-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 24px;
+    margin-bottom: 24px;
+    padding-bottom: 24px;
+
+    .topic-item {
+      flex-grow: 1;
+      border-radius: 20px;
+      padding: 18px;
+      border: 2px solid $color-light-gray;
+      display: flex;
+      align-items: flex-start;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      gap: 8px;
+      &:hover {
+        box-shadow: 0 4px 8px #d2d2d2;
+        border-color: $color-pink;
+      }
+      &.selected {
+        border-color: $color-pink;
+        background-color: #fdf4f7;
+      }
+
+      .icon {
+        width: 64px;
+        height: 64px;
+      }
+      .text-container {
+        .title {
+          font-weight: bold;
+        }
+        .description {
+          margin-top: 4px;
+          font-size: 14px;
+        }
+      }
+    }
+  }
+
+  .submit-bar {
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: $color-pink;
+    text-align: center;
+    padding: 24px;
+    transform: translateY(500px);
+    transition: transform 0.3s ease;
+    z-index: 50;
+    position: fixed;
+    &.visible {
+      position: sticky;
+      transform: translateY(0);
+    }
+  }
+
+  .mobile-tab-button {
+    margin: 0 24px;
+    border-radius: 20px;
+    border: 2px solid $color-charcoal;
+    padding: 16px 16px;
+    font-size: 18px;
+    text-align: center;
+    cursor: pointer;
+    position: relative;
+    z-index: 2;
+    transition: all 0.3s ease;
+
+    &.selected {
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+
+    &.pink {
+      border-color: $color-pink;
+      color: $color-pink;
+      background-color: #fdf4f7;
+      &.selected {
+        color: $color-white;
+        background-color: $color-pink;
+      }
+    }
+    &.blue {
+      border-color: $color-blue;
+      color: $color-blue;
+      background-color: #f5f8fc;
+      &.selected {
+        color: $color-white;
+        background-color: $color-blue;
+      }
+    }
+    &.orange {
+      border-color: $color-orange;
+      color: $color-orange;
+      background-color: #fff8f5;
+      &.selected {
+        color: $color-white;
+        background-color: $color-orange;
+      }
+    }
+  }
+
+  .church-list-container {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .church {
+    display: flex;
+    flex-direction: column;
+    margin: 0 -12px 24px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    align-items: flex-start;
+    border: 1px solid transparent;
+    padding: 16px;
+    gap: 8px;
+    align-items: stretch;
+    border-bottom: 1px solid #d2d2d2;
+    border-radius: 0;
+
+    &:hover {
+      background: white;
+      box-shadow: 0 0 8px #d2d2d2;
+      border-radius: 10px;
+    }
+
+    .church-inner-container {
+      gap: 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .church-details {
+      text-align: center;
+    }
+
+    .church-description {
+      * {
+        font-size: 14px;
+      }
+      margin-top: 12px;
+    }
+
+    .church-image-container {
+      min-width: 64px;
+      min-height: 64px;
+      max-width: 300px;
+      width: 100%;
+      aspect-ratio: 1;
+      border-radius: 10px;
+    }
+    .church-name.has-link {
+      text-decoration: underline;
+    }
+  }
+
+  .kids-program-list-container {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .kids-program {
+    display: flex;
+    flex-direction: column;
+    margin: 0 -12px 24px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    align-items: flex-start;
+    border: 1px solid transparent;
+    padding: 16px;
+    gap: 8px;
+    align-items: stretch;
+    border-bottom: 1px solid #d2d2d2;
+    border-radius: 0;
+
+    &:hover {
+      background: white;
+      box-shadow: 0 0 8px #d2d2d2;
+      border-radius: 10px;
+    }
+
+    .kids-program-inner-container {
+      gap: 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .kids-program-details {
+      text-align: center;
+    }
+
+    .kids-program-description {
+      * {
+        font-size: 14px;
+      }
+      margin-top: 12px;
+    }
+
+    .kids-program-image-container {
+      min-width: 64px;
+      min-height: 64px;
+      max-width: 300px;
+      width: 100%;
+      aspect-ratio: 1;
+      border-radius: 10px;
+    }
+    .kids-program-name.has-link {
+      text-decoration: underline;
     }
   }
 }
 
 /* Extra small devices (phones, 600px and down) */
-@media only screen and (max-width: 600px) {
+@media only screen and (min-width: 600px) {
+  .page-celebrate {
+  }
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 600px) {
+  .page-celebrate {
+  }
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
+  .page-celebrate {
+    .church {
+      margin: 0 0 24px;
+
+      .church-inner-container {
+        flex-direction: row;
+        align-items: flex-start;
+      }
+      .church-image-container {
+        max-width: 175px;
+        min-width: 175px;
+      }
+      .church-details {
+        text-align: left;
+      }
+    }
+    .kids-program {
+      margin: 0 0 24px;
+
+      .kids-program-inner-container {
+        flex-direction: row;
+      }
+      .kids-program-image-container {
+        max-width: 175px;
+        min-width: 175px;
+      }
+      .kids-program-details {
+        text-align: left;
+      }
+    }
+  }
 }
 
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
+  .page-celebrate {
+    .top-content-container {
+      margin-top: 64px;
+      h3 {
+        margin-bottom: 24px;
+      }
+    }
+    .button-bar {
+      display: flex;
+    }
+    .gradient-container {
+      display: block;
+    }
+    .mobile-tab-button {
+      display: none;
+    }
+    .tab-content-container {
+      &.visible {
+        border: none;
+        background: none;
+        margin-top: 32px;
+      }
+      max-width: 800px;
+      margin: auto;
+      margin-bottom: 32px;
+    }
+    .topics-container {
+      flex-direction: row;
+      flex-wrap: wrap;
+      .topic-item {
+        max-width: 325px;
+      }
+    }
+  }
 }
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {
-  .page-celebrate {
-    .flex-container {
-      max-width: 1200px;
-      margin: auto;
-    }
-  }
 }

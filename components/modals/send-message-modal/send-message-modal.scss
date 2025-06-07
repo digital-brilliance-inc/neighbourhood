@@ -1,6 +1,6 @@
 .send-message-modal {
   .modal-content {
-    height: 600px;
+    min-height: 600px;
     max-height: 90vh;
   }
   form {
@@ -20,6 +20,7 @@
 
     .text-area {
       flex-grow: 1;
+      min-height: 150px;
     }
   }
 }
