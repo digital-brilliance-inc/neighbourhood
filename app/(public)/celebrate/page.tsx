@@ -20,27 +20,27 @@ export default function Page() {
 
   useEffect(() => {
     const order = [
-      'Knox Presbyterian Church',
       "St. Paul's United Church",
+      'Southside @ Main',
+      'Milton Bible Church',
+      'Freedom Centre',
+      'Redhill',
+      'Saint Benedict Parish',
+      'The Salvation Army Khi Community Church & Family Services',
+      'Milton Micro-Church',
+      'New Life Church',
+      'Knox Presbyterian Church',
       'Grace Anglican Church',
       'PORTICO Community Church Milton',
       'Grace Expression House',
-      'Freedom Centre',
-      'Saint Benedict Parish',
-      'Southside @ Main',
-      'Holy Rosary Parish',
-      'Milton Bible Church',
-      'Milton Micro-Church',
-      'Redhill',
       'Hillside Church',
+      'Holy Rosary Parish',
       'Crosstowne Church',
       'St. George and St. Abanoub Coptic Orthodox Church',
       'Milton Baptist Church',
-      'The Salvation Army Khi Community Church & Family Services',
-      'New Life Church',
+      'The House of David',
       'Boston Presbyterian Church',
       'Center of Life Church',
-      'The House of David',
       'Graceway Baptist Church',
     ];
     fetch('/api/churches', { cache: 'no-store' }).then(async (response) => {
@@ -80,118 +80,37 @@ export default function Page() {
   return (
     <div className="page-celebrate">
       <div className="banner">
-        <img src="/images/celebrate/summerfest-text.png" />
+        <div className="banner-text">
+          Milton All-Church
+          <br />
+          Worship and Prayer Night
+        </div>
       </div>
       <div className="flex-container1">
         <div className="top-content-container">
           <h3>Welcome! We’re so glad you’re here.</h3>
           <p style={{ lineHeight: '140%' }}>
-            This is a space where you can <span className="text-pink bold">connect with others</span> around meaningful
-            conversations, <span className="text-blue bold">explore local churches</span>, and{' '}
-            <span className="text-orange bold">discover amazing kids programs</span> happening this summer.
+            Welcome to our all-church prayer night! Everyone’s invited as we gather for worship, prayer, pizza, and
+            community. You belong here!
           </p>
-          <p>We’re celebrating what God is doing in Milton — and we’d love for you to be a part of it.</p>
+          <p>
+            This gathering, hosted and organized by multiple local churches, is open to everyone — whether or not you’ve
+            ever attended church before. Here you’ll find worship led by a music ensemble from several churches,
+            opportunities for personal prayer with faith leaders, and a welcoming time of fellowship (including pizza on
+            the lawn). Stay for as long or as little as you’d like, and experience the unity of the body of Christ in
+            our community.
+          </p>
         </div>
         <div>
-          <div className="button-bar">
-            <div
-              className={`tab-button pink ${selectedTab === 'pink' && 'selected'}`}
-              onClick={() => setSelectedTab('pink')}
-            >
-              <div>
-                Join a new
-                <br />
-                <span className="bold">Community Conversation</span>
-                <br />
-                group
-              </div>
+          <div className={`tab-content-container blue visible`}>
+            <div style={{ marginBottom: 32 }}>
+              <h3 style={{ marginBottom: 32 }}>The Church(es) of Milton</h3>
+              <h5 style={{ marginBottom: 32 }}>
+                Not yet part of a faith community here in the city? Find a local gathering that’s right for you! Need
+                some help finding where you fit? <a href="mailto:hello@milton.church">Contact us</a> and we'll get you
+                connected!
+              </h5>
             </div>
-            <div
-              className={`tab-button blue ${selectedTab === 'blue' && 'selected'}`}
-              onClick={() => setSelectedTab('blue')}
-            >
-              <div>
-                See the participating
-                <br />
-                <span className="bold">Local Churches</span>
-                <br />
-                in Milton
-              </div>
-            </div>
-            <div
-              className={`tab-button orange ${selectedTab === 'orange' && 'selected'}`}
-              onClick={() => setSelectedTab('orange')}
-            >
-              <div>
-                Discover
-                <br />
-                <span className="bold">Fun Kids Programs</span>
-                <br />
-                running this summer
-              </div>
-            </div>
-          </div>
-          <div className={`gradient-container ${selectedTab}`}>
-            <div className="gradient-tail"></div>
-          </div>
-
-          <div
-            className={`mobile-tab-button pink ${selectedTab === 'pink' && 'selected'}`}
-            onClick={() => (selectedTab === 'pink' ? setSelectedTab(null) : setSelectedTab('pink'))}
-          >
-            <div>
-              Join a new <span className="bold">Community Conversation</span> group
-            </div>
-          </div>
-          <div className={`tab-content-container ${selectedTab === 'pink' && 'pink visible'}`}>
-            <div className="intro-text">
-              <h4 className="bold">Let’s talk about the things that matter, together.</h4>
-              <p>
-                Below you’ll find a list of topics that people in our community are curious about, wrestling with, or
-                simply want to explore more deeply. Pick the ones that interest you and when enough people (between
-                8-10) choose the same topic, we’ll launch a new group where you can meet others, share perspectives, and
-                discover what God might be saying in the middle of it all.{' '}
-              </p>
-              <p>
-                It’s a fresh start with new faces and real conversations — a simple way to connect, grow, and not go it
-                alone.
-              </p>
-            </div>
-            <Accordion alwaysOpen>
-              {topics.map((t, index) => (
-                <Accordion.Item key={t.id} eventKey={index + ''}>
-                  <Accordion.Header>{t.label}</Accordion.Header>
-                  <Accordion.Body>
-                    <div className="topics-container">
-                      {t.items.map((item) => (
-                        <div
-                          key={item.id}
-                          className={`topic-item ${selectedTopicItems.includes(item.id) && 'selected'}`}
-                          onClick={() => toggleTopicItemSelection(item)}
-                        >
-                          <img className="icon" src={item.icon} />
-                          <div className="text-container">
-                            <div className="title">{item.label}</div>
-                            <div className="description">{item.description}</div>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </Accordion.Body>
-                </Accordion.Item>
-              ))}
-            </Accordion>
-          </div>
-
-          <div
-            className={`mobile-tab-button blue ${selectedTab === 'blue' && 'selected'}`}
-            onClick={() => (selectedTab === 'blue' ? setSelectedTab(null) : setSelectedTab('blue'))}
-          >
-            <div>
-              See the participating <span className="bold">Local Churches</span> in Milton
-            </div>
-          </div>
-          <div className={`tab-content-container ${selectedTab === 'blue' && 'blue visible'}`}>
             <div className="church-list-container">
               {churches.map((c) => (
                 <div className="church" key={c.id} onClick={() => c.contactUrl && window.open(c.contactUrl, '_blank')}>
@@ -219,70 +138,9 @@ export default function Page() {
               ))}
             </div>
           </div>
-          <div
-            className={`mobile-tab-button orange ${selectedTab === 'orange' && 'selected'}`}
-            onClick={() => (selectedTab === 'orange' ? setSelectedTab(null) : setSelectedTab('orange'))}
-          >
-            <div>
-              Discover <span className="bold">Fun Kids Programs</span> running this summer
-            </div>
-          </div>
-          <div className={`tab-content-container ${selectedTab === 'orange' && 'orange visible'}`}>
-            <div className="kids-program-list-container">
-              {kidsPrograms.map((kp) => (
-                <div
-                  className="kids-program"
-                  key={kp.id}
-                  onClick={() => kp.contactUrl && window.open(kp.contactUrl, '_blank')}
-                >
-                  <div className="kids-program-inner-container">
-                    <div
-                      className="kids-program-image-container"
-                      style={{
-                        backgroundImage: `url(${kp.imgUrl})`,
-                        backgroundSize: 'cover',
-                        backgroundPosition: 'center center',
-                      }}
-                    ></div>
-                    <div className="kids-program-details">
-                      <div className={`kids-program-name bold ${kp.contactUrl && 'has-link'}`}>{kp.name}</div>
-                      <div className="kids-program-address text-small">{kp.location1}</div>
-                      <div className="kids-program-address text-small">{kp.location2}</div>
-                      {kp.description && (
-                        <div
-                          className="kids-program-description text-small"
-                          dangerouslySetInnerHTML={{ __html: kp.description }}
-                        ></div>
-                      )}
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
         </div>
       </div>
-      <div className={`submit-bar ${selectedTab === 'pink' && selectedTopicItems.length > 0 && 'visible'}`}>
-        <Button className="btn btn-inverse" onClick={() => setModalVisible(true)}>
-          Register My Interest ({selectedTopicItems.length} topic{selectedTopicItems.length > 1 && 's'})
-        </Button>
-      </div>
       <Footer />
-      <SendMessageModal
-        modalVisible={modalVisible}
-        setModalVisible={setModalVisible}
-        description={`<div><strong>We’d love to connect you with others who care about the same things.</strong></div>
-<div>Share your name and email below so we can reach out when a group forms around one of the topics you’ve selected. No pressure — just an open door to meaningful conversation and new community.</div>`}
-        successMessage="Your interest was registered successfully. We'll be in touch soon. Thank you!"
-        subject="Discussion Group Interest"
-        context="Discussion Group Interest"
-        user={session?.user}
-        messageDefault={[
-          'Please let me know when there is a group forming around any of the following topics:',
-          ...selectedTopicItems.map((tid) => '- ' + getItemById(tid)?.label),
-        ].join('\n')}
-        title="Register My Interest in a Community Group"
-      />
     </div>
   );
 }
