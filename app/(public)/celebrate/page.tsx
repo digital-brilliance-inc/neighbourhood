@@ -107,7 +107,7 @@ export default function Page() {
               <h3 style={{ marginBottom: 32 }}>The Church(es) of Milton</h3>
               <h5 style={{ marginBottom: 32 }}>
                 Not yet part of a faith community here in the city? Find a local gathering that’s right for you! Need
-                some help finding where you fit? <a href="mailto:hello@milton.church">Contact us</a> and we'll get you
+                some help finding where you fit? <a href="mailto:hello@milton.church">Contact us</a> and we’ll get you
                 connected!
               </h5>
             </div>
